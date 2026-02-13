@@ -1,0 +1,17 @@
+{
+  "name": "Несебър Клима",
+  "short_name": "NesebarClima",
+  "description": "Продажба, монтаж и сервиз на климатици в Несебър, Слънчев бряг, Равда и Свети Влас.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#ffffff",
+  "theme_color": "#1a365d",
+  "icons": [
+    {
+      "src": "/assets/logos/logonsclima.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
