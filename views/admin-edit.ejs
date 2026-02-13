@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Редактиране на продукт | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/admin" class="admin-header__home">← Админ</a>
+      <h1 class="admin-header__title">Редактиране на продукт</h1>
+      <form class="admin-header__logout" action="/admin/logout" method="post">
+        <button type="submit" class="admin-header__logout-btn">Изход</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <% if (typeof error !== 'undefined' && error === 'upload') { %>
+      <div class="admin-alert admin-alert--error">
+        Невалиден файл за снимка. Разрешени: JPEG, PNG, GIF, WebP, до 5 MB.
+      </div>
+    <% } %>
+    <section class="admin-form-section">
+      <h2>Промяна на продукт (ID: <%= product._id %>)</h2>
+      <form class="admin-form" action="/admin/products/<%= product._id %>" method="post" enctype="multipart/form-data">
+        <div class="admin-form__row">
+          <label for="category">Категория <span class="req">*</span></label>
+          <select id="category" name="category" required>
+            <option value="inverter" <%= product.category === 'inverter' ? 'selected' : '' %>>Инверторни</option>
+            <option value="hyperinverter" <%= product.category === 'hyperinverter' ? 'selected' : '' %>>Хиперинверторни</option>
+            <option value="floor" <%= product.category === 'floor' ? 'selected' : '' %>>Подови</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label class="admin-form__checkbox">
+            <input type="checkbox" id="recommended" name="recommended" value="on" <%= product.recommended ? 'checked' : '' %> />
+            <span>Препоръчани климатици</span>
+          </label>
+          <span class="admin-form__hint">Ако е отметнато, продуктът ще се показва в секцията „Препоръчани климатици” на началната страница.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="brand">Марка</label>
+          <input type="text" id="brand" name="brand" value="<%= product.brand || '' %>" placeholder="напр. Gree, Bosch" />
+          <span class="admin-form__hint">Марка + модел се показват като заглавие на страницата на продукта.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="model">Модел (заглавие на страницата)</label>
+          <input type="text" id="model" name="model" value="<%= product.model || '' %>" placeholder="напр. Prime 2, SRK35, Aurora" />
+          <span class="admin-form__hint">Показва се в заглавието на продукта заедно с марката.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="description">Описание / допълнителен текст</label>
+          <input type="text" id="description" name="description" value="<%= product.description || '' %>" placeholder="кратко описание или спецификации" />
+          <span class="admin-form__hint">Показва се в списъка с детайли под цената, не в заглавието.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="moshtnost">Мощност (BTU)</label>
+          <input type="number" id="moshtnost" name="moshtnost" min="0" value="<%= product.moshtnost || '' %>" placeholder="напр. 12000" />
+        </div>
+        <div class="admin-form__row">
+          <label for="availability">Наличност</label>
+          <select id="availability" name="availability">
+            <option value="" <%= (product.availability || '') === '' ? 'selected' : '' %>>— Избери —</option>
+            <option value="in_stock" <%= product.availability === 'in_stock' ? 'selected' : '' %>>В наличност</option>
+            <option value="by_order" <%= product.availability === 'by_order' ? 'selected' : '' %>>С поръчка</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label for="class">Клас (филтър)</label>
+          <select id="class" name="class">
+            <option value="" <%= (product.class || '') === '' ? 'selected' : '' %>>— Избери —</option>
+            <option value="visok" <%= product.class === 'visok' ? 'selected' : '' %>>Висок клас</option>
+            <option value="mezhdinen" <%= product.class === 'mezhdinen' ? 'selected' : '' %>>Междинен клас</option>
+            <option value="nachalen" <%= product.class === 'nachalen' ? 'selected' : '' %>>Начален клас</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label for="energyClass">Енергиен клас</label>
+          <select id="energyClass" name="energyClass">
+            <option value="" <%= (product.energyClass || '') === '' ? 'selected' : '' %>>— Избери —</option>
+            <option value="A+++" <%= product.energyClass === 'A+++' ? 'selected' : '' %>>A+++</option>
+            <option value="A++" <%= product.energyClass === 'A++' ? 'selected' : '' %>>A++</option>
+            <option value="A+" <%= product.energyClass === 'A+' ? 'selected' : '' %>>A+</option>
+            <option value="A" <%= product.energyClass === 'A' ? 'selected' : '' %>>A</option>
+            <option value="B" <%= product.energyClass === 'B' ? 'selected' : '' %>>B</option>
+            <option value="C" <%= product.energyClass === 'C' ? 'selected' : '' %>>C</option>
+            <option value="D" <%= product.energyClass === 'D' ? 'selected' : '' %>>D</option>
+            <option value="E" <%= product.energyClass === 'E' ? 'selected' : '' %>>E</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label class="admin-form__checkbox">
+            <input type="checkbox" id="wifi" name="wifi" value="on" <%= product.wifi ? 'checked' : '' %> />
+            <span>Wi-Fi</span>
+          </label>
+        </div>
+        <div class="admin-form__row">
+          <label for="roomSize">Площ на стая (m²)</label>
+          <input type="number" id="roomSize" name="roomSize" min="0" value="<%= product.roomSize != null ? product.roomSize : '' %>" placeholder="напр. 25" />
+        </div>
+        <div class="admin-form__row">
+          <label for="price">Цена (€) <span class="req">*</span></label>
+          <input type="number" id="price" name="price" step="0.01" min="0" value="<%= product.price != null ? product.price : '' %>" required placeholder="Въведете цена в евро, напр. 689.00" />
+        </div>
+        <div class="admin-form__row">
+          <label for="currentOffer">Текст на лента (рибън)</label>
+          <input type="text" id="currentOffer" name="currentOffer" value="<%= product.currentOffer || '' %>" placeholder="напр. + ВКЛЮЧЕН МОНТАЖ" />
+        </div>
+        <div class="admin-form__row">
+          <label for="imgFile">Нова снимка (качване)</label>
+          <input type="file" id="imgFile" name="img" accept="image/jpeg,image/png,image/gif,image/webp" />
+          <input type="hidden" name="img" value="<%= product.img || 'kmta-400x267.jpg.webp' %>" />
+          <span class="admin-form__hint">JPEG, PNG, GIF или WebP, до 5 MB. Ако не изберете файл, остава текущата снимка.</span>
+        </div>
+        <div class="admin-form__actions">
+          <button type="submit" class="admin-form__submit">Запази промените</button>
+          <a href="/admin" class="admin-form__cancel">Отказ</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

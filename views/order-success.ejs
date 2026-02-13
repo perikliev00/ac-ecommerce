@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['cart.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <section class="order-success-page">
+      <div class="container">
+        <nav class="checkout-steps" aria-label="Стъпки на поръчката">
+          <a class="checkout-steps__item" href="/#cart">Количка</a>
+          <span class="checkout-steps__sep" aria-hidden="true">→</span>
+          <span class="checkout-steps__item">Поръчка</span>
+          <span class="checkout-steps__sep" aria-hidden="true">→</span>
+          <span class="checkout-steps__item checkout-steps__item--current">Поръчката е завършена</span>
+        </nav>
+
+        <div class="order-success-card">
+          <div class="order-success-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h1 class="order-success-card__title">Поръчката е приета</h1>
+          <p class="order-success-card__msg">Благодарим ви! Ще се свържем с вас за потвърждение и да уговорим доставка/монтаж.</p>
+
+          <% if (typeof order !== 'undefined' && order) { %>
+            <dl class="order-success-details">
+              <div class="order-success-details__row">
+                <dt>Номер на поръчка</dt>
+                <dd><%= order._id %></dd>
+              </div>
+              <div class="order-success-details__row">
+                <dt>Дата</dt>
+                <dd><%= order.createdAt ? new Date(order.createdAt).toLocaleString('bg-BG', { dateStyle: 'long', timeStyle: 'short' }) : '—' %></dd>
+              </div>
+              <div class="order-success-details__row order-success-details__row--total">
+                <dt>Общо</dt>
+                <dd><%= order.total != null ? order.total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €' : '—' %></dd>
+              </div>
+            </dl>
+          <% } %>
+
+          <a href="/produkti" class="order-success-card__cta btn-checkout">Към каталога</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['uslugi.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <section class="uslugi-section uslugi-section--services" aria-label="Нашите услуги">
+      <div class="container">
+        <h1 class="uslugi-section__title">Услуги за климатици в Несебър</h1>
+        <p class="uslugi-section__subtitle">Продажба на климатици, монтаж, профилактика и ремонт в Несебър и региона. Работим с битови и търговски обекти.</p>
+        <div class="uslugi-grid uslugi-grid--six">
+          <article class="uslugi-card">
+            <span class="uslugi-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g transform="translate(0 -1028.4)"><g fill="currentColor"><path d="m6.0938 1029.5v1l3.9062 3.9-1 3-3 1-3.9062-3.9c-0.0552 0.3-0.0938 0.5-0.0938 0.9 0 0-0.0043 0.1 0 0.2-0.0037 0.1 0 0.2 0 0.3 0 3 2.4624 5.5 5.5 5.5 0.4587 0 0.8865-0.1 1.3125-0.2l2.1565 2.1 4.031 4.1 3 3c0.507 0.5 1.214 0.8 2 0.8 1.541 0 2.781-1.2 2.781-2.8 0-0.8-0.294-1.5-0.781-2l-0.031-0.1-2.969-2.9-4.031-4.1-2.157-2.1c0.106-0.5 0.188-0.9 0.188-1.3 0-3.1-2.462-5.5-5.5-5.5h-0.25-0.1562v-0.9h-1zm13.906 17.4c0.828 0 1.5 0.6 1.5 1.5 0 0.8-0.672 1.5-1.5 1.5s-1.5-0.7-1.5-1.5c0-0.9 0.672-1.5 1.5-1.5z"/></g></g></svg>
+            </span>
+            <h3 class="uslugi-card__title">Ремонти</h3>
+            <p class="uslugi-card__desc">Диагностика и ремонт при повреда. Бърза реакция и гаранция за извършената работа.</p>
+            <a class="uslugi-card__link" href="/kontakti">Свържи се с нас →</a>
+          </article>
+          <article class="uslugi-card">
+            <span class="uslugi-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.37752 5.08241C3 5.62028 3 7.21907 3 10.4167V11.9914C3 17.6294 7.23896 20.3655 9.89856 21.5273C10.62 21.8424 10.9807 22 12 22C13.0193 22 13.38 21.8424 14.1014 21.5273C16.761 20.3655 21 17.6294 21 11.9914V10.4167C21 7.21907 21 5.62028 20.6225 5.08241C20.245 4.54454 18.7417 4.02996 15.7351 3.00079L15.1623 2.80472C13.595 2.26824 12.8114 2 12 2C11.1886 2 10.405 2.26824 8.83772 2.80472L8.26491 3.00079C5.25832 4.02996 3.75503 4.54454 3.37752 5.08241ZM15.0595 10.4995C15.3353 10.1905 15.3085 9.71642 14.9995 9.44055C14.6905 9.16467 14.2164 9.19151 13.9405 9.50049L10.9286 12.8739L10.0595 11.9005C9.78358 11.5915 9.30947 11.5647 9.00049 11.8405C8.69151 12.1164 8.66467 12.5905 8.94055 12.8995L10.3691 14.4995C10.5114 14.6589 10.7149 14.75 10.9286 14.75C11.1422 14.75 11.3457 14.6589 11.488 14.4995L15.0595 10.4995Z" fill="currentColor"/></svg>
+            </span>
+            <h3 class="uslugi-card__title">Профилактика</h3>
+            <p class="uslugi-card__desc">Периодично обслужване за по-дълъг живот на уреда и по-ниски сметки за ток.</p>
+            <a class="uslugi-card__link" href="/kontakti">Заявете час →</a>
+          </article>
+          <article class="uslugi-card">
+            <span class="uslugi-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:currentColor;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><circle class="cls-1" cx="5.78" cy="16.33" r="2.39"/><path class="cls-1" d="M1.48,23.5V23a4.29,4.29,0,0,1,4.3-4.3h0a4.29,4.29,0,0,1,4.3,4.3v.48"/><polyline class="cls-1" points="15.71 16.69 18.69 13.7 21.68 16.69"/><path class="cls-1" d="M18.69,13.93V16.8A5.74,5.74,0,0,1,13,22.54h0"/><polyline class="cls-1" points="7.33 8.31 4.34 11.3 1.36 8.31"/><path class="cls-1" d="M4.35,11.07V8.2a5.73,5.73,0,0,1,5.73-5.74h0"/><rect class="cls-1" x="12.95" y="1.5" width="9.57" height="8.61"/><line class="cls-1" x1="17.74" y1="4.37" x2="17.74" y2="1.5"/></svg>
+            </span>
+            <h3 class="uslugi-card__title">Преместване и демонтаж</h3>
+            <p class="uslugi-card__desc">Професионално преместване и демонтаж на климатици. Безопасно и с гаранция.</p>
+            <a class="uslugi-card__link" href="/kontakti">Заявете оферта →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="uslugi-section uslugi-section--process" aria-label="Нашият процес">
+      <div class="container">
+        <h2 class="uslugi-section__title">Как работим</h2>
+        <p class="uslugi-section__subtitle">От първа консултация до монтаж и поддръжка – прозрачно и с гаранция.</p>
+        <div class="uslugi-roadmap" role="list">
+          <article class="uslugi-card uslugi-card--step" role="listitem">
+            <span class="uslugi-card__step" aria-hidden="true">Стъпка 1</span>
+            <span class="uslugi-card__icon" aria-hidden="true"><svg viewBox="0 0 52 52" fill="none"><path d="M44.7796 21.6066C45.0324 19.9108 44.9495 18.1747 44.5309 16.5054C43.978 14.3002 42.8392 12.2118 41.1147 10.4873C39.3902 8.76281 37.3018 7.62409 35.0967 7.07115C33.4274 6.65257 31.6912 6.56967 29.9954 6.82245" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M37.1897 20.8035C37.4605 18.9869 36.8967 17.0699 35.4983 15.6715C34.0998 14.2731 32.1829 13.7092 30.3663 13.98" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M17.3757 9.79423C18.1022 9.79423 18.7716 10.1883 19.1243 10.8235L21.5707 15.2303C21.891 15.8073 21.9061 16.5052 21.6109 17.0955L19.2541 21.8091C19.2541 21.8091 19.9371 25.3206 22.7955 28.179C25.654 31.0374 29.1536 31.7086 29.1536 31.7086L33.8665 29.3522C34.4572 29.0568 35.1556 29.0721 35.7328 29.393L40.1521 31.85C40.7868 32.2028 41.1803 32.8719 41.1803 33.598L41.1803 38.6715C41.1803 41.2552 38.7804 43.1213 36.3323 42.2952C31.3044 40.5987 23.4997 37.3685 18.5529 32.4216C13.606 27.4748 10.3758 19.6701 8.67929 14.6422C7.85326 12.1941 9.71935 9.79423 12.303 9.79423L17.3757 9.79423Z" fill="currentColor" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg></span>
+            <h3 class="uslugi-card__title">Консултация и разговор</h3>
+            <p class="uslugi-card__desc">Първа стъпка: обсъждаме нуждите ви и изискванията за климатика.</p>
+            <a class="uslugi-card__link" href="/kontakti">Заявете оферта →</a>
+          </article>
+          <span class="uslugi-roadmap__sep" aria-hidden="true"><span class="uslugi-roadmap__arrow"></span></span>
+          <article class="uslugi-card uslugi-card--step" role="listitem">
+            <span class="uslugi-card__step" aria-hidden="true">Стъпка 2</span>
+            <span class="uslugi-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6.75 15.8719C4.91775 16.3252 3.75 17.011 3.75 17.7785C3.75 19.1435 7.44365 20.25 12 20.25C16.5563 20.25 20.25 19.1435 20.25 17.7785C20.25 17.011 19.0823 16.3252 17.25 15.8719M13.5 9C13.5 9.82843 12.8284 10.5 12 10.5C11.1716 10.5 10.5 9.82843 10.5 9C10.5 8.17157 11.1716 7.5 12 7.5C12.8284 7.5 13.5 8.17157 13.5 9ZM17.25 8.8125C17.25 12 14.25 15.75 12 17.25C9.75 15.75 6.75 12 6.75 8.8125C6.75 6.01656 9 3.75 12 3.75C15 3.75 17.25 6.01656 17.25 8.8125Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 class="uslugi-card__title">Оглед и доставка</h3>
+            <p class="uslugi-card__desc">Втора стъпка: оглед на място и доставка на избрания уред.</p>
+            <a class="uslugi-card__link" href="/kontakti">Заявете час →</a>
+          </article>
+          <span class="uslugi-roadmap__sep" aria-hidden="true"><span class="uslugi-roadmap__arrow"></span></span>
+          <article class="uslugi-card uslugi-card--step" role="listitem">
+            <span class="uslugi-card__step" aria-hidden="true">Стъпка 3</span>
+            <span class="uslugi-card__icon" aria-hidden="true"><svg viewBox="0 0 505.188 505.188"><path d="M447.208,102.594h-227.04c-12.472,0-23.476,6.368-29.94,16.032c-0.02,0-0.036-0.032-0.06-0.032h-50c-8.22,0-15.28,4-18.356,12h-13.396c-6.616,0-19.228-0.28-19.228,6.336v13.664H8c-4.416,0-8,3.584-8,8s3.584,8,8,8h81.188v2.148c0,6.616,12.612,17.852,19.232,17.852h13.4c3.072,8,10.132,12,18.352,12h48.81c6.065,7.445,13.555,10.5,24.206,10.5v33.752c-4,4.364-8,10.7-8,17.756v112.52c0,13.124,17.796,29.468,30.92,29.468h0.308c13.128,0.004,16.772-16.34,16.772-29.464v-112.52c0-7.036-4-13.352-8-17.716v-28.296h27.956c17.2,0,24.044,8.264,24.044,25.468v117.78c0,21.552,24.688,44.752,46.24,44.752h53.752c21.188,0,32.012-23.88,32.012-45.436v-50.564h18.02c35.812,0,57.976-35.156,57.976-71.22v-73.18C505.188,126.142,483.024,102.594,447.208,102.594z" fill="currentColor"/></svg></span>
+            <h3 class="uslugi-card__title">Монтаж</h3>
+            <p class="uslugi-card__desc">Трета стъпка: професионален монтаж от опитни монтажници. Гаранция за извършената работа.</p>
+            <a class="uslugi-card__link" href="/kontakti">Свържи се с нас →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="uslugi-cta" aria-label="Призив за действие">
+      <div class="container">
+        <h2 class="uslugi-cta__title">Нуждаете се от оферта или сервиз?</h2>
+        <p class="uslugi-cta__subtitle">Обадете се или пишете. Даваме безплатен оглед и ясна оферта за монтаж или ремонт на климатици в Несебър и региона.</p>
+        <a class="uslugi-cta__btn" href="/kontakti">Свържи се с нас</a>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

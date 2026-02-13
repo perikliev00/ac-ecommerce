@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Отзиви – Админ | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/" class="admin-header__home">← Начало</a>
+      <h1 class="admin-header__title">Отзиви от клиенти</h1>
+      <nav class="admin-header__nav">
+        <a href="/admin" class="admin-header__orders-link">Продукти</a>
+        <a href="/admin/orders" class="admin-header__orders-link">Поръчки</a>
+        <a href="/admin/contacts" class="admin-header__orders-link">Запитвания</a>
+      </nav>
+      <form class="admin-header__logout" action="/admin/logout" method="post">
+        <button type="submit" class="admin-header__logout-btn">Изход</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <% if (typeof dbOffline !== 'undefined' && dbOffline) { %>
+      <div class="admin-alert admin-alert--error">Базата данни не е налична. Отзивите не могат да се зареждат.</div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error === 'db') { %>
+      <div class="admin-alert admin-alert--warning">Операцията не успя – базата данни не е налична.</div>
+    <% } %>
+    <% if (typeof deleted !== 'undefined' && deleted === '1') { %>
+      <div class="admin-alert admin-alert--success">Отзивът е изтрит.</div>
+    <% } %>
+
+    <section class="admin-form-section">
+      <h2>Добави нов отзив</h2>
+      <p><a href="/admin/reviews/new" class="admin-table__btn admin-table__btn--edit">+ Добави отзив</a></p>
+    </section>
+
+    <section class="admin-list-section">
+      <h2>Съществуващи отзиви (<%= reviews.length %>)</h2>
+      <% if (!reviews || reviews.length === 0) { %>
+        <p class="admin-list__empty">Няма добавени отзиви. Те ще се показват в секция „Отзиви от клиенти“ на началната страница след добавяне.</p>
+      <% } else { %>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Име</th>
+                <th>Рейтинг</th>
+                <th>Текст (преглед)</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% reviews.forEach(function(r) { %>
+                <tr>
+                  <td><strong><%= r.name %></strong></td>
+                  <td><%= r.rating %> ★</td>
+                  <td class="admin-table__text-preview"><%= (r.text || '').slice(0, 80) %><%= (r.text && r.text.length > 80) ? '…' : '' %></td>
+                  <td class="admin-table__actions">
+                    <a href="/admin/reviews/<%= r._id %>/edit" class="admin-table__btn admin-table__btn--edit">Редактирай</a>
+                    <form class="admin-table__delete-form" action="/admin/reviews/<%= r._id %>/delete" method="post" onsubmit="return confirm('Изтриване на този отзив?');" style="display:inline;">
+                      <button type="submit" class="admin-table__btn admin-table__btn--delete">Изтрий</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

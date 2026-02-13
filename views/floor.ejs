@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['floor.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <%- include('partials/catalog', { catalogTitle: 'Подови климатици', breadcrumbCurrent: 'Подови климатици' }) %>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

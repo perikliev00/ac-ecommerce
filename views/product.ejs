@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['product.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main" data-product-id="<%= typeof product !== 'undefined' && product && product.id ? product.id : '' %>">
+    <section class="pdp">
+      <div class="container">
+        <div class="pdp__crumbs" aria-label="Навигация">
+          <a class="crumb" href="/" aria-label="Начало"><span class="crumb__home" aria-hidden="true">⌂</span></a>
+          <span class="crumb__sep" aria-hidden="true">›</span>
+          <a class="crumbText" href="<%= typeof productCategoryPath !== 'undefined' ? productCategoryPath : '/produkti' %>">Продукти</a>
+          <span class="crumb__sep" aria-hidden="true">›</span>
+          <span class="crumb__current" id="pdpCrumbCurrent" aria-current="page"><%= typeof product !== 'undefined' && product ? ([product.brand, product.model].filter(Boolean).join(' ') || product.title || 'Продукт') : 'Продукт' %></span>
+        </div>
+
+        <div class="pdp__grid">
+          <aside class="pdp__gallery" aria-label="Снимки">
+            <div class="pdp__thumbs" aria-label="Миниатюри">
+              <button class="pdpThumb is-active" type="button" data-img="0" data-src="/assets/images/<%= typeof product !== 'undefined' && product && product.img ? product.img : 'kmta-400x267.jpg.webp' %>" aria-label="Снимка 1">
+                <img src="/assets/images/<%= typeof product !== 'undefined' && product && product.img ? product.img : 'kmta-400x267.jpg.webp' %>" alt="<%= typeof product !== 'undefined' && product ? [product.brand, product.model, product.title].filter(Boolean).join(' – ') : 'Климатик' %>" width="62" height="62" loading="lazy" />
+              </button>
+            </div>
+            <div class="pdp__hero" aria-label="Основна снимка">
+              <img class="pdpImg" id="pdpHeroImg" src="/assets/images/<%= typeof product !== 'undefined' && product && product.img ? product.img : 'kmta-400x267.jpg.webp' %>" alt="<%= typeof product !== 'undefined' && product ? [product.brand, product.model, product.title].filter(Boolean).join(' – ') : 'Климатик' %>" width="400" height="267" />
+            </div>
+          </aside>
+
+          <section class="pdp__info" aria-label="Информация за продукта">
+            <div class="pdp__ribbons" id="pdpRibbons" aria-label="Етикети">
+              <% if (typeof product !== 'undefined' && product && product.ribbons && product.ribbons.length) { product.ribbons.forEach(function(r) { %><span class="ribbon ribbon--<%= r.style %>"><%= r.label %></span><% }); } %>
+            </div>
+            <h1 class="pdp__title" id="pdpTitle"><%= typeof product !== 'undefined' && product ? ([product.brand, product.model].filter(Boolean).join(' ') || product.title || 'Продукт') : 'Продукт' %></h1>
+
+            <div class="pdp__cena" aria-label="Цена">
+              <span class="pdp__cenaLabel">Цена:</span>
+              <span class="pdp__cenaAmount">
+                <span id="pdpPriceEuro"><%= typeof product !== 'undefined' && product && product.price ? product.price : '—' %></span>
+                <span class="pdp__cenaSep">|</span>
+                <span id="pdpPriceBgn"><%= typeof product !== 'undefined' && product && product.priceLv ? product.priceLv : '—' %></span>
+              </span>
+            </div>
+
+            <div class="pdp__buyRow" aria-label="Покупка">
+              <form class="pdp__add-cart" action="/cart/add" method="post" data-add-to-cart>
+                <input type="hidden" name="productId" value="<%= typeof product !== 'undefined' && product && product.id ? product.id : '' %>" />
+                <label class="qty" aria-label="Количество">
+                  <button class="qty__btn" type="button" id="qtyMinus" aria-label="Намали количество">−</button>
+                  <input class="qty__input" id="qtyInput" name="quantity" type="number" min="1" value="1" inputmode="numeric" />
+                  <button class="qty__btn" type="button" id="qtyPlus" aria-label="Увеличи количество">+</button>
+                </label>
+                <button class="btnBuy" type="submit">КУПИ</button>
+              </form>
+            </div>
+
+            <div class="pdp__spec" aria-label="Детайли от базата данни">
+              <ul class="specList">
+                <% if (typeof productDetails !== 'undefined' && productDetails) { %>
+                  <% if (productDetails.brand) { %><li><strong>Марка:</strong> <%= productDetails.brand %></li><% } %>
+                  <% if (productDetails.modelDisplay !== undefined && productDetails.modelDisplay !== '') { %><li><strong>Модел:</strong> <%= productDetails.modelDisplay %></li><% } %>
+                  <% if (productDetails.description) { %><li><strong>Описание:</strong> <%= productDetails.description %></li><% } %>
+                  <% if (productDetails.moshtnost) { %><li><strong>Мощност:</strong> <%= productDetails.moshtnost %> BTU</li><% } %>
+                  <% if (productDetails.class) { %><li><strong>Клас:</strong> <%= productDetails.class %></li><% } %>
+                  <% if (productDetails.category) { %><li><strong>Категория:</strong> <%= productDetails.category === 'inverter' ? 'Инверторни' : productDetails.category === 'hyperinverter' ? 'Хиперинверторни' : productDetails.category === 'floor' ? 'Подови' : productDetails.category %></li><% } %>
+                <% } %>
+                <% if (typeof productDetails === 'undefined' || (!productDetails.brand && !productDetails.model && !productDetails.description && !productDetails.moshtnost && !productDetails.class && !productDetails.category)) { %>
+                  <li><%= typeof product !== 'undefined' && product && product.title ? product.title : '—' %></li>
+                <% } %>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--more" aria-label="Разгледайте още">
+      <div class="container">
+        <h2 class="h2">Препоръчани климатици</h2>
+        <div class="products products--more" aria-label="Препоръчани климатици">
+          <%- include('partials/product-cards') %>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer', { extraScripts: ['product.js'] }) %>
+</body>
+</html>

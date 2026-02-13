@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Вход – Админ | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/" class="admin-header__home">← Начало</a>
+      <h1 class="admin-header__title">Вход в админ панела</h1>
+    </div>
+  </header>
+
+  <main class="admin-main admin-login-page">
+    <section class="admin-form-section">
+      <h2>Влез с потребителско име и парола</h2>
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="admin-alert admin-alert--error" role="alert"><%= error %></div>
+      <% } %>
+      <form class="admin-form admin-login-form" action="/admin/login" method="post" novalidate>
+        <input type="hidden" name="returnTo" value="<%= typeof returnTo !== 'undefined' ? returnTo : '/admin' %>" />
+        <div class="admin-form__row">
+          <label for="username">Потребителско име</label>
+          <input type="text" id="username" name="username" autocomplete="username" required autofocus />
+        </div>
+        <div class="admin-form__row">
+          <label for="password">Парола</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required />
+        </div>
+        <div class="admin-form__actions">
+          <button type="submit" class="admin-form__submit">Вход</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

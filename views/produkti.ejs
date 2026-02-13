@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['hyperinverter.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <%- include('partials/catalog', { catalogTitle: 'Всички продукти', breadcrumbCurrent: 'Всички продукти' }) %>
+  </main>
+
+  <%- include('partials/footer', { extraScripts: ['produkti.js'] }) %>
+</body>
+</html>

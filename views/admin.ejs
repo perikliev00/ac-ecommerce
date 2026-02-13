@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Админ – Добавяне на продукт | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/" class="admin-header__home">← Начало</a>
+      <h1 class="admin-header__title">Админ панел – Продукти</h1>
+      <nav class="admin-header__nav">
+        <a href="/admin/orders" class="admin-header__orders-link">Поръчки</a>
+        <a href="/admin/reviews" class="admin-header__orders-link">Отзиви</a>
+        <a href="/admin/contacts" class="admin-header__orders-link">Запитвания</a>
+      </nav>
+      <form class="admin-header__logout" action="/admin/logout" method="post">
+        <button type="submit" class="admin-header__logout-btn">Изход</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <% if (typeof dbOffline !== 'undefined' && dbOffline) { %>
+      <div class="admin-alert admin-alert--error">
+        Базата данни не е налична (MongoDB не е свързана). Проверете интернет и <a href="https://www.mongodb.com/docs/atlas/security-whitelist/" target="_blank" rel="noopener">IP whitelist в Atlas</a>. Добавянето на продукти е временно невъзможно.
+      </div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error === 'db') { %>
+      <div class="admin-alert admin-alert--warning">
+        Последната операция не успя – базата данни не беше налична. Опитайте отново след като се появи „MongoDB connected“ в конзолата.
+      </div>
+    <% } %>
+    <% if (typeof deleted !== 'undefined' && deleted === '1') { %>
+      <div class="admin-alert admin-alert--success">
+        Продуктът е изтрит от базата данни.
+      </div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error === 'upload') { %>
+      <div class="admin-alert admin-alert--error">
+        Невалиден файл за снимка. Разрешени: JPEG, PNG, GIF, WebP, до 5 MB.
+      </div>
+    <% } %>
+    <section class="admin-form-section">
+      <h2>Добави нов продукт (карта)</h2>
+      <form class="admin-form" action="/admin/products" method="post" enctype="multipart/form-data">
+        <div class="admin-form__row">
+          <label for="category">Категория <span class="req">*</span></label>
+          <select id="category" name="category" required>
+            <option value="inverter">Инверторни</option>
+            <option value="hyperinverter">Хиперинверторни</option>
+            <option value="floor">Подови</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label class="admin-form__checkbox">
+            <input type="checkbox" id="recommended" name="recommended" value="on" />
+            <span>Препоръчани климатици</span>
+          </label>
+          <span class="admin-form__hint">Ако е отметнато, продуктът ще се показва в секцията „Препоръчани климатици” на началната страница.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="brand">Марка</label>
+          <input type="text" id="brand" name="brand" placeholder="напр. Gree, Bosch" />
+          <span class="admin-form__hint">Марка + модел се показват като заглавие на страницата на продукта.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="model">Модел (заглавие на страницата)</label>
+          <input type="text" id="model" name="model" placeholder="напр. Prime 2, SRK35, Aurora" />
+          <span class="admin-form__hint">Показва се в заглавието на продукта заедно с марката.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="description">Описание / допълнителен текст</label>
+          <input type="text" id="description" name="description" placeholder="кратко описание или спецификации" />
+          <span class="admin-form__hint">Показва се в списъка с детайли под цената, не в заглавието.</span>
+        </div>
+        <div class="admin-form__row">
+          <label for="moshtnost">Мощност (BTU)</label>
+          <input type="number" id="moshtnost" name="moshtnost" min="0" placeholder="напр. 12000" />
+        </div>
+        <div class="admin-form__row">
+          <label for="availability">Наличност</label>
+          <select id="availability" name="availability">
+            <option value="">— Избери —</option>
+            <option value="in_stock">В наличност</option>
+            <option value="by_order">С поръчка</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label for="class">Клас (филтър)</label>
+          <select id="class" name="class">
+            <option value="">— Избери —</option>
+            <option value="visok">Висок клас</option>
+            <option value="mezhdinen">Междинен клас</option>
+            <option value="nachalen">Начален клас</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label for="energyClass">Енергиен клас</label>
+          <select id="energyClass" name="energyClass">
+            <option value="">— Избери —</option>
+            <option value="A+++">A+++</option>
+            <option value="A++">A++</option>
+            <option value="A+">A+</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label class="admin-form__checkbox">
+            <input type="checkbox" id="wifi" name="wifi" value="on" />
+            <span>Wi-Fi</span>
+          </label>
+        </div>
+        <div class="admin-form__row">
+          <label for="roomSize">Площ на стая (m²)</label>
+          <input type="number" id="roomSize" name="roomSize" min="0" placeholder="напр. 25" />
+        </div>
+        <div class="admin-form__row">
+          <label for="price">Цена (€) <span class="req">*</span></label>
+          <input type="number" id="price" name="price" step="0.01" min="0" required placeholder="Въведете цена в евро, напр. 689.00" />
+        </div>
+        <div class="admin-form__row">
+          <label for="currentOffer">Текст на лента (рибън)</label>
+          <input type="text" id="currentOffer" name="currentOffer" placeholder="напр. + ВКЛЮЧЕН МОНТАЖ" />
+        </div>
+        <div class="admin-form__row">
+          <label for="imgFile">Снимка на продукта</label>
+          <input type="file" id="imgFile" name="img" accept="image/jpeg,image/png,image/gif,image/webp" />
+          <span class="admin-form__hint">JPEG, PNG, GIF или WebP, до 5 MB. Файлът се записва в assets/images. Ако не изберете файл, ще се използва снимка по подразбиране.</span>
+        </div>
+        <div class="admin-form__actions">
+          <button type="submit" class="admin-form__submit">Запази продукт</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="admin-list-section">
+      <h2>Съществуващи продукти (<%= products.length %>)</h2>
+      <% if (products.length === 0) { %>
+        <p class="admin-list__empty">Няма добавени продукти. Добавете първия от формата по-горе.</p>
+      <% } else { %>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Картина</th>
+                <th>Марка / Модел</th>
+                <th>Категория</th>
+                <th>Цена</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% products.forEach(function(p) { %>
+                <tr data-product-id="<%= p.id %>">
+                  <td>
+                    <a href="/product/<%= p.id %>" class="admin-table__img-link" title="Виж в сайта">
+                      <img src="/assets/images/<%= p.img %>" alt="" class="admin-table__img" width="60" height="40" />
+                    </a>
+                  </td>
+                  <td>
+                    <a href="/product/<%= p.id %>" class="admin-table__title-link" target="_blank" rel="noopener"><strong><%= p.brand %></strong><% if (p.model) { %> <%= p.model %><% } %><% if (p.title && (!p.brand && !p.model)) { %> – <%= p.title %><% } %></a>
+                  </td>
+                  <td><%= p.category %></td>
+                  <td><%= p.price %> / <%= p.priceLv %></td>
+                  <td class="admin-table__actions">
+                    <a href="/admin/products/<%= p.id %>/edit" class="admin-table__btn admin-table__btn--edit">Редактирай</a>
+                    <form class="admin-table__delete-form" action="/admin/products/<%= p.id %>/delete" method="post" onsubmit="return confirm('Изтриване на този продукт?');">
+                      <button type="submit" class="admin-table__btn admin-table__btn--delete">Изтрий</button>
+                    </form>
+                    <a href="/product/<%= p.id %>" class="admin-table__btn admin-table__btn--view" target="_blank" rel="noopener">Виж</a>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

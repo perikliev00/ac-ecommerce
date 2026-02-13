@@ -1,0 +1,28 @@
+<div id="cartDrawerOverlay" class="cart-drawer-overlay" aria-hidden="true">
+  <div id="cartDrawerPanel" class="cart-drawer-panel" role="dialog" aria-label="Количка" aria-modal="true">
+    <div class="cart-drawer__head">
+      <h2 class="cart-drawer__title" id="cartDrawerTitle">0 продукта в количката</h2>
+      <button type="button" class="cart-drawer__close" id="cartDrawerClose" aria-label="Затвори количката">&times;</button>
+    </div>
+    <div class="cart-drawer__body">
+      <div id="cartDrawerList" class="cart-drawer__list">
+        <p class="cart-drawer__empty" id="cartDrawerEmpty">Количката е празна.</p>
+        <div id="cartDrawerItems" class="cart-drawer__items" hidden></div>
+      </div>
+    </div>
+    <div class="cart-drawer__foot">
+      <div class="cart-drawer__totals" id="cartDrawerTotals" hidden>
+        <div class="cart-drawer__subtotal" id="cartDrawerSubtotal">
+          <span>Междинна сума:</span>
+          <span id="cartDrawerSubtotalAmount">—</span>
+        </div>
+        <div class="cart-drawer__total" id="cartDrawerTotal">
+          <span>Общо:</span>
+          <strong id="cartDrawerTotalAmount">—</strong>
+        </div>
+      </div>
+      <a href="/checkout" class="cart-drawer__checkout btn-checkout" id="cartDrawerCheckout" hidden>Към поръчка</a>
+      <a href="/produkti" class="cart-drawer__continue" id="cartDrawerContinue">Продължи пазаруването</a>
+    </div>
+  </div>
+</div>

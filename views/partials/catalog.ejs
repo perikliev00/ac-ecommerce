@@ -1,0 +1,170 @@
+<%
+  var opts = typeof filterOptions !== 'undefined' ? filterOptions : {};
+  var applied = typeof appliedFilters !== 'undefined' ? appliedFilters : {};
+  var classLabels = typeof CLASS_LABELS !== 'undefined' ? CLASS_LABELS : {};
+  var availabilityLabels = typeof AVAILABILITY_LABELS !== 'undefined' ? AVAILABILITY_LABELS : {};
+  var availabilityOpts = opts.availability || [];
+  var classOpts = opts.class || [];
+  var brandOpts = opts.brand || [];
+  var moshtnostOpts = opts.moshtnost || [];
+  var energyClassOpts = opts.energyClass || [];
+  var roomSizeOpts = opts.roomSize || [];
+  var priceMin = opts.priceMin != null ? opts.priceMin : 0;
+  var priceMax = opts.priceMax != null ? opts.priceMax : 10000;
+%>
+<section class="catalog">
+  <div class="container">
+    <div class="catalog__crumbs" aria-label="Навигация">
+      <a class="crumb" href="/" aria-label="Начало">
+        <span class="crumb__home" aria-hidden="true">⌂</span>
+      </a>
+      <span class="crumb__sep" aria-hidden="true">›</span>
+      <span class="crumb__current" aria-current="page"><%= typeof breadcrumbCurrent !== 'undefined' ? breadcrumbCurrent : 'Продукти' %></span>
+    </div>
+
+    <div class="catalog__grid">
+      <aside class="filters" aria-label="Филтри">
+        <div class="filters__head">
+          <div class="filters__title">ФИЛТРИ</div>
+          <a class="filters__clear" href="#" id="filtersClear" role="button">Изчисти филтрите</a>
+        </div>
+        <form class="filters__form" id="catalogFiltersForm" method="get" action="">
+          <% if (availabilityOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">НАЛИЧНОСТ</summary>
+            <div class="filter__body">
+              <% availabilityOpts.forEach(function(val) { %>
+              <label class="check">
+                <input type="radio" name="availability" value="<%= val %>" <%= applied.availability === val ? 'checked' : '' %> />
+                <span><%= availabilityLabels[val] || val %></span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <% if (classOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">КЛАС</summary>
+            <div class="filter__body" id="filterClass">
+              <% classOpts.forEach(function(val) { %>
+              <label class="check">
+                <input type="radio" name="class" value="<%= val %>" <%= applied.class === val ? 'checked' : '' %> />
+                <span><%= classLabels[val] || val %></span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <% if (brandOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">ПРОИЗВОДИТЕЛ</summary>
+            <div class="filter__body filter__body--scroll">
+              <% brandOpts.forEach(function(b) { %>
+              <label class="check">
+                <input type="checkbox" name="brand" value="<%= b %>" <%= (Array.isArray(applied.brand) && applied.brand.indexOf(b) !== -1) || applied.brand === b ? 'checked' : '' %> />
+                <span><%= b %></span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <% if (moshtnostOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">МОЩНОСТ (BTU)</summary>
+            <div class="filter__body filter__body--scroll">
+              <% moshtnostOpts.forEach(function(m) { %>
+              <label class="check">
+                <input type="checkbox" name="moshtnost" value="<%= m %>" <%= (Array.isArray(applied.moshtnost) && applied.moshtnost.indexOf(String(m)) !== -1) || applied.moshtnost === String(m) ? 'checked' : '' %> />
+                <span><%= Number(m).toLocaleString('bg-BG') %> BTU</span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <% if (energyClassOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">ЕНЕРГИЕН КЛАС</summary>
+            <div class="filter__body">
+              <% energyClassOpts.forEach(function(e) { %>
+              <label class="check">
+                <input type="radio" name="energyClass" value="<%= e %>" <%= applied.energyClass === e ? 'checked' : '' %> />
+                <span><%= e %></span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <% if (roomSizeOpts.length > 0) { %>
+          <details class="filter" open>
+            <summary class="filter__summary">ПЛОЩ НА СТАЯ (m²)</summary>
+            <div class="filter__body">
+              <% roomSizeOpts.forEach(function(r) { %>
+              <label class="check">
+                <input type="radio" name="roomSize" value="<%= r %>" <%= applied.roomSize === String(r) ? 'checked' : '' %> />
+                <span><%= r %> m²</span>
+              </label>
+              <% }); %>
+            </div>
+          </details>
+          <% } %>
+          <details class="filter" open>
+            <summary class="filter__summary">ЦЕНА</summary>
+            <div class="filter__body">
+              <div class="price">
+                <div class="price__range">
+                  <input type="range" id="priceMin" name="minPrice" min="<%= priceMin %>" max="<%= priceMax %>" value="<%= applied.minPrice !== '' ? applied.minPrice : priceMin %>" aria-label="Минимална цена" />
+                  <input type="range" id="priceMax" name="maxPrice" min="<%= priceMin %>" max="<%= priceMax %>" value="<%= applied.maxPrice !== '' ? applied.maxPrice : priceMax %>" aria-label="Максимална цена" />
+                </div>
+                <div class="price__vals">
+                  <div class="price__box"><span id="priceMinVal"><%= applied.minPrice !== '' ? applied.minPrice : priceMin %></span><small>€</small></div>
+                  <div class="price__box"><span id="priceMaxVal"><%= applied.maxPrice !== '' ? applied.maxPrice : priceMax %></span><small>€</small></div>
+                </div>
+              </div>
+            </div>
+          </details>
+          <div class="filters__submit-wrap">
+            <button type="submit" class="filters__apply">Приложи филтрите</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="results" aria-label="Резултати">
+        <header class="results__head">
+          <h1 class="results__title"><%= typeof catalogTitle !== 'undefined' ? catalogTitle : 'Продукти' %></h1>
+        </header>
+        <div class="products products--catalog" id="productsGrid" aria-label="Продукти">
+          <%- include('product-cards') %>
+        </div>
+        <% if (typeof pagination !== 'undefined' && pagination.totalPages > 1) { %>
+        <nav class="pagination" aria-label="Страници">
+          <% var q = pagination.queryStringWithoutPage ? pagination.queryStringWithoutPage + '&' : ''; %>
+          <% if (pagination.currentPage > 1) { %>
+          <a class="pagination__link pagination__prev" href="<%= pagination.basePath %>?<%= q %>page=<%= pagination.currentPage - 1 %>">← Предишна</a>
+          <% } %>
+          <span class="pagination__info">Страница <%= pagination.currentPage %> от <%= pagination.totalPages %> (<%= pagination.totalCount %> продукта)</span>
+          <% if (pagination.currentPage < pagination.totalPages) { %>
+          <a class="pagination__link pagination__next" href="<%= pagination.basePath %>?<%= q %>page=<%= pagination.currentPage + 1 %>">Следваща →</a>
+          <% } %>
+        </nav>
+        <% } %>
+      </section>
+    </div>
+  </div>
+</section>
+<script>
+(function() {
+  var clearBtn = document.getElementById('filtersClear');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      window.location.href = window.location.pathname;
+    });
+  }
+  var minRange = document.getElementById('priceMin');
+  var maxRange = document.getElementById('priceMax');
+  var minVal = document.getElementById('priceMinVal');
+  var maxVal = document.getElementById('priceMaxVal');
+  if (minRange && minVal) minRange.addEventListener('input', function() { minVal.textContent = this.value; });
+  if (maxRange && maxVal) maxRange.addEventListener('input', function() { maxVal.textContent = this.value; });
+})();
+</script>

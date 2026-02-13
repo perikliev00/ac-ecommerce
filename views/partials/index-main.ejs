@@ -1,0 +1,135 @@
+<section class="hero">
+  <div class="container hero__grid">
+    <a class="hero__phone-mobile" href="tel:+359899123123" aria-label="Обадете се: +359 899 123 123">
+      <span class="hero__phone-mobile__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
+        </svg>
+      </span>
+      <span class="hero__phone-mobile__text">
+        <span class="hero__phone-mobile__label">ОБАДИ СЕ НА:</span>
+        <span class="hero__phone-mobile__value">+359 899 123 123</span>
+      </span>
+    </a>
+    <aside class="sidebar" aria-label="Продукти">
+      <nav class="sidebar__nav" aria-label="Категории">
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/inverter">
+            <span class="sidebarLabel">Инверторни климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/hyperinverter">
+            <span class="sidebarLabel">Хиперинверторни климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/floor">
+            <span class="sidebarLabel">Подови климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <section class="hero hero--banner" id="hero" aria-labelledby="hero-heading">
+      <div class="hero__inner">
+        <p class="hero__tagline">Професионални услуги за климатици в Бургаска област</p>
+        <h1 id="hero-heading" class="hero__title">
+          Климатици Несебър – Продажба, Монтаж и Сервиз
+        </h1>
+        <p class="hero__text">
+          Продажба на климатици, монтаж и сервиз в Несебър, Слънчев бряг, Равда и Свети Влас. Работим с водещи марки и оригинални части.
+        </p>
+        <div class="hero__services-wrap" aria-label="Услуги">
+          <div class="hero__service-item">Продажба</div>
+          <div class="hero__service-item">Монтаж</div>
+          <div class="hero__service-item">Сервиз</div>
+        </div>
+        <div class="hero__cta">
+          <a class="btn btn--primary hero__btn" href="/kontakti">Запитване / Оферта</a>
+          <a class="btn btn--dark hero__btn" href="/kontakti">Контакт</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="brands" aria-label="Какви марки климатици предлагаме?">
+  <div class="container">
+    <h2 class="brands__title">Какви марки климатици предлагаме?</h2>
+    <div class="brands__grid">
+      <a href="#" class="brands__item" aria-label="Mitsubishi Electric">
+        <img src="/assets/logos/mitsubishi-electric-logo-300x100w.png" alt="Mitsubishi Electric" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      <a href="#" class="brands__item" aria-label="Mitsubishi Heavy Industries">
+        <img src="/assets/logos/mitsubishi-heavy-logo-300x100w.png" alt="Mitsubishi Heavy Industries" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      <a href="#" class="brands__item" aria-label="Fuji Electric">
+        <img src="/assets/logos/fuji-logo-300x100w.png" alt="Fuji Electric" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      <a href="#" class="brands__item" aria-label="Toshiba">
+        <img src="/assets/logos/toshiba-logo-300x100w.png" alt="Toshiba" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      <a href="#" class="brands__item" aria-label="Daikin">
+        <img src="/assets/logos/daikin-logo-300x100w.png" alt="Daikin" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      <a href="#" class="brands__item" aria-label="Gree">
+        <img src="/assets/logos/gree-logo-300x100w.png" alt="Gree" width="300" height="100" loading="lazy" decoding="async" />
+      </a>
+      
+    </div>
+    <p class="brands__footer-text">Работим с водещи марки. Оригинални части и гаранция.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="h2">Препоръчани климатици</h2>
+    <div class="products" aria-label="Препоръчани климатици">
+      <%- include('product-cards') %>
+    </div>
+  </div>
+</section>
+
+<% var reviewsList = typeof reviews !== 'undefined' && Array.isArray(reviews) ? reviews : []; %>
+<section class="reviews" id="reviews" aria-label="Отзиви от клиенти" data-reviews-count="<%= reviewsList.length %>">
+  <div class="container">
+    <h2 class="reviews__title">Отзиви от клиенти</h2>
+    <% if (reviewsList.length === 0) { %>
+      <p class="reviews__empty">Няма публикувани отзиви в момента.</p>
+    <% } else { %>
+    <div class="reviews__slider" id="reviewsSlider" role="region" aria-roledescription="carousel">
+      <button type="button" class="reviews__arrow reviews__arrow--prev" id="reviewsPrev" aria-label="Предишна страница">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="reviews__arrow reviews__arrow--next" id="reviewsNext" aria-label="Следваща страница">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="reviews__viewport" id="reviewsViewport">
+        <div class="reviews__track" id="reviewsTrack">
+          <% reviewsList.forEach(function(rev, i) { %>
+          <div class="reviews__slide" style="flex: 0 0 <%= 100 / reviewsList.length %>%; width: <%= 100 / reviewsList.length %>%;">
+            <article class="reviews__card">
+              <h3 class="reviews__name"><%= rev.name %></h3>
+              <div class="reviews__stars" aria-label="Рейтинг <%= rev.rating %> от 5">
+                <% for (var s = 0; s < 5; s++) { %><span class="reviews__star" aria-hidden="true"><%= s < (rev.rating || 5) ? '★' : '☆' %></span><% } %>
+              </div>
+              <p class="reviews__text"><%= rev.text %></p>
+            </article>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="reviews__pagination" role="tablist" aria-label="Страници отзиви">
+        <% var desktopPageCount = Math.ceil(reviewsList.length / 3); %>
+        <% reviewsList.forEach(function(_, i) { %>
+        <button type="button" class="reviews__dot <%= i === 0 ? 'is-active' : '' %> <%= i >= desktopPageCount ? 'reviews__dot--mobile' : '' %>" data-index="<%= i %>" aria-label="Страница <%= i + 1 %>" aria-selected="<%= i === 0 ? 'true' : 'false' %>"></button>
+        <% }); %>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['cart.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <section class="checkout-page">
+      <div class="container">
+        <nav class="checkout-steps" aria-label="Стъпки на поръчката">
+          <a class="checkout-steps__item" href="/#cart">Количка</a>
+          <span class="checkout-steps__sep" aria-hidden="true">→</span>
+          <span class="checkout-steps__item checkout-steps__item--current">Поръчка</span>
+          <span class="checkout-steps__sep" aria-hidden="true">→</span>
+          <span class="checkout-steps__item checkout-steps__item--next">Поръчката е завършена</span>
+        </nav>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="checkout-alert checkout-alert--error"><%= error %></div>
+        <% } %>
+
+        <h1 class="checkout-form-wrap__title checkout-form-wrap__title--main">Поръчка</h1>
+        <div class="checkout-grid">
+          <div class="checkout-form-wrap">
+            <h2 class="checkout-form-wrap__title">Фактуриране и доставка</h2>
+            <form class="checkout-form" action="/checkout" method="post">
+              <div class="checkout-form__group checkout-form__group--half">
+                <div class="checkout-form__row">
+                  <label for="firstName">Име <span class="req">*</span></label>
+                  <input type="text" id="firstName" name="firstName" value="<%= typeof firstName !== 'undefined' ? firstName : '' %>" required placeholder="Име" />
+                </div>
+                <div class="checkout-form__row">
+                  <label for="lastName">Фамилия <span class="req">*</span></label>
+                  <input type="text" id="lastName" name="lastName" value="<%= typeof lastName !== 'undefined' ? lastName : '' %>" required placeholder="Фамилия" />
+                </div>
+              </div>
+              <div class="checkout-form__row">
+                <label for="company">Фирма (по избор)</label>
+                <input type="text" id="company" name="company" value="<%= typeof company !== 'undefined' ? company : '' %>" placeholder="Фирма" />
+              </div>
+              <div class="checkout-form__row">
+                <label for="country">Държава <span class="req">*</span></label>
+                <select id="country" name="country" required>
+                  <option value="България" <%= (typeof country !== 'undefined' && country === 'България') ? 'selected' : '' %>>България</option>
+                </select>
+              </div>
+              <div class="checkout-form__row">
+                <label for="street">Улица и номер <span class="req">*</span></label>
+                <input type="text" id="street" name="street" value="<%= typeof street !== 'undefined' ? street : '' %>" required placeholder="Улица, номер" />
+              </div>
+              <div class="checkout-form__group checkout-form__group--half">
+                <div class="checkout-form__row">
+                  <label for="city">Град <span class="req">*</span></label>
+                  <input type="text" id="city" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>" required placeholder="Град" />
+                </div>
+                <div class="checkout-form__row">
+                  <label for="postalCode">Пощенски код</label>
+                  <input type="text" id="postalCode" name="postalCode" value="<%= typeof postalCode !== 'undefined' ? postalCode : '' %>" placeholder="по избор" />
+                </div>
+              </div>
+              <div class="checkout-form__row">
+                <label for="phone">Телефон <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" value="<%= typeof phone !== 'undefined' ? phone : '' %>" required placeholder="088 123 4567" />
+              </div>
+              <div class="checkout-form__row">
+                <label for="email">Имейл адрес</label>
+                <input type="email" id="email" name="email" value="<%= typeof email !== 'undefined' ? email : '' %>" placeholder="по избор" />
+              </div>
+              <div class="checkout-form__row">
+                <label for="comment">Допълнителна информация</label>
+                <textarea id="comment" name="comment" rows="3" placeholder="Бележки за доставка/монтаж, желано време и др."><%= typeof comment !== 'undefined' ? comment : '' %></textarea>
+              </div>
+              <div class="checkout-form__actions checkout-form__actions--left">
+                <button type="submit" class="btn-checkout btn-checkout--submit">Поръчка</button>
+                <a href="/#cart" class="checkout-form__back">Назад към количката</a>
+              </div>
+            </form>
+          </div>
+
+          <aside class="checkout-order">
+            <h2 class="checkout-order__title">Вашата поръчка</h2>
+            <div class="checkout-order__table-wrap">
+              <table class="checkout-order__table">
+                <thead>
+                  <tr>
+                    <th>Продукт</th>
+                    <th class="checkout-order__th-total">Общо</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (typeof cart !== 'undefined' && cart && cart.length) { cart.forEach(function(item) { %>
+                    <tr>
+                      <td>
+                        <div class="checkout-order__product">
+                          <img src="/assets/images/<%= item.img %>" alt="" class="checkout-order__product-img" width="50" height="50" />
+                          <div>
+                            <span class="checkout-order__product-name"><%= item.title %></span>
+                            <span class="checkout-order__product-qty">× <%= item.quantity %></span>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="checkout-order__total-cell"><%= item.lineTotalFormatted || (item.price != null && item.quantity != null ? (item.price * item.quantity).toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €' : '—') %></td>
+                    </tr>
+                  <% }); } %>
+                </tbody>
+              </table>
+            </div>
+            <div class="checkout-order__totals">
+              <div class="checkout-order__total-row">
+                <span>Общо</span>
+                <strong><%= totalEurFormatted %> (<%= totalBgnFormatted %>)</strong>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title><%= review ? 'Редактиране на отзив' : 'Добавяне на отзив' %> | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/admin/reviews" class="admin-header__home">← Отзиви</a>
+      <h1 class="admin-header__title"><%= review ? 'Редактиране на отзив' : 'Добавяне на отзив' %></h1>
+      <form class="admin-header__logout" action="/admin/logout" method="post">
+        <button type="submit" class="admin-header__logout-btn">Изход</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="admin-alert admin-alert--warning">Възникна грешка. Опитайте отново.</div>
+    <% } %>
+    <section class="admin-form-section">
+      <h2><%= review ? 'Промяна на отзив' : 'Нов отзив от клиент' %></h2>
+      <form class="admin-form" action="<%= review ? '/admin/reviews/' + review._id : '/admin/reviews' %>" method="post">
+        <div class="admin-form__row">
+          <label for="name">Име на клиента <span class="req">*</span></label>
+          <input type="text" id="name" name="name" value="<%= review ? (review.name || '') : '' %>" required placeholder="напр. Иван Петров" />
+        </div>
+        <div class="admin-form__row">
+          <label for="rating">Рейтинг (1–5) <span class="req">*</span></label>
+          <select id="rating" name="rating" required>
+            <% for (var r = 1; r <= 5; r++) { %>
+              <option value="<%= r %>" <%= review && review.rating === r ? 'selected' : (!review && r === 5) ? 'selected' : '' %>><%= r %> <%= r === 1 ? 'звезда' : 'звезди' %></option>
+            <% } %>
+          </select>
+        </div>
+        <div class="admin-form__row">
+          <label for="text">Текст на отзива <span class="req">*</span></label>
+          <textarea id="text" name="text" rows="5" required placeholder="Текст на отзива от клиента..."><%= review ? (review.text || '') : '' %></textarea>
+        </div>
+        <div class="admin-form__row">
+          <label for="order">Подредба (по-малко = по-напред)</label>
+          <input type="number" id="order" name="order" min="0" value="<%= review ? (review.order != null ? review.order : 0) : 0 %>" />
+        </div>
+        <div class="admin-form__actions">
+          <button type="submit" class="admin-form__submit"><%= review ? 'Запази промените' : 'Добави отзив' %></button>
+          <a href="/admin/reviews" class="admin-form__cancel">Отказ</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<%
+// Product cards: only DB-rendered content. Pass `products` from the route (array of Product.toCard() results).
+// Card shape: { id, ribbons, img, imgClass, brand, title, price, priceLv, category }.
+var raw = typeof products !== 'undefined' ? products : [];
+var cards = raw.map(function(item) {
+  return typeof item.toCard === 'function' ? item.toCard() : item;
+});
+%>
+<% if (cards.length === 0) { %>
+<p class="products-empty">Няма налични продукти в момента.</p>
+<% } else { %>
+<% cards.forEach(function(c) { %>
+<article class="card" data-product-id="<%= c.id ? c.id : '' %>">
+  <a class="card__link" href="<%= c.id ? '/product/' + c.id : '/product' %>" aria-label="Виж продукт" data-product-id="<%= c.id ? c.id : '' %>"></a>
+  <div class="card__ribbons">
+    <% if (c.ribbons && c.ribbons.length) { c.ribbons.forEach(function(r) { %><span class="ribbon ribbon--<%= r.style %>"><%= r.label %></span><% }); } %>
+  </div>
+  <div class="card__image" aria-hidden="true">
+    <img src="/assets/images/<%= c.img %>" alt="<%= [c.brand, c.model, c.title].filter(Boolean).join(' – ') || 'Климатик' %>" loading="lazy" class="card__img<%= c.imgClass %>" />
+  </div>
+  <div class="card__brand"><%= c.brand %></div>
+  <h3 class="card__title"><%= c.title %></h3>
+  <div class="card__price">
+    <strong><%= c.price %></strong>
+    <span>| <%= c.priceLv %></span>
+  </div>
+  <div class="card__actions">
+    <form class="card__add-cart" action="/cart/add" method="post" data-add-to-cart onclick="event.stopPropagation();">
+      <input type="hidden" name="productId" value="<%= c.id ? c.id : '' %>" />
+      <input type="hidden" name="quantity" value="1" />
+      <button class="buy" type="submit" aria-label="Добави в количката">
+        <span class="buy__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M7 18a2 2 0 1 0 2 2 2 2 0 0 0-2-2Zm10 0a2 2 0 1 0 2 2 2 2 0 0 0-2-2ZM6.2 6l.44 2H19a1 1 0 0 1 .97 1.25l-1.2 5A2 2 0 0 1 16.83 16H8.2a2 2 0 0 1-1.96-1.57L4.28 4H2V2h3a1 1 0 0 1 .98.8L6.2 6Z"/></svg>
+        </span>
+        КУПИ
+      </button>
+    </form>
+  </div>
+</article>
+<% }); %>
+<% } %>

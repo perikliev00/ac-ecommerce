@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Поръчки – Админ | NesebarClima</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/admin.css" />
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <a href="/admin" class="admin-header__home">← Продукти</a>
+      <h1 class="admin-header__title">Поръчки</h1>
+      <nav class="admin-header__nav">
+        <a href="/admin/reviews" class="admin-header__orders-link">Отзиви</a>
+        <a href="/admin/contacts" class="admin-header__orders-link">Запитвания</a>
+      </nav>
+      <form class="admin-header__logout" action="/admin/logout" method="post">
+        <button type="submit" class="admin-header__logout-btn">Изход</button>
+      </form>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <% if (typeof deleted !== 'undefined' && deleted) { %>
+      <div class="admin-alert admin-alert--success">Поръчката беше изтрита.</div>
+    <% } %>
+    <section class="admin-list-section">
+      <h2>Всички поръчки (<%= orders.length %>)</h2>
+      <% if (orders.length === 0) { %>
+        <p class="admin-list__empty">Няма подадени поръчки.</p>
+      <% } else { %>
+        <div class="admin-orders">
+          <% orders.forEach(function(o) { %>
+            <article class="admin-order <%= o.ready ? 'admin-order--ready' : '' %>" data-order-id="<%= o._id %>">
+              <div class="admin-order__head">
+                <span class="admin-order__id">#<%= o._id.toString().slice(-8) %></span>
+                <time class="admin-order__date" datetime="<%= o.createdAt %>"><%= o.createdAt ? new Date(o.createdAt).toLocaleString('bg-BG') : '' %></time>
+                <span class="admin-status-badge admin-status-badge--<%= o.ready ? 'ready' : 'pending' %>"><%= o.ready ? 'Готово' : 'Чака' %></span>
+                <strong class="admin-order__total"><%= o.total != null ? o.total.toLocaleString('de-DE', { minimumFractionDigits: 2 }) + ' €' : '—' %></strong>
+              </div>
+              <div class="admin-order__customer">
+                <strong>Клиент:</strong>
+                <%= o.customer && o.customer.fullName ? o.customer.fullName : '—' %> •
+                <%= o.customer && o.customer.phone ? o.customer.phone : '—' %> •
+                <%= o.customer && o.customer.address ? o.customer.address : '—' %>
+                <% if (o.customer && o.customer.comment) { %><br /><span class="admin-order__comment">Бележка: <%= o.customer.comment %></span><% } %>
+              </div>
+              <div class="admin-order__items">
+                <strong>Артикули:</strong>
+                <ul>
+                  <% if (o.items && o.items.length) { o.items.forEach(function(it) { %>
+                    <li><%= it.title %> — кол.: <%= it.quantity %>, <%= it.price != null ? it.price.toLocaleString('de-DE', { minimumFractionDigits: 2 }) : '' %> € (ред: <%= (it.price * it.quantity).toLocaleString('de-DE', { minimumFractionDigits: 2 }) %> €)</li>
+                  <% }); } else { %><li>—</li><% } %>
+                </ul>
+              </div>
+              <div class="admin-order__actions">
+                <form class="admin-table__action-form" action="/admin/orders/<%= o._id.toString() %>/ready" method="post">
+                  <button type="submit" class="admin-table__btn admin-table__btn--ready"><%= o.ready ? 'Върни като чакаща' : 'Отбележи като готово' %></button>
+                </form>
+                <form class="admin-table__delete-form admin-table__action-form" action="/admin/orders/<%= o._id.toString() %>/delete" method="post" onsubmit="return confirm('Изтриване на тази поръчка?');">
+                  <button type="submit" class="admin-table__btn admin-table__btn--delete">Изтрий</button>
+                </form>
+              </div>
+            </article>
+          <% }); %>
+        </div>
+      <% } %>
+    </section>
+  </main>
+</body>
+</html>

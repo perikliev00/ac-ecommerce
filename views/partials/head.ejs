@@ -1,0 +1,57 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<% if (typeof title !== 'undefined' && title) { %><title><%= title %></title><% } else { %><title>Климатици Несебър | Несебър Клима – Продажба, Монтаж и Сервиз</title><% } %>
+<% if (typeof description !== 'undefined' && description) { %><meta name="description" content="<%= description %>" /><% } %>
+<% if (typeof canonicalUrl !== 'undefined' && canonicalUrl) { %><link rel="canonical" href="<%= canonicalUrl %>" /><% } %>
+<% if (typeof robotsMeta !== 'undefined' && robotsMeta) { %><meta name="robots" content="<%= robotsMeta %>" /><% } else { %><meta name="robots" content="index,follow" /><% } %>
+<meta name="theme-color" content="<%= typeof themeColor !== 'undefined' && themeColor ? themeColor : '#1a365d' %>" />
+
+<% const shareImage = (typeof ogImage !== 'undefined' && ogImage) ? ogImage : (typeof defaultOgImage !== 'undefined' ? defaultOgImage : ''); if (shareImage) { %>
+<meta property="og:title" content="<%= typeof ogTitle !== 'undefined' ? ogTitle : (typeof title !== 'undefined' ? title : '') %>" />
+<meta property="og:description" content="<%= typeof ogDescription !== 'undefined' ? ogDescription : (typeof description !== 'undefined' ? description : '') %>" />
+<meta property="og:url" content="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : '' %>" />
+<meta property="og:type" content="<%= typeof ogType !== 'undefined' ? ogType : 'website' %>" />
+<meta property="og:image" content="<%= shareImage %>" />
+<meta property="og:image:alt" content="Несебър Клима – климатици Несебър" />
+<meta property="og:locale" content="<%= typeof ogLocale !== 'undefined' ? ogLocale : 'bg_BG' %>" />
+<meta property="og:site_name" content="<%= typeof ogSiteName !== 'undefined' ? ogSiteName : 'Несебър Клима' %>" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image:alt" content="Несебър Клима – климатици Несебър" />
+<meta name="twitter:title" content="<%= typeof ogTitle !== 'undefined' ? ogTitle : (typeof title !== 'undefined' ? title : '') %>" />
+<meta name="twitter:description" content="<%= typeof ogDescription !== 'undefined' ? ogDescription : (typeof description !== 'undefined' ? description : '') %>" />
+<meta name="twitter:image" content="<%= shareImage %>" />
+<% } %>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet" />
+<% if (typeof extraFontHref !== 'undefined' && extraFontHref) { %><link href="<%= extraFontHref %>" rel="stylesheet" /><% } %>
+<link rel="stylesheet" href="/styles.css" />
+<link rel="stylesheet" href="/nav.css" />
+<link rel="stylesheet" href="/cart-drawer.css" />
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<% if (typeof extraStyles !== 'undefined' && Array.isArray(extraStyles)) { extraStyles.forEach(function(s) { %><link rel="stylesheet" href="/<%= s %>" />
+<% }); } %>
+
+<% if (typeof jsonLd !== 'undefined' && Array.isArray(jsonLd) && jsonLd.length) { jsonLd.forEach(function(ld) { %>
+<script type="application/ld+json"><%= typeof ld === 'string' ? ld : JSON.stringify(ld) %></script>
+<% }); } %>
+
+<style>
+  .page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

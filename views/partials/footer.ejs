@@ -1,0 +1,24 @@
+<footer class="footer">
+  <div class="container footer__nav-wrap">
+    <nav class="footer__nav" aria-label="Навигация в подвала">
+      <a class="footer__link" href="/produkti">КЛИМАТИЦИ</a>
+      <a class="footer__link" href="/uslugi">УСЛУГИ</a>
+      <a class="footer__link" href="/about">ЗА НАС</a>
+      <a class="footer__link" href="/kontakti">КОНТАКТИ</a>
+    </nav>
+    <p class="footer__areas">
+      Обслужваме <a href="/produkti">климатици Несебър</a>, <a href="/produkti">климатици Слънчев бряг</a>, <a href="/produkti">климатици Равда</a> и <a href="/produkti">климатици Свети Влас</a>.
+    </p>
+  </div>
+
+  <div class="footer__bottom">
+    <div class="container footer__bottomInner">
+      <div>© NesebarClima® • Copyright 2009-2026 • Всички права запазени</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+<script src="/cart-drawer.js"></script>
+<% if (typeof extraScripts !== 'undefined' && Array.isArray(extraScripts)) { extraScripts.forEach(function(s) { %><script src="/<%= s %>"></script>
+<% }); } %>

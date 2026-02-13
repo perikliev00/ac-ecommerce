@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraFontHref: 'https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap' }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <% const fd = (typeof formData !== 'undefined' && formData) ? formData : {}; %>
+
+  <main class="page" role="main">
+    <section class="contact-page">
+      <div class="container">
+        <h1 class="contact-page__hero">Свържете се с нас за оферта или сервиз</h1>
+
+        <% if (typeof sent !== 'undefined' && sent) { %>
+          <div class="contact-page__alert contact-page__alert--success">
+            Благодарим ви! Вашето запитване беше изпратено успешно. Ще се свържем с вас до 24 часа.
+          </div>
+        <% } %>
+        <% if (typeof error !== 'undefined' && error) { %>
+          <div class="contact-page__alert contact-page__alert--error">
+            <%= error %>
+          </div>
+        <% } %>
+
+        <div class="contact-page__grid">
+          <div class="contact-page__card contact-page__info">
+            <h2 class="contact-page__card-title">Телефон и имейл</h2>
+            <div class="contact-page__detail">
+              <span class="contact-page__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
+                </svg>
+              </span>
+              <div>
+                <span class="contact-page__label">Телефон</span>
+                <a href="tel:+359899123123" class="contact-page__value">+359 899 123 123</a>
+              </div>
+            </div>
+            <div class="contact-page__detail">
+              <span class="contact-page__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2Zm2 2v12h12V6H6Zm2.5 5.5L12 14l3.5-2.5L12 9l-3.5 2.5Z" />
+                </svg>
+              </span>
+              <div>
+                <span class="contact-page__label">Имейл</span>
+                <a href="mailto:info@nesebarclima.bg" class="contact-page__value">info@nesebarclima.bg</a>
+              </div>
+            </div>
+            <div class="contact-page__detail">
+              <span class="contact-page__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2c4.4 0 8 3.6 8 8 0 2.2-.8 4.1-2.2 5.6L12 22l-5.8-6.4A8 8 0 0 1 4 10c0-4.4 3.6-8 8-8Zm0 2a6 6 0 0 0-6 6c0 1.7.6 3.2 1.7 4.4L12 19l4.3-4.6A6 6 0 0 0 18 10a6 6 0 0 0-6-6Z" />
+                </svg>
+              </span>
+              <div>
+                <span class="contact-page__label">Обслужване</span>
+                <span class="contact-page__value">Несебър, Слънчев бряг, Равда, Свети Влас</span>
+              </div>
+            </div>
+            <a class="contact-page__btn" href="/produkti">Виж климатиците →</a>
+          </div>
+
+          <div class="contact-page__card contact-page__form-wrap">
+            <h2 class="contact-page__card-title">Изпратете запитване</h2>
+            <form class="contact-page__form" action="/kontakti" method="post">
+              <label class="contact-page__field">
+                <span class="contact-page__field-label">Вашето име</span>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Вашето име"
+                  value="<%= fd.name || '' %>"
+                />
+              </label>
+              <label class="contact-page__field">
+                <span class="contact-page__field-label">Имейл</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="email@example.com"
+                  value="<%= fd.email || '' %>"
+                />
+              </label>
+              <label class="contact-page__field">
+                <span class="contact-page__field-label">Телефон</span>
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+359"
+                  value="<%= fd.phone || '' %>"
+                />
+              </label>
+              <label class="contact-page__field">
+                <span class="contact-page__field-label">Относно</span>
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Оферта / монтаж / сервиз / ремонт"
+                  value="<%= fd.subject || '' %>"
+                />
+              </label>
+              <button type="submit" class="contact-page__btn contact-page__btn--submit">Изпрати →</button>
+            </form>
+            <p class="contact-page__note">Изпращайки съобщението, приемате нашата <a href="#">Политика за лични данни</a>. Ще отговорим в рамките на 24 часа.</p>
+          </div>
+        </div>
+
+        <div class="contact-page__map-wrap">
+          <h2 class="contact-page__map-title">Къде работим</h2>
+          <p class="contact-page__map-desc">Несебър и региона – Слънчев бряг, Равда, Свети Влас. Посещение след предварителна уговорка.</p>
+          <div class="contact-page__map">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=27.698%2C42.648%2C27.742%2C42.674&layer=mapnik&marker=42.6605%2C27.7192"
+              title="Карта — NesebarClima, Несебър"
+              width="100%"
+              height="360"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <a class="contact-page__map-link" href="https://www.openstreetmap.org/?mlat=42.6605&mlon=27.7192#map=14/42.6605/27.7192" target="_blank" rel="noopener noreferrer">Отвори в по-голяма карта</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <% if (typeof sent !== 'undefined' && sent) { %>
+    <div class="contact-modal is-visible" id="contactSuccessModal">
+      <div class="contact-modal__dialog">
+        <h2 class="contact-modal__title">Благодарим за запитването!</h2>
+        <p class="contact-modal__text">
+          Успешно изпратихте вашето запитване. Ще се свържем с вас до 24 часа на посочените контакти.
+        </p>
+        <div class="contact-modal__actions">
+          <button type="button" class="contact-page__btn contact-modal__btn" data-close-modal>
+            Затвори
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var modal = document.getElementById('contactSuccessModal');
+        if (!modal) return;
+        function closeModal() {
+          modal.classList.remove('is-visible');
+        }
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal();
+        });
+        var btns = modal.querySelectorAll('[data-close-modal]');
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener('click', closeModal);
+        }
+      });
+    </script>
+  <% } %>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

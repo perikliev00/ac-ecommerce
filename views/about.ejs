@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <%- include('partials/head', { extraStyles: ['about.css'] }) %>
+</head>
+<body>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page" role="main">
+    <section class="about-hero" aria-label="За нас">
+      <div class="container">
+        <span class="about-hero__badge">От 2009 г. в Несебър</span>
+        <h1 class="about-hero__title">За NesebarClima</h1>
+        <p class="about-hero__lead">
+          Магазин и сервиз за климатици в Несебър и Черноморието. Продажба на климатици, професионален монтаж, профилактика и ремонт. Работим с битови и търговски обекти в региона.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-stats" aria-label="Нашите числа">
+      <div class="container">
+        <div class="about-stats__grid">
+          <div class="about-stat">
+            <span class="about-stat__num">15+</span>
+            <span class="about-stat__label">години опит</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__num">10 000+</span>
+            <span class="about-stat__label">доволни клиенти</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__num">50+</span>
+            <span class="about-stat__label">модела климатици</span>
+          </div>
+          <div class="about-stat">
+            <span class="about-stat__num">—</span>
+            <span class="about-stat__label">Несебър, Слънчев бряг, Равда, Свети Влас</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-content" aria-label="За нас">
+      <div class="container">
+        <div class="about-content__grid">
+          <article class="about-block">
+            <h2 class="about-block__title">Кой сме ние</h2>
+            <p class="about-block__text">
+              NesebarClima е магазин и сервиз за климатици в Несебър. От 2009 г. се занимаваме с продажба, монтаж, профилактика и ремонт на климатици за дома и за бизнеса в региона на Несебър, Слънчев бряг, Равда и Свети Влас.
+            </p>
+            <p class="about-block__text">
+              Работим с марки като Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter и General Fujitsu. Предлагаме оригинални уреди, професионален монтаж и гаранция за извършените услуги. Опит имаме както с битови, така и с търговски обекти.
+            </p>
+          </article>
+
+          <article class="about-block about-block--accent">
+            <h2 class="about-block__title">Какво предлагаме</h2>
+            <ul class="about-list">
+              <li><strong>Продажба на климатици</strong> – инверторни, хиперинверторни и подови модели</li>
+              <li><strong>Монтаж на климатици</strong> – професионално изпълнение от опитни монтажници</li>
+              <li><strong>Профилактика и сервиз</strong> – периодично обслужване за дълготрайна работа</li>
+              <li><strong>Ремонт на климатици</strong> – бърза диагностика и коректен ремонт</li>
+              <li><strong>Гаранция</strong> – за извършените услуги и продадените уреди</li>
+            </ul>
+          </article>
+
+          <article class="about-block">
+            <h2 class="about-block__title">Защо да изберете нас</h2>
+            <div class="about-cards">
+              <div class="about-card">
+                <span class="about-card__icon" aria-hidden="true">✓</span>
+                <h3 class="about-card__title">Безплатен оглед и оферта</h3>
+                <p class="about-card__text">Оглеждаме мястото, препоръчваме подходящ модел и мощност и даваме ясна оферта.</p>
+              </div>
+              <div class="about-card">
+                <span class="about-card__icon" aria-hidden="true">✓</span>
+                <h3 class="about-card__title">Гаранция и коректност</h3>
+                <p class="about-card__text">Гарантираме качество на монтажа и ремонта. Работим с оригинални части.</p>
+              </div>
+              <div class="about-card">
+                <span class="about-card__icon" aria-hidden="true">✓</span>
+                <h3 class="about-card__title">Бърза реакция</h3>
+                <p class="about-card__text">При сервиз и ремонт реагираме бързо и уговаряме удобен за вас час.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="about-block about-block--cta">
+            <h2 class="about-block__title">Свържете се с нас</h2>
+            <p class="about-block__text">
+              Обслужваме <strong>Несебър</strong>, <strong>Слънчев бряг</strong>, <strong>Равда</strong> и <strong>Свети Влас</strong>. Обадете се на <a href="tel:+359899123123">+359 899 123 123</a> за оферта или оглед, или пишете през <a href="/kontakti">Контакти</a>.
+            </p>
+            <a class="about-cta" href="/kontakti">Контакти</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

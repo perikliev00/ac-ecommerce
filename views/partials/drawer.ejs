@@ -1,0 +1,60 @@
+<div class="overlay" id="overlay" hidden></div>
+<aside class="drawer" id="drawer" aria-label="Мобилно меню" aria-hidden="true">
+  <div class="drawer__top">
+    <div class="drawer__topLeft">
+      <strong>Меню</strong>
+    </div>
+    <button class="icon-btn" id="btnCloseMenu" aria-label="Затвори меню">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3Z" />
+      </svg>
+    </button>
+  </div>
+  <div class="drawer__body">
+    <nav class="drawer__primary" aria-label="Основна навигация">
+      <a class="drawer__primaryLink" href="/produkti">КЛИМАТИЦИ</a>
+      <a class="drawer__primaryLink" href="/uslugi">УСЛУГИ</a>
+      <a class="drawer__primaryLink" href="/about">ЗА НАС</a>
+      <a class="drawer__primaryLink" href="/kontakti">КОНТАКТИ</a>
+    </nav>
+    <a class="drawer__contact" href="tel:+359899123123" aria-label="Обадете се: +359 899 123 123">
+      <span class="drawer__contact-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
+        </svg>
+      </span>
+      <span class="drawer__contact-text">
+        <span class="drawer__contact-label">ОБАДИ СЕ НА:</span>
+        <span class="drawer__contact-value">+359 899 123 123</span>
+      </span>
+    </a>
+    <div class="drawer__stock" aria-label="Стоки и сума">
+      <span>Стоки: 0</span>
+      <span class="stock__sep">|</span>
+      <span>(0,00 € | 0,00 лв.)</span>
+    </div>
+    <div class="drawer__sidebar">
+      <nav class="sidebar__nav" aria-label="Категории">
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/inverter">
+            <span class="sidebarLabel">Инверторни климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/hyperinverter">
+            <span class="sidebarLabel">Хиперинверторни климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+        <div class="sidebarItem">
+          <a class="sidebarLink" href="/floor">
+            <span class="sidebarLabel">Подови климатици</span>
+            <span class="sidebarChev" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </div>
+</aside>
+<%- include('cart-drawer') %>
