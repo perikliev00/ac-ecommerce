@@ -23,6 +23,20 @@
   if (!overlay || !panel || !cartLink) return;
 
   var IMG_BASE = '/assets/images/';
+  var routes = window.NC_ROUTES || {};
+  var texts = {
+    titleEmpty: (panel && panel.getAttribute('data-title-empty')) || 'Количката е празна',
+    titleOne: (panel && panel.getAttribute('data-title-one')) || '1 продукт в количката',
+    titleMany: (panel && panel.getAttribute('data-title-many')) || 'продукта в количката',
+    empty: (panel && panel.getAttribute('data-empty')) || 'Количката е празна.',
+    qty: (panel && panel.getAttribute('data-qty-label')) || 'Кол.',
+    remove: (panel && panel.getAttribute('data-remove-label')) || 'Премахни'
+  };
+
+  function productHref(productId) {
+    var suffix = routes.localeSuffix || '';
+    return '/product/' + String(productId || '') + suffix;
+  }
 
   function setBadge(count) {
     if (badgeEl) badgeEl.textContent = String(count);
@@ -47,7 +61,8 @@
   }
 
   function showEmpty() {
-    if (titleEl) titleEl.textContent = 'Количката е празна';
+    if (titleEl) titleEl.textContent = texts.titleEmpty;
+    if (emptyEl) emptyEl.textContent = texts.empty;
     if (emptyEl) emptyEl.hidden = false;
     if (itemsEl) { itemsEl.hidden = true; itemsEl.innerHTML = ''; }
     if (totalsEl) totalsEl.hidden = true;
@@ -68,7 +83,7 @@
       return;
     }
 
-    if (titleEl) titleEl.textContent = cartCount === 1 ? '1 продукт в количката' : cartCount + ' продукта в количката';
+    if (titleEl) titleEl.textContent = cartCount === 1 ? texts.titleOne : cartCount + ' ' + texts.titleMany;
     if (emptyEl) emptyEl.hidden = true;
     if (itemsEl) itemsEl.hidden = false;
     if (totalsEl) totalsEl.hidden = false;
@@ -80,7 +95,7 @@
     cart.forEach(function (item) {
       var idx = item.index != null ? item.index : 0;
       var img = (item.img && item.img.indexOf('/') < 0) ? IMG_BASE + item.img : (item.img || IMG_BASE + 'kmta-400x267.jpg.webp');
-      var href = '/product/' + (item.productId || '');
+      var href = productHref(item.productId || '');
       var displayName = (item.modelLabel != null ? item.modelLabel : item.title) || '';
       var title = displayName.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
       var qty = item.quantity || 1;
@@ -91,9 +106,9 @@
       html += '<div class="cart-drawer-item__info">';
       html += '<h3 class="cart-drawer-item__title"><a href="' + href + '">' + title + '</a></h3>';
       html += '<div class="cart-drawer-item__meta">' + unit + '</div>';
-      html += '<div class="cart-drawer-item__qty-line"><span class="cart-drawer-item__qty">Кол.: ' + qty + '</span><span class="cart-drawer-item__line-total">' + line + '</span></div>';
+      html += '<div class="cart-drawer-item__qty-line"><span class="cart-drawer-item__qty">' + texts.qty + ': ' + qty + '</span><span class="cart-drawer-item__line-total">' + line + '</span></div>';
       html += '</div>';
-      html += '<button type="button" class="cart-drawer-item__remove" data-remove-index="' + idx + '" aria-label="Премахни">×</button>';
+      html += '<button type="button" class="cart-drawer-item__remove" data-remove-index="' + idx + '" aria-label="' + texts.remove + '">×</button>';
       html += '</div>';
     });
     if (itemsEl) itemsEl.innerHTML = html;
@@ -108,7 +123,7 @@
   }
 
   function loadCart() {
-    fetch('/api/cart?_=' + Date.now(), {
+    fetch((routes.cartApi || '/api/cart') + '?_=' + Date.now(), {
       method: 'GET',
       credentials: 'include',
       cache: 'no-store',
@@ -131,7 +146,7 @@
     var body = new URLSearchParams();
     body.append('productId', String(productId));
     body.append('quantity', String(Math.max(1, parseInt(quantity, 10) || 1)));
-    return fetch('/cart/add', {
+    return fetch(routes.cartAdd || '/cart/add', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -148,7 +163,7 @@
   function removeItem(index) {
     var body = new URLSearchParams();
     body.append('index', String(index));
-    fetch('/cart/remove', {
+    fetch(routes.cartRemove || '/cart/remove', {
       method: 'POST',
       credentials: 'include',
       headers: {

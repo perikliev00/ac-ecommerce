@@ -36,7 +36,7 @@
 
   // ---------- Drawer (mobile menu) ----------
   const drawer = qs("#drawer");
-  const overlay = qs("#overlay");
+  const overlay = qs(".m-overlay") || qs("#overlay");
   const btnMenu = qs("#btnMenu");
   const btnCloseMenu = qs("#btnCloseMenu");
 
@@ -90,6 +90,67 @@
   toTop?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
   });
+
+  // ---------- Primary nav dropdown (hover + click, reliable) ----------
+  // Hover: mouseenter opens instantly, mouseleave closes after 120ms delay
+  // so the cursor can safely move from the toggle into the dropdown panel
+  // without the menu flashing closed. Click on toggle also toggles.
+  const navDropdownItem = qs(".primary__item--dropdown");
+  if (navDropdownItem) {
+    const navTrigger = navDropdownItem.querySelector(".primary__toggle");
+    const navDropdown = navDropdownItem.querySelector(".primary__dropdown");
+    let closeTimer = null;
+
+    const openNavDropdown = () => {
+      clearTimeout(closeTimer);
+      navDropdownItem.classList.add("is-open");
+      navTrigger?.setAttribute("aria-expanded", "true");
+    };
+
+    const scheduleClose = () => {
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(() => {
+        navDropdownItem.classList.remove("is-open");
+        navTrigger?.setAttribute("aria-expanded", "false");
+      }, 120);
+    };
+
+    const cancelClose = () => clearTimeout(closeTimer);
+
+    // Hover on the whole item (trigger + dropdown)
+    navDropdownItem.addEventListener("mouseenter", openNavDropdown);
+    navDropdownItem.addEventListener("mouseleave", scheduleClose);
+
+    // If cursor re-enters the dropdown panel itself, cancel the close
+    navDropdown?.addEventListener("mouseenter", cancelClose);
+    navDropdown?.addEventListener("mouseleave", scheduleClose);
+
+    // Click on toggle: if already open navigate away (follow href), else open
+    navTrigger?.addEventListener("click", (e) => {
+      if (!navDropdownItem.classList.contains("is-open")) {
+        e.preventDefault();
+        openNavDropdown();
+      }
+      // if open, let the click do nothing (user can click a dropdown link)
+    });
+
+    // Close on outside click
+    document.addEventListener(
+      "pointerdown",
+      (e) => {
+        if (!e.target.closest?.(".primary__item--dropdown")) scheduleClose();
+      },
+      { passive: true }
+    );
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        clearTimeout(closeTimer);
+        navDropdownItem.classList.remove("is-open");
+        navTrigger?.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
 
   // ---------- Carousel ----------
   const carousel = qs(".carousel");
