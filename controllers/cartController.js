@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
 const Order = require('../models/Order');
+const { localizePath, localizedViewName } = require('../lib/i18n');
 const { buildSeo } = require('../lib/seo');
 
 const EUR_TO_BGN = 1.95583;
@@ -12,6 +13,13 @@ function formatEur(n) {
 function formatBgn(n) {
   if (n == null || Number.isNaN(n)) return '—';
   return Number(n).toLocaleString('bg-BG', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' лв.';
+}
+
+function getCheckoutValidationError(locale) {
+  if (locale === 'en') return 'Please fill in name, phone and address.';
+  if (locale === 'de') return 'Bitte geben Sie Name, Telefon und Adresse ein.';
+  if (locale === 'ru') return 'Пожалуйста, заполните имя, телефон и адрес.';
+  return 'Моля, попълнете име, телефон и адрес.';
 }
 
 function getCartFromSession(req) {
@@ -96,7 +104,7 @@ function saveSession(req, cb) {
 // GET /cart – redirect to home (cart is in drawer only)
 function getCart(req, res, next) {
   try {
-    res.redirect('/');
+    res.redirect(localizePath('/', req.locale));
   } catch (err) {
     next(err);
   }
@@ -123,12 +131,12 @@ async function postAddToCart(req, res, next) {
     const quantity = Math.max(1, parseInt(req.body && req.body.quantity, 10) || 1);
     if (!productId) {
       if (wantsJson(req)) return res.status(400).json({ error: 'Missing productId', cart: [], cartCount: 0 });
-      return res.redirect('/produkti');
+      return res.redirect(localizePath('/produkti', req.locale));
     }
     const product = await Product.findById(productId);
     if (!product) {
       if (wantsJson(req)) return res.status(404).json({ error: 'Product not found', cart: [], cartCount: 0 });
-      return res.redirect('/produkti');
+      return res.redirect(localizePath('/produkti', req.locale));
     }
     const cart = getCartFromSession(req);
     const title = [product.brand, product.model].filter(Boolean).join(' ') || 'Продукт';
@@ -151,7 +159,7 @@ async function postAddToCart(req, res, next) {
       const enriched = await enrichCartWithProductTitles(cart);
       return saveSession(req, () => res.json(buildCartPayload(enriched)));
     }
-    return saveSession(req, () => res.redirect(req.get('Referer') || '/'));
+    return saveSession(req, () => res.redirect(req.get('Referer') || localizePath('/', req.locale)));
   } catch (err) {
     next(err);
   }
@@ -170,7 +178,7 @@ async function postRemoveFromCart(req, res, next) {
       const enriched = await enrichCartWithProductTitles(cart);
       return saveSession(req, () => res.json(buildCartPayload(enriched)));
     }
-    return saveSession(req, () => res.redirect('/'));
+    return saveSession(req, () => res.redirect(localizePath('/', req.locale)));
   } catch (err) {
     next(err);
   }
@@ -186,7 +194,7 @@ function cartTotals(cart) {
 async function getCheckout(req, res, next) {
   try {
     const cart = getCartFromSession(req);
-    if (cart.length === 0) return res.redirect('/');
+    if (cart.length === 0) return res.redirect(localizePath('/', req.locale));
     const enriched = await enrichCartWithProductTitles(cart);
     const { totalEur, totalBgn } = cartTotals(enriched);
     const cartForDisplay = enriched.map((item) => ({
@@ -202,8 +210,9 @@ async function getCheckout(req, res, next) {
       title: 'Поръчка | NesebarClima Несебър',
       description: 'Завършете поръчката си – NesebarClima.',
       robotsMeta: 'noindex, nofollow',
+      canonicalPath: localizePath('/checkout', req.locale),
     });
-    res.render('checkout', {
+    res.render(localizedViewName('checkout', req.locale), {
       cart: cartForDisplay,
       totalEurFormatted: formatEur(totalEur),
       totalBgnFormatted: formatBgn(totalBgn),
@@ -220,7 +229,7 @@ async function getCheckout(req, res, next) {
 async function postCheckout(req, res, next) {
   try {
     const cart = getCartFromSession(req);
-    if (cart.length === 0) return res.redirect('/');
+    if (cart.length === 0) return res.redirect(localizePath('/', req.locale));
     const { firstName, lastName, street, city, postalCode, phone, email, comment } = req.body || {};
     const fullName = [firstName, lastName].filter(Boolean).map((s) => String(s).trim()).join(' ').trim() || (req.body && req.body.fullName) || '';
     const address = [street, city, postalCode].filter(Boolean).map((s) => String(s).trim()).join(', ').trim() || (req.body && req.body.address) || '';
@@ -235,8 +244,8 @@ async function postCheckout(req, res, next) {
         lineTotalFormatted: formatEur((item.price || 0) * (item.quantity || 1)) + ' (' + formatBgn((item.price || 0) * (item.quantity || 1) * EUR_TO_BGN) + ')',
       }));
       const seo = buildSeo({ req, title: 'Поръчка | NesebarClima', robotsMeta: 'noindex,nofollow' });
-      return res.render('checkout', {
-        error: 'Моля, попълнете име, телефон и адрес.',
+      return res.render(localizedViewName('checkout', req.locale), {
+        error: getCheckoutValidationError(req.locale),
         cart: cartForDisplay,
         totalEurFormatted: formatEur(totalEur),
         totalBgnFormatted: formatBgn(totalBgn),
@@ -270,7 +279,7 @@ async function postCheckout(req, res, next) {
     });
     await order.save();
     req.session.cart = [];
-    res.redirect('/order-success?id=' + order._id);
+    res.redirect(localizePath('/order-success?id=' + order._id, req.locale));
   } catch (err) {
     next(err);
   }
@@ -286,8 +295,9 @@ async function getOrderSuccess(req, res, next) {
       title: 'Поръчката е приета | NesebarClima Несебър',
       description: 'Благодарим ви за поръчката.',
       robotsMeta: 'noindex, nofollow',
+      canonicalPath: localizePath('/order-success', req.locale),
     });
-    res.render('order-success', { order, ...seo });
+    res.render(localizedViewName('order-success', req.locale), { order, ...seo });
   } catch (err) {
     next(err);
   }

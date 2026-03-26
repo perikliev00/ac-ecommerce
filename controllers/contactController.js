@@ -1,5 +1,6 @@
 const ContactRequest = require('../models/ContactRequest');
 const { isConnected } = require('../lib/db');
+const { localizePath, localizedViewName } = require('../lib/i18n');
 const { buildSeo, mergeJsonLd } = require('../lib/seo');
 
 function buildFormData(source) {
@@ -12,6 +13,30 @@ function buildFormData(source) {
   };
 }
 
+function getContactErrorText(locale, key) {
+  const messages = {
+    missingName: {
+      bg: 'Моля, въведете име.',
+      en: 'Please enter your name.',
+      de: 'Bitte geben Sie Ihren Namen ein.',
+      ru: 'Пожалуйста, введите ваше имя.',
+    },
+    missingEmail: {
+      bg: 'Моля, въведете имейл.',
+      en: 'Please enter your email.',
+      de: 'Bitte geben Sie Ihre E-Mail ein.',
+      ru: 'Пожалуйста, введите ваш email.',
+    },
+    dbUnavailable: {
+      bg: 'Базата данни не е достъпна. Моля, опитайте отново по-късно.',
+      en: 'The database is unavailable. Please try again later.',
+      de: 'Die Datenbank ist nicht verfügbar. Bitte versuchen Sie es später erneut.',
+      ru: 'База данных недоступна. Пожалуйста, попробуйте позже.',
+    },
+  };
+  return (messages[key] && messages[key][locale]) || (messages[key] && messages[key].bg) || '';
+}
+
 async function getKontakti(req, res, next) {
   try {
     const sent = req.query.sent === '1';
@@ -21,15 +46,15 @@ async function getKontakti(req, res, next) {
       req,
       title: 'Контакти – Климатици Несебър | Продажба, Монтаж, Сервиз | Несебър Клима',
       description: 'Свържете се с нас за оферта, монтаж или сервиз на климатици. Обслужваме Несебър, Слънчев бряг, Равда и Свети Влас.',
-      canonicalPath: '/kontakti',
+      canonicalPath: localizePath('/kontakti', req.locale),
       jsonLd: mergeJsonLd(req, {
         breadcrumbs: [
-          { name: 'Начало', url: '/' },
-          { name: 'Контакти', url: '/kontakti' },
+          { name: 'Начало', url: localizePath('/', req.locale) },
+          { name: 'Контакти', url: localizePath('/kontakti', req.locale) },
         ],
       }),
     });
-    res.render('kontakti', { sent, error, formData, ...seo });
+    res.render(localizedViewName('kontakti', req.locale), { sent, error, formData, ...seo });
   } catch (err) {
     next(err);
   }
@@ -41,10 +66,10 @@ async function postKontakti(req, res, next) {
     const errors = [];
 
     if (!formData.name.trim()) {
-      errors.push('Моля, въведете име.');
+      errors.push(getContactErrorText(req.locale, 'missingName'));
     }
     if (!formData.email.trim()) {
-      errors.push('Моля, въведете имейл.');
+      errors.push(getContactErrorText(req.locale, 'missingEmail'));
     }
 
     if (errors.length > 0) {
@@ -52,10 +77,10 @@ async function postKontakti(req, res, next) {
         req,
         title: 'Контакти – Климатици Несебър | Продажба, Монтаж, Сервиз | Несебър Клима',
         description: 'Свържете се с нас за оферта, монтаж или сервиз на климатици.',
-        canonicalPath: '/kontakti',
-        jsonLd: mergeJsonLd(req, { breadcrumbs: [{ name: 'Начало', url: '/' }, { name: 'Контакти', url: '/kontakti' }] }),
+        canonicalPath: localizePath('/kontakti', req.locale),
+        jsonLd: mergeJsonLd(req, { breadcrumbs: [{ name: 'Начало', url: localizePath('/', req.locale) }, { name: 'Контакти', url: localizePath('/kontakti', req.locale) }] }),
       });
-      return res.status(400).render('kontakti', {
+      return res.status(400).render(localizedViewName('kontakti', req.locale), {
         sent: false,
         error: errors.join(' '),
         formData,
@@ -68,12 +93,12 @@ async function postKontakti(req, res, next) {
         req,
         title: 'Контакти – Климатици Несебър | Несебър Клима',
         description: 'Свържете се с нас за оферта, монтаж или сервиз на климатици.',
-        canonicalPath: '/kontakti',
-        jsonLd: mergeJsonLd(req, { breadcrumbs: [{ name: 'Начало', url: '/' }, { name: 'Контакти', url: '/kontakti' }] }),
+        canonicalPath: localizePath('/kontakti', req.locale),
+        jsonLd: mergeJsonLd(req, { breadcrumbs: [{ name: 'Начало', url: localizePath('/', req.locale) }, { name: 'Контакти', url: localizePath('/kontakti', req.locale) }] }),
       });
-      return res.status(503).render('kontakti', {
+      return res.status(503).render(localizedViewName('kontakti', req.locale), {
         sent: false,
-        error: 'Базата данни не е достъпна. Моля, опитайте отново по-късно.',
+        error: getContactErrorText(req.locale, 'dbUnavailable'),
         formData,
         ...seo,
       });
@@ -87,7 +112,7 @@ async function postKontakti(req, res, next) {
     });
     await doc.save();
 
-    return res.redirect('/kontakti?sent=1');
+    return res.redirect(localizePath('/kontakti?sent=1', req.locale));
   } catch (err) {
     next(err);
   }

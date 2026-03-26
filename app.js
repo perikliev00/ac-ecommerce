@@ -4,6 +4,8 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 
 const config = require('./lib/config');
+const { detectLocaleFromPath, getLanguageSwitcherLinks, getLocaleMeta, localizePath } = require('./lib/i18n');
+const { getTranslations } = require('./lib/siteTranslations');
 const { getAssetUrl, DEFAULT_OG_IMAGE } = require('./lib/seo');
 const { notFoundHandler, globalErrorHandler } = require('./lib/errorHandler');
 const { registerRoutes } = require('./routes');
@@ -30,6 +32,13 @@ app.use(session({
 }));
 
 app.use((req, res, next) => {
+  req.locale = detectLocaleFromPath(req.path || '/');
+  res.locals.currentLocale = req.locale;
+  res.locals.localeMeta = getLocaleMeta(req.locale);
+  res.locals.htmlLang = res.locals.localeMeta.htmlLang;
+  res.locals.localizePath = (value) => localizePath(value, req.locale);
+  res.locals.languageLinks = getLanguageSwitcherLinks(req.originalUrl || req.url || req.path || '/');
+  res.locals.i18n = getTranslations(req.locale);
   res.locals.defaultOgImage = getAssetUrl(req, DEFAULT_OG_IMAGE);
   next();
 });
