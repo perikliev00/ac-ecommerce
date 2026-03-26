@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bg">
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head') %>
 </head>

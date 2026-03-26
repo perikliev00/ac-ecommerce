@@ -1,5 +1,128 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? {
+        title: 'Contact us for a quote or service',
+        success: 'Thank you! Your inquiry was sent successfully. We will contact you within 24 hours.',
+        cardTitle: 'Phone and email',
+        phone: 'Phone',
+        call: 'Call us',
+        whatsapp: 'WhatsApp',
+        email: 'Email',
+        serviceArea: 'Service area',
+        serviceAreaValue: 'Nessebar, Sunny Beach, Ravda, Saint Vlas',
+        viewProducts: 'View air conditioners →',
+        formTitle: 'Send an inquiry',
+        name: 'Your name',
+        namePlaceholder: 'Your name',
+        emailPlaceholder: 'email@example.com',
+        phoneLabel: 'Phone',
+        subjectLabel: 'Subject',
+        subjectPlaceholder: 'Quote / installation / service / repair',
+        submit: 'Send →',
+        note: 'By sending the message, you accept our',
+        privacy: 'Privacy Policy',
+        noteEnd: 'We will respond within 24 hours.',
+        mapTitle: 'Where we work',
+        mapDesc: 'Nessebar and the region - Sunny Beach, Ravda, Saint Vlas. Visits by prior appointment.',
+        mapOpen: 'Open larger map',
+        modalTitle: 'Thank you for your inquiry!',
+        modalText: 'Your inquiry was sent successfully. We will contact you within 24 hours using the provided contact details.',
+        close: 'Close',
+      }
+    : locale === 'de'
+      ? {
+          title: 'Kontaktieren Sie uns für ein Angebot oder Service',
+          success: 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir kontaktieren Sie innerhalb von 24 Stunden.',
+          cardTitle: 'Telefon und E-Mail',
+          phone: 'Telefon',
+          call: 'Rufen Sie uns an',
+          whatsapp: 'WhatsApp',
+          email: 'E-Mail',
+          serviceArea: 'Einsatzgebiet',
+          serviceAreaValue: 'Nessebar, Sonnenstrand, Rawda, Sweti Wlas',
+          viewProducts: 'Klimaanlagen ansehen →',
+          formTitle: 'Anfrage senden',
+          name: 'Ihr Name',
+          namePlaceholder: 'Ihr Name',
+          emailPlaceholder: 'email@example.com',
+          phoneLabel: 'Telefon',
+          subjectLabel: 'Betreff',
+          subjectPlaceholder: 'Angebot / Montage / Service / Reparatur',
+          submit: 'Senden →',
+          note: 'Mit dem Absenden der Nachricht akzeptieren Sie unsere',
+          privacy: 'Datenschutzerklärung',
+          noteEnd: 'Wir antworten innerhalb von 24 Stunden.',
+          mapTitle: 'Wo wir arbeiten',
+          mapDesc: 'Nessebar und die Region - Sonnenstrand, Rawda, Sweti Wlas. Besuche nach vorheriger Vereinbarung.',
+          mapOpen: 'Größere Karte öffnen',
+          modalTitle: 'Vielen Dank für Ihre Anfrage!',
+          modalText: 'Ihre Anfrage wurde erfolgreich gesendet. Wir kontaktieren Sie innerhalb von 24 Stunden über die angegebenen Kontaktdaten.',
+          close: 'Schließen',
+        }
+      : locale === 'ru'
+        ? {
+            title: 'Свяжитесь с нами для оферты или сервиса',
+            success: 'Спасибо! Ваш запрос успешно отправлен. Мы свяжемся с вами в течение 24 часов.',
+            cardTitle: 'Телефон и email',
+            phone: 'Телефон',
+            call: 'Позвонить',
+            whatsapp: 'WhatsApp',
+            email: 'Email',
+            serviceArea: 'Зона обслуживания',
+            serviceAreaValue: 'Несебр, Солнечный Берег, Равда, Святой Влас',
+            viewProducts: 'Посмотреть кондиционеры →',
+            formTitle: 'Отправить запрос',
+            name: 'Ваше имя',
+            namePlaceholder: 'Ваше имя',
+            emailPlaceholder: 'email@example.com',
+            phoneLabel: 'Телефон',
+            subjectLabel: 'Тема',
+            subjectPlaceholder: 'Оферта / монтаж / сервис / ремонт',
+            submit: 'Отправить →',
+            note: 'Отправляя сообщение, вы принимаете нашу',
+            privacy: 'Политику конфиденциальности',
+            noteEnd: 'Мы ответим в течение 24 часов.',
+            mapTitle: 'Где мы работаем',
+            mapDesc: 'Несебр и регион - Солнечный Берег, Равда, Святой Влас. Посещение по предварительной договоренности.',
+            mapOpen: 'Открыть большую карту',
+            modalTitle: 'Спасибо за ваш запрос!',
+            modalText: 'Ваш запрос был успешно отправлен. Мы свяжемся с вами в течение 24 часов по указанным контактам.',
+            close: 'Закрыть',
+          }
+        : {
+            title: 'Свържете се с нас за оферта или сервиз',
+            success: 'Благодарим ви! Вашето запитване беше изпратено успешно. Ще се свържем с вас до 24 часа.',
+            cardTitle: 'Телефон и имейл',
+            phone: 'Телефон',
+            call: 'Обадете се',
+            whatsapp: 'WhatsApp',
+            email: 'Имейл',
+            serviceArea: 'Обслужване',
+            serviceAreaValue: 'Несебър, Слънчев бряг, Равда, Свети Влас',
+            viewProducts: 'Виж климатиците →',
+            formTitle: 'Изпратете запитване',
+            name: 'Вашето име',
+            namePlaceholder: 'Вашето име',
+            emailPlaceholder: 'email@example.com',
+            phoneLabel: 'Телефон',
+            subjectLabel: 'Относно',
+            subjectPlaceholder: 'Оферта / монтаж / сервиз / ремонт',
+            submit: 'Изпрати →',
+            note: 'Изпращайки съобщението, приемате нашата',
+            privacy: 'Политика за лични данни',
+            noteEnd: 'Ще отговорим в рамките на 24 часа.',
+            mapTitle: 'Къде работим',
+            mapDesc: 'Несебър и региона – Слънчев бряг, Равда, Свети Влас. Посещение след предварителна уговорка.',
+            mapOpen: 'Отвори в по-голяма карта',
+            modalTitle: 'Благодарим за запитването!',
+            modalText: 'Успешно изпратихте вашето запитване. Ще се свържем с вас до 24 часа на посочените контакти.',
+            close: 'Затвори',
+          };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraFontHref: 'https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap' }) %>
 </head>
@@ -13,11 +136,11 @@
   <main class="page" role="main">
     <section class="contact-page">
       <div class="container">
-        <h1 class="contact-page__hero">Свържете се с нас за оферта или сервиз</h1>
+        <h1 class="contact-page__hero"><%= copy.title || 'Свържете се с нас за оферта или сервиз' %></h1>
 
         <% if (typeof sent !== 'undefined' && sent) { %>
           <div class="contact-page__alert contact-page__alert--success">
-            Благодарим ви! Вашето запитване беше изпратено успешно. Ще се свържем с вас до 24 часа.
+            <%= copy.success || 'Благодарим ви! Вашето запитване беше изпратено успешно. Ще се свържем с вас до 24 часа.' %>
           </div>
         <% } %>
         <% if (typeof error !== 'undefined' && error) { %>
@@ -28,7 +151,7 @@
 
         <div class="contact-page__grid">
           <div class="contact-page__card contact-page__info">
-            <h2 class="contact-page__card-title">Телефон и имейл</h2>
+            <h2 class="contact-page__card-title"><%= copy.cardTitle || 'Телефон и имейл' %></h2>
             <div class="contact-page__detail">
               <span class="contact-page__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="currentColor">
@@ -36,8 +159,12 @@
                 </svg>
               </span>
               <div>
-                <span class="contact-page__label">Телефон</span>
-                <a href="tel:+359899123123" class="contact-page__value">+359 899 123 123</a>
+                <span class="contact-page__label"><%= copy.phone || 'Телефон' %></span>
+                <span class="contact-page__value contact-page__value--block">+359 898 123 123 / 089 812 3123</span>
+                <div class="contact-page__actions">
+                  <a class="contact-page__btn contact-page__btn--call" href="tel:+359898123123" aria-label="<%= copy.call || 'Обадете се' %>"><%= copy.call || 'Обадете се' %></a>
+                  <a class="contact-page__btn contact-page__btn--whatsapp" href="https://wa.me/359898123123" target="_blank" rel="noopener noreferrer" aria-label="<%= copy.whatsapp || 'WhatsApp' %>"><%= copy.whatsapp || 'WhatsApp' %></a>
+                </div>
               </div>
             </div>
             <div class="contact-page__detail">
@@ -47,7 +174,7 @@
                 </svg>
               </span>
               <div>
-                <span class="contact-page__label">Имейл</span>
+                <span class="contact-page__label"><%= copy.email || 'Имейл' %></span>
                 <a href="mailto:info@nesebarclima.bg" class="contact-page__value">info@nesebarclima.bg</a>
               </div>
             </div>
@@ -58,38 +185,38 @@
                 </svg>
               </span>
               <div>
-                <span class="contact-page__label">Обслужване</span>
-                <span class="contact-page__value">Несебър, Слънчев бряг, Равда, Свети Влас</span>
+                <span class="contact-page__label"><%= copy.serviceArea || 'Обслужване' %></span>
+                <span class="contact-page__value"><%= copy.serviceAreaValue || 'Несебър, Слънчев бряг, Равда, Свети Влас' %></span>
               </div>
             </div>
-            <a class="contact-page__btn" href="/produkti">Виж климатиците →</a>
+            <a class="contact-page__btn" href="<%= lp('/produkti') %>"><%= copy.viewProducts || 'Виж климатиците →' %></a>
           </div>
 
           <div class="contact-page__card contact-page__form-wrap">
-            <h2 class="contact-page__card-title">Изпратете запитване</h2>
-            <form class="contact-page__form" action="/kontakti" method="post">
+            <h2 class="contact-page__card-title"><%= copy.formTitle || 'Изпратете запитване' %></h2>
+            <form class="contact-page__form" action="<%= lp('/kontakti') %>" method="post">
               <label class="contact-page__field">
-                <span class="contact-page__field-label">Вашето име</span>
+                <span class="contact-page__field-label"><%= copy.name || 'Вашето име' %></span>
                 <input
                   type="text"
                   name="name"
                   required
-                  placeholder="Вашето име"
+                  placeholder="<%= copy.namePlaceholder || 'Вашето име' %>"
                   value="<%= fd.name || '' %>"
                 />
               </label>
               <label class="contact-page__field">
-                <span class="contact-page__field-label">Имейл</span>
+                <span class="contact-page__field-label"><%= copy.email || 'Имейл' %></span>
                 <input
                   type="email"
                   name="email"
                   required
-                  placeholder="email@example.com"
+                  placeholder="<%= copy.emailPlaceholder || 'email@example.com' %>"
                   value="<%= fd.email || '' %>"
                 />
               </label>
               <label class="contact-page__field">
-                <span class="contact-page__field-label">Телефон</span>
+                <span class="contact-page__field-label"><%= copy.phoneLabel || 'Телефон' %></span>
                 <input
                   type="tel"
                   name="phone"
@@ -98,23 +225,23 @@
                 />
               </label>
               <label class="contact-page__field">
-                <span class="contact-page__field-label">Относно</span>
+                <span class="contact-page__field-label"><%= copy.subjectLabel || 'Относно' %></span>
                 <input
                   type="text"
                   name="subject"
-                  placeholder="Оферта / монтаж / сервиз / ремонт"
+                  placeholder="<%= copy.subjectPlaceholder || 'Оферта / монтаж / сервиз / ремонт' %>"
                   value="<%= fd.subject || '' %>"
                 />
               </label>
-              <button type="submit" class="contact-page__btn contact-page__btn--submit">Изпрати →</button>
+              <button type="submit" class="contact-page__btn contact-page__btn--submit"><%= copy.submit || 'Изпрати →' %></button>
             </form>
-            <p class="contact-page__note">Изпращайки съобщението, приемате нашата <a href="#">Политика за лични данни</a>. Ще отговорим в рамките на 24 часа.</p>
+            <p class="contact-page__note"><%= copy.note || 'Изпращайки съобщението, приемате нашата' %> <a href="#"><%= copy.privacy || 'Политика за лични данни' %></a>. <%= copy.noteEnd || 'Ще отговорим в рамките на 24 часа.' %></p>
           </div>
         </div>
 
         <div class="contact-page__map-wrap">
-          <h2 class="contact-page__map-title">Къде работим</h2>
-          <p class="contact-page__map-desc">Несебър и региона – Слънчев бряг, Равда, Свети Влас. Посещение след предварителна уговорка.</p>
+          <h2 class="contact-page__map-title"><%= copy.mapTitle || 'Къде работим' %></h2>
+          <p class="contact-page__map-desc"><%= copy.mapDesc || '' %></p>
           <div class="contact-page__map">
             <iframe
               src="https://www.openstreetmap.org/export/embed.html?bbox=27.698%2C42.648%2C27.742%2C42.674&layer=mapnik&marker=42.6605%2C27.7192"
@@ -126,7 +253,7 @@
               allowfullscreen
             ></iframe>
           </div>
-          <a class="contact-page__map-link" href="https://www.openstreetmap.org/?mlat=42.6605&mlon=27.7192#map=14/42.6605/27.7192" target="_blank" rel="noopener noreferrer">Отвори в по-голяма карта</a>
+          <a class="contact-page__map-link" href="https://www.openstreetmap.org/?mlat=42.6605&mlon=27.7192#map=14/42.6605/27.7192" target="_blank" rel="noopener noreferrer"><%= copy.mapOpen || 'Отвори в по-голяма карта' %></a>
         </div>
       </div>
     </section>
@@ -135,13 +262,13 @@
   <% if (typeof sent !== 'undefined' && sent) { %>
     <div class="contact-modal is-visible" id="contactSuccessModal">
       <div class="contact-modal__dialog">
-        <h2 class="contact-modal__title">Благодарим за запитването!</h2>
+        <h2 class="contact-modal__title"><%= copy.modalTitle || 'Благодарим за запитването!' %></h2>
         <p class="contact-modal__text">
-          Успешно изпратихте вашето запитване. Ще се свържем с вас до 24 часа на посочените контакти.
+          <%= copy.modalText || '' %>
         </p>
         <div class="contact-modal__actions">
           <button type="button" class="contact-page__btn contact-modal__btn" data-close-modal>
-            Затвори
+            <%= copy.close || 'Затвори' %>
           </button>
         </div>
       </div>

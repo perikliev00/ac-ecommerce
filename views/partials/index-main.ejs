@@ -1,111 +1,392 @@
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? {
+        phoneLabel: 'CALL US:',
+        whatsappAria: 'Message us on WhatsApp',
+        sidebarProducts: 'Products',
+        sidebarCategories: 'Categories',
+        tagline: 'Professional air-conditioning services in Burgas region',
+        title: 'Air Conditioners Nessebar - Sales, Installation and Service',
+        text: 'Sales of air conditioners, installation and service in Nessebar, Sunny Beach, Ravda and Saint Vlas. We work with leading brands and original parts.',
+        servicesLabel: 'Services',
+        serviceSale: 'Sales',
+        serviceInstall: 'Installation',
+        serviceService: 'Service',
+        ctaQuote: 'Inquiry / Quote',
+        ctaContact: 'Contact',
+        brandsTitle: 'Which air conditioner brands do we offer?',
+        brandsFooter: 'We work with leading brands. Original parts and warranty.',
+        recommendedTitle: 'Recommended air conditioners',
+        blogEyebrow: 'Our blog',
+        blogTitle: 'Useful articles about air conditioners',
+        blogSub: 'Tips for installation, maintenance, model choice and service in Nessebar and the region.',
+        blogAll: 'All articles',
+        blogDefaultTag: 'Blog',
+        blogDefaultAuthor: 'NessebarClima team',
+        blogReadMore: 'Read more',
+        blogRegionLabel: 'Blog articles',
+        blogPrev: 'Previous page',
+        blogNext: 'Next page',
+        blogPage: 'Page ',
+        blogPagination: 'Blog pages',
+        reviewsTitle: 'Customer reviews',
+        reviewsEmpty: 'There are no published reviews at the moment.',
+        reviewsPrev: 'Previous page',
+        reviewsNext: 'Next page',
+        reviewsPages: 'Review pages',
+        reviewsRating: 'Rating',
+        reviewsOutOfFive: 'out of 5'
+      }
+    : locale === 'de'
+      ? {
+          phoneLabel: 'RUFEN SIE UNS AN:',
+          whatsappAria: 'Schreiben Sie uns auf WhatsApp',
+          sidebarProducts: 'Produkte',
+          sidebarCategories: 'Kategorien',
+          tagline: 'Professionelle Klimaservices in der Region Burgas',
+          title: 'Klimaanlagen Nessebar - Verkauf, Montage und Service',
+          text: 'Verkauf von Klimaanlagen, Montage und Service in Nessebar, Sonnenstrand, Rawda und Sweti Wlas. Wir arbeiten mit führenden Marken und Originalteilen.',
+          servicesLabel: 'Leistungen',
+          serviceSale: 'Verkauf',
+          serviceInstall: 'Montage',
+          serviceService: 'Service',
+          ctaQuote: 'Anfrage / Angebot',
+          ctaContact: 'Kontakt',
+          brandsTitle: 'Welche Klimamarken bieten wir an?',
+          brandsFooter: 'Wir arbeiten mit führenden Marken. Originalteile und Garantie.',
+          recommendedTitle: 'Empfohlene Klimaanlagen',
+          blogEyebrow: 'Unser Blog',
+          blogTitle: 'Nützliche Artikel über Klimaanlagen',
+          blogSub: 'Tipps zu Montage, Wartung, Modellauswahl und Service in Nessebar und der Region.',
+          blogAll: 'Alle Artikel',
+          blogDefaultTag: 'Blog',
+          blogDefaultAuthor: 'NessebarClima Team',
+          blogReadMore: 'Mehr lesen',
+          blogRegionLabel: 'Blogartikel',
+          blogPrev: 'Vorherige Seite',
+          blogNext: 'Nächste Seite',
+          blogPage: 'Seite ',
+          blogPagination: 'Blogseiten',
+          reviewsTitle: 'Kundenbewertungen',
+          reviewsEmpty: 'Derzeit gibt es keine veröffentlichten Bewertungen.',
+          reviewsPrev: 'Vorherige Seite',
+          reviewsNext: 'Nächste Seite',
+          reviewsPages: 'Bewertungsseiten',
+          reviewsRating: 'Bewertung',
+          reviewsOutOfFive: 'von 5'
+        }
+      : locale === 'ru'
+        ? {
+            phoneLabel: 'ПОЗВОНИТЕ НАМ:',
+            whatsappAria: 'Напишите нам в WhatsApp',
+            sidebarProducts: 'Продукты',
+            sidebarCategories: 'Категории',
+            tagline: 'Профессиональные услуги по кондиционерам в регионе Бургас',
+            title: 'Кондиционеры Несебр - продажа, монтаж и сервис',
+            text: 'Продажа кондиционеров, монтаж и сервис в Несебре, Солнечном Береге, Равде и Святом Власе. Работаем с ведущими брендами и оригинальными запчастями.',
+            servicesLabel: 'Услуги',
+            serviceSale: 'Продажа',
+            serviceInstall: 'Монтаж',
+            serviceService: 'Сервис',
+            ctaQuote: 'Запрос / Оферта',
+            ctaContact: 'Контакт',
+            brandsTitle: 'Какие бренды кондиционеров мы предлагаем?',
+            brandsFooter: 'Мы работаем с ведущими брендами. Оригинальные запчасти и гарантия.',
+            recommendedTitle: 'Рекомендуемые кондиционеры',
+            blogEyebrow: 'Наш блог',
+            blogTitle: 'Полезные статьи о кондиционерах',
+            blogSub: 'Советы по монтажу, обслуживанию, выбору модели и сервису в Несебре и регионе.',
+            blogAll: 'Все статьи',
+            blogDefaultTag: 'Блог',
+            blogDefaultAuthor: 'Команда NessebarClima',
+            blogReadMore: 'Читать далее',
+            blogRegionLabel: 'Статьи блога',
+            blogPrev: 'Предыдущая страница',
+            blogNext: 'Следующая страница',
+            blogPage: 'Страница ',
+            blogPagination: 'Страницы блога',
+            reviewsTitle: 'Отзывы клиентов',
+            reviewsEmpty: 'В данный момент опубликованных отзывов нет.',
+            reviewsPrev: 'Предыдущая страница',
+            reviewsNext: 'Следующая страница',
+            reviewsPages: 'Страницы отзывов',
+            reviewsRating: 'Рейтинг',
+            reviewsOutOfFive: 'из 5'
+          }
+        : {
+            phoneLabel: 'ОБАДИ СЕ НА:',
+            whatsappAria: 'Пишете ни във WhatsApp',
+            sidebarProducts: 'Продукти',
+            sidebarCategories: 'Категории',
+            tagline: 'Професионални услуги за климатици в Бургаска област',
+            title: 'Климатици Несебър – Продажба, Монтаж и Сервиз',
+            text: 'Продажба на климатици, монтаж и сервиз в Несебър, Слънчев бряг, Равда и Свети Влас. Работим с водещи марки и оригинални части.',
+            servicesLabel: 'Услуги',
+            serviceSale: 'Продажба',
+            serviceInstall: 'Монтаж',
+            serviceService: 'Сервиз',
+            ctaQuote: 'Запитване / Оферта',
+            ctaContact: 'Контакт',
+            brandsTitle: 'Какви марки климатици предлагаме?',
+            brandsFooter: 'Работим с водещи марки. Оригинални части и гаранция.',
+            recommendedTitle: 'Препоръчани климатици',
+            blogEyebrow: 'Нашият блог',
+            blogTitle: 'Полезни статии за климатици',
+            blogSub: 'Съвети за монтаж, профилактика, избор на модел и сервиз в Несебър и региона.',
+            blogAll: 'Всички статии',
+            blogDefaultTag: 'Блог',
+            blogDefaultAuthor: 'Екипът на Несебър Клима',
+            blogReadMore: 'Прочети още',
+            blogRegionLabel: 'Статии от блога',
+            blogPrev: 'Предишна страница',
+            blogNext: 'Следваща страница',
+            blogPage: 'Страница ',
+            blogPagination: 'Страници на блога',
+            reviewsTitle: 'Отзиви от клиенти',
+            reviewsEmpty: 'Няма публикувани отзиви в момента.',
+            reviewsPrev: 'Предишна страница',
+            reviewsNext: 'Следваща страница',
+            reviewsPages: 'Страници отзиви',
+            reviewsRating: 'Рейтинг',
+            reviewsOutOfFive: 'от 5'
+          };
+  const drawerCopy = locale === 'en'
+    ? { inverter: 'Inverter air conditioners', hyperinverter: 'Hyper inverter air conditioners', floor: 'Floor-standing air conditioners' }
+    : locale === 'de'
+      ? { inverter: 'Inverter-Klimaanlagen', hyperinverter: 'Hyper-Inverter-Klimaanlagen', floor: 'Standklimageräte' }
+      : locale === 'ru'
+        ? { inverter: 'Инверторные кондиционеры', hyperinverter: 'Гиперинверторные кондиционеры', floor: 'Напольные кондиционеры' }
+        : { inverter: 'Инверторни климатици', hyperinverter: 'Хиперинверторни климатици', floor: 'Подови климатици' };
+%>
 <section class="hero">
   <div class="container hero__grid">
-    <a class="hero__phone-mobile" href="tel:+359899123123" aria-label="Обадете се: +359 899 123 123">
+    <a class="hero__phone-mobile" href="tel:+359898123123" aria-label="<%= (copy.phoneLabel || 'ОБАДИ СЕ НА:') + ' +359 898 123 123' %>">
       <span class="hero__phone-mobile__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24">
           <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
         </svg>
       </span>
       <span class="hero__phone-mobile__text">
-        <span class="hero__phone-mobile__label">ОБАДИ СЕ НА:</span>
-        <span class="hero__phone-mobile__value">+359 899 123 123</span>
+        <span class="hero__phone-mobile__label"><%= copy.phoneLabel || 'ОБАДИ СЕ НА:' %></span>
+        <span class="hero__phone-mobile__value">+359 898 123 123</span>
+        <span class="hero__phone-mobile__value hero__phone-mobile__value--short">089 812 3123</span>
       </span>
     </a>
-    <aside class="sidebar" aria-label="Продукти">
-      <nav class="sidebar__nav" aria-label="Категории">
-        <div class="sidebarItem">
-          <a class="sidebarLink" href="/inverter">
-            <span class="sidebarLabel">Инверторни климатици</span>
-            <span class="sidebarChev" aria-hidden="true">›</span>
-          </a>
-        </div>
-        <div class="sidebarItem">
-          <a class="sidebarLink" href="/hyperinverter">
-            <span class="sidebarLabel">Хиперинверторни климатици</span>
-            <span class="sidebarChev" aria-hidden="true">›</span>
-          </a>
-        </div>
-        <div class="sidebarItem">
-          <a class="sidebarLink" href="/floor">
-            <span class="sidebarLabel">Подови климатици</span>
-            <span class="sidebarChev" aria-hidden="true">›</span>
-          </a>
-        </div>
-      </nav>
-    </aside>
+    <a class="hero__whatsapp" href="https://wa.me/359898123123" target="_blank" rel="noopener noreferrer" aria-label="<%= copy.whatsappAria || 'Пишете ни във WhatsApp' %>">
+      <span class="hero__whatsapp__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </span>
+      <span class="hero__whatsapp__text">WhatsApp</span>
+    </a>
 
     <section class="hero hero--banner" id="hero" aria-labelledby="hero-heading">
       <div class="hero__inner">
-        <p class="hero__tagline">Професионални услуги за климатици в Бургаска област</p>
+        <p class="hero__tagline"><%= copy.tagline || 'Професионални услуги за климатици в Бургаска област' %></p>
         <h1 id="hero-heading" class="hero__title">
-          Климатици Несебър – Продажба, Монтаж и Сервиз
+          <%= copy.title || 'Климатици Несебър – Продажба, Монтаж и Сервиз' %>
         </h1>
         <p class="hero__text">
-          Продажба на климатици, монтаж и сервиз в Несебър, Слънчев бряг, Равда и Свети Влас. Работим с водещи марки и оригинални части.
+          <%= copy.text || 'Продажба на климатици, монтаж и сервиз в Несебър, Слънчев бряг, Равда и Свети Влас. Работим с водещи марки и оригинални части.' %>
         </p>
-        <div class="hero__services-wrap" aria-label="Услуги">
-          <div class="hero__service-item">Продажба</div>
-          <div class="hero__service-item">Монтаж</div>
-          <div class="hero__service-item">Сервиз</div>
+        <div class="hero__services-wrap" aria-label="<%= copy.servicesLabel || 'Услуги' %>">
+          <div class="hero__service-item"><%= copy.serviceSale || 'Продажба' %></div>
+          <div class="hero__service-item"><%= copy.serviceInstall || 'Монтаж' %></div>
+          <div class="hero__service-item"><%= copy.serviceService || 'Сервиз' %></div>
         </div>
         <div class="hero__cta">
-          <a class="btn btn--primary hero__btn" href="/kontakti">Запитване / Оферта</a>
-          <a class="btn btn--dark hero__btn" href="/kontakti">Контакт</a>
+          <a class="btn btn--primary hero__btn" href="<%= lp('/kontakti') %>"><%= copy.ctaQuote || 'Запитване / Оферта' %></a>
+          <a class="btn btn--dark hero__btn" href="<%= lp('/kontakti') %>"><%= copy.ctaContact || 'Контакт' %></a>
         </div>
       </div>
     </section>
   </div>
 </section>
 
-<section class="brands" aria-label="Какви марки климатици предлагаме?">
+<section class="brands" aria-label="<%= copy.brandsTitle || 'Какви марки климатици предлагаме?' %>">
+  <% const brandCatHint = typeof i18n !== 'undefined' && i18n && i18n.catalog && i18n.catalog.brandCatalogHint ? i18n.catalog.brandCatalogHint : ''; %>
+  <% const brandFilterTitle = function (name) { const fb = typeof i18n !== 'undefined' && i18n && i18n.catalog && i18n.catalog.filterByBrand ? i18n.catalog.filterByBrand : ''; return fb ? (fb + ': ' + name) : name; }; %>
   <div class="container">
-    <h2 class="brands__title">Какви марки климатици предлагаме?</h2>
+    <h2 class="brands__title"><%= copy.brandsTitle || 'Какви марки климатици предлагаме?' %></h2>
     <div class="brands__grid">
-      <a href="#" class="brands__item" aria-label="Mitsubishi Electric">
+      <% /* brand= must match Product.brand in DB (case-insensitive, trimmed) */ %>
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Mitsubishi Electric') %>" class="brands__item" aria-label="Mitsubishi Electric<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Mitsubishi Electric') %>">
         <img src="/assets/logos/mitsubishi-electric-logo-300x100w.png" alt="Mitsubishi Electric" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      <a href="#" class="brands__item" aria-label="Mitsubishi Heavy Industries">
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Mitsubishi Heavy Industries') %>" class="brands__item" aria-label="Mitsubishi Heavy Industries<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Mitsubishi Heavy Industries') %>">
         <img src="/assets/logos/mitsubishi-heavy-logo-300x100w.png" alt="Mitsubishi Heavy Industries" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      <a href="#" class="brands__item" aria-label="Fuji Electric">
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Fuji Electric') %>" class="brands__item" aria-label="Fuji Electric<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Fuji Electric') %>">
         <img src="/assets/logos/fuji-logo-300x100w.png" alt="Fuji Electric" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      <a href="#" class="brands__item" aria-label="Toshiba">
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Toshiba') %>" class="brands__item" aria-label="Toshiba<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Toshiba') %>">
         <img src="/assets/logos/toshiba-logo-300x100w.png" alt="Toshiba" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      <a href="#" class="brands__item" aria-label="Daikin">
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Daikin') %>" class="brands__item" aria-label="Daikin<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Daikin') %>">
         <img src="/assets/logos/daikin-logo-300x100w.png" alt="Daikin" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      <a href="#" class="brands__item" aria-label="Gree">
+      <a href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent('Gree') %>" class="brands__item" aria-label="Gree<%= brandCatHint ? ' – ' + brandCatHint : '' %>" title="<%= brandFilterTitle('Gree') %>">
         <img src="/assets/logos/gree-logo-300x100w.png" alt="Gree" width="300" height="100" loading="lazy" decoding="async" />
       </a>
-      
     </div>
-    <p class="brands__footer-text">Работим с водещи марки. Оригинални части и гаранция.</p>
+    <p class="brands__footer-text"><%= copy.brandsFooter || 'Работим с водещи марки. Оригинални части и гаранция.' %></p>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="h2">Препоръчани климатици</h2>
-    <div class="products" aria-label="Препоръчани климатици">
+    <h2 class="h2"><%= copy.recommendedTitle || 'Препоръчани климатици' %></h2>
+    <div class="products" aria-label="<%= copy.recommendedTitle || 'Препоръчани климатици' %>">
       <%- include('product-cards') %>
     </div>
   </div>
 </section>
 
-<% var reviewsList = typeof reviews !== 'undefined' && Array.isArray(reviews) ? reviews : []; %>
-<section class="reviews" id="reviews" aria-label="Отзиви от клиенти" data-reviews-count="<%= reviewsList.length %>">
+<% var homepageBlogPosts = typeof blogPosts !== 'undefined' && Array.isArray(blogPosts) ? blogPosts : []; %>
+<% if (homepageBlogPosts.length) { %>
+<section class="section home-blog" aria-labelledby="home-blog-heading">
   <div class="container">
-    <h2 class="reviews__title">Отзиви от клиенти</h2>
-    <% if (reviewsList.length === 0) { %>
-      <p class="reviews__empty">Няма публикувани отзиви в момента.</p>
-    <% } else { %>
-    <div class="reviews__slider" id="reviewsSlider" role="region" aria-roledescription="carousel">
-      <button type="button" class="reviews__arrow reviews__arrow--prev" id="reviewsPrev" aria-label="Предишна страница">
+    <div class="home-blog__header">
+      <div>
+        <p class="home-blog__eyebrow"><%= copy.blogEyebrow || 'Нашият блог' %></p>
+        <h2 class="h2" id="home-blog-heading"><%= copy.blogTitle || 'Полезни статии за климатици' %></h2>
+        <p class="home-blog__sub"><%= copy.blogSub || 'Съвети за монтаж, профилактика, избор на модел и сервиз в Несебър и региона.' %></p>
+      </div>
+      <a class="home-blog__all" href="<%= lp('/blog') %>"><%= copy.blogAll || 'Всички статии' %></a>
+    </div>
+
+    <div class="home-blog__slider" id="homeBlogSlider" role="region" aria-roledescription="carousel" aria-label="<%= copy.blogRegionLabel || 'Статии от блога' %>">
+      <button type="button" class="reviews__arrow reviews__arrow--prev home-blog__arrow" id="homeBlogPrev" aria-label="<%= copy.blogPrev || 'Предишна страница' %>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
       </button>
-      <button type="button" class="reviews__arrow reviews__arrow--next" id="reviewsNext" aria-label="Следваща страница">
+      <button type="button" class="reviews__arrow reviews__arrow--next home-blog__arrow" id="homeBlogNext" aria-label="<%= copy.blogNext || 'Следваща страница' %>">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <div class="home-blog__viewport" id="homeBlogViewport">
+        <div class="home-blog__track" id="homeBlogGrid">
+          <% homepageBlogPosts.forEach(function(post) { %>
+          <div class="home-blog__slide" data-home-blog-card>
+            <article class="home-blog__card">
+              <a class="home-blog__card-link" href="<%= post.url %>">
+                <img class="home-blog__image" src="<%= post.image %>" alt="<%= post.imageAlt || post.title %>" width="400" height="300" loading="lazy" />
+                <div class="home-blog__body">
+                  <div class="home-blog__meta">
+                    <span class="home-blog__tag"><%= post.category || copy.blogDefaultTag || 'Блог' %></span>
+                    <span><%= post.author || copy.blogDefaultAuthor || 'Екипът на Несебър Клима' %></span>
+                    <span><%= post.date %></span>
+                  </div>
+                  <h3 class="home-blog__title"><%= post.title %></h3>
+                  <p class="home-blog__excerpt"><%= post.excerpt %></p>
+                  <span class="home-blog__read"><%= copy.blogReadMore || 'Прочети още' %></span>
+                </div>
+              </a>
+            </article>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+      <div class="home-blog__pagination reviews__pagination" id="homeBlogPagination" role="tablist" aria-label="<%= copy.blogPagination || 'Страници на блога' %>"></div>
+    </div>
+  </div>
+</section>
+<script>
+  (function () {
+    function cardsPerPage() {
+      if (window.innerWidth <= 760) return 1;
+      if (window.innerWidth <= 1080) return 2;
+      return 3;
+    }
+
+    var slider = document.getElementById('homeBlogSlider');
+    var viewport = document.getElementById('homeBlogViewport');
+    var track = document.getElementById('homeBlogGrid');
+    var pagination = document.getElementById('homeBlogPagination');
+    var prevBtn = document.getElementById('homeBlogPrev');
+    var nextBtn = document.getElementById('homeBlogNext');
+    if (!slider || !viewport || !track || !pagination) return;
+
+    var slides = Array.prototype.slice.call(track.querySelectorAll('[data-home-blog-card]'));
+    var currentPage = 0;
+
+    function renderPagination(totalPages) {
+      pagination.innerHTML = '';
+      if (totalPages <= 1) return;
+
+      for (var i = 0; i < totalPages; i++) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'reviews__dot' + (i === currentPage ? ' is-active' : '');
+        btn.setAttribute('data-index', String(i));
+        btn.setAttribute('aria-label', '<%= copy.blogPage || 'Страница ' %>' + (i + 1));
+        btn.setAttribute('aria-selected', i === currentPage ? 'true' : 'false');
+        btn.addEventListener('click', function () {
+          currentPage = Number(this.getAttribute('data-index') || 0);
+          update();
+        });
+        pagination.appendChild(btn);
+      }
+    }
+
+    function update() {
+      var perPage = cardsPerPage();
+      var totalPages = Math.max(1, Math.ceil(slides.length / perPage));
+      if (currentPage >= totalPages) currentPage = 0;
+
+      track.style.width = (totalPages * 100) + '%';
+
+      var slideWidth = 100 / (slides.length || 1);
+      slides.forEach(function (slide) {
+        slide.style.flex = '0 0 ' + slideWidth + '%';
+        slide.style.width = slideWidth + '%';
+      });
+
+      track.style.transform = 'translateX(-' + (currentPage * (100 / totalPages)) + '%)';
+      renderPagination(totalPages);
+
+      if (prevBtn) prevBtn.hidden = totalPages <= 1;
+      if (nextBtn) nextBtn.hidden = totalPages <= 1;
+    }
+
+    prevBtn && prevBtn.addEventListener('click', function () {
+      var perPage = cardsPerPage();
+      var totalPages = Math.max(1, Math.ceil(slides.length / perPage));
+      currentPage = (currentPage - 1 + totalPages) % totalPages;
+      update();
+    });
+
+    nextBtn && nextBtn.addEventListener('click', function () {
+      var perPage = cardsPerPage();
+      var totalPages = Math.max(1, Math.ceil(slides.length / perPage));
+      currentPage = (currentPage + 1) % totalPages;
+      update();
+    });
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(update, 120);
+    });
+
+    update();
+  })();
+</script>
+<% } %>
+
+<% var reviewsList = typeof reviews !== 'undefined' && Array.isArray(reviews) ? reviews : []; %>
+<section class="reviews" id="reviews" aria-label="<%= copy.reviewsTitle || 'Отзиви от клиенти' %>" data-reviews-count="<%= reviewsList.length %>">
+  <div class="container">
+    <h2 class="reviews__title"><%= copy.reviewsTitle || 'Отзиви от клиенти' %></h2>
+    <% if (reviewsList.length === 0) { %>
+      <p class="reviews__empty"><%= copy.reviewsEmpty || 'Няма публикувани отзиви в момента.' %></p>
+    <% } else { %>
+    <div class="reviews__slider" id="reviewsSlider" role="region" aria-roledescription="carousel">
+      <button type="button" class="reviews__arrow reviews__arrow--prev" id="reviewsPrev" aria-label="<%= copy.reviewsPrev || 'Предишна страница' %>">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="reviews__arrow reviews__arrow--next" id="reviewsNext" aria-label="<%= copy.reviewsNext || 'Следваща страница' %>">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
       </button>
       <div class="reviews__viewport" id="reviewsViewport">
@@ -114,7 +395,7 @@
           <div class="reviews__slide" style="flex: 0 0 <%= 100 / reviewsList.length %>%; width: <%= 100 / reviewsList.length %>%;">
             <article class="reviews__card">
               <h3 class="reviews__name"><%= rev.name %></h3>
-              <div class="reviews__stars" aria-label="Рейтинг <%= rev.rating %> от 5">
+              <div class="reviews__stars" aria-label="<%= copy.reviewsRating || 'Рейтинг' %> <%= rev.rating %> <%= copy.reviewsOutOfFive || 'от 5' %>">
                 <% for (var s = 0; s < 5; s++) { %><span class="reviews__star" aria-hidden="true"><%= s < (rev.rating || 5) ? '★' : '☆' %></span><% } %>
               </div>
               <p class="reviews__text"><%= rev.text %></p>
@@ -123,10 +404,10 @@
           <% }); %>
         </div>
       </div>
-      <div class="reviews__pagination" role="tablist" aria-label="Страници отзиви">
+      <div class="reviews__pagination" role="tablist" aria-label="<%= copy.reviewsPages || 'Страници отзиви' %>">
         <% var desktopPageCount = Math.ceil(reviewsList.length / 3); %>
         <% reviewsList.forEach(function(_, i) { %>
-        <button type="button" class="reviews__dot <%= i === 0 ? 'is-active' : '' %> <%= i >= desktopPageCount ? 'reviews__dot--mobile' : '' %>" data-index="<%= i %>" aria-label="Страница <%= i + 1 %>" aria-selected="<%= i === 0 ? 'true' : 'false' %>"></button>
+        <button type="button" class="reviews__dot <%= i === 0 ? 'is-active' : '' %> <%= i >= desktopPageCount ? 'reviews__dot--mobile' : '' %>" data-index="<%= i %>" aria-label="<%= copy.blogPage || 'Страница ' %><%= i + 1 %>" aria-selected="<%= i === 0 ? 'true' : 'false' %>"></button>
         <% }); %>
       </div>
     </div>

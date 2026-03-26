@@ -1,24 +1,61 @@
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const safeCurrentLocale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const headerCopy = safeCurrentLocale === 'en'
+    ? { navProducts: 'AIR CONDITIONERS', navServices: 'SERVICES', navBlog: 'BLOG', navAbout: 'ABOUT', navContact: 'CONTACT' }
+    : safeCurrentLocale === 'de'
+      ? { navProducts: 'KLIMAANLAGEN', navServices: 'LEISTUNGEN', navBlog: 'BLOG', navAbout: 'ÜBER UNS', navContact: 'KONTAKT' }
+      : safeCurrentLocale === 'ru'
+        ? { navProducts: 'КОНДИЦИОНЕРЫ', navServices: 'УСЛУГИ', navBlog: 'БЛОГ', navAbout: 'О НАС', navContact: 'КОНТАКТЫ' }
+        : { navProducts: 'КЛИМАТИЦИ', navServices: 'УСЛУГИ', navBlog: 'БЛОГ', navAbout: 'ЗА НАС', navContact: 'КОНТАКТИ' };
+  const footerCopy = safeCurrentLocale === 'en'
+    ? { navLabel: 'Footer navigation', areas: 'We serve', areaNesebar: 'air conditioners Nessebar', areaSunnyBeach: 'air conditioners Sunny Beach', areaRavda: 'air conditioners Ravda', areaSvetiVlas: 'air conditioners Saint Vlas', copyright: 'All rights reserved', callAria: 'Call us' }
+    : safeCurrentLocale === 'de'
+      ? { navLabel: 'Footer-Navigation', areas: 'Wir bedienen', areaNesebar: 'Klimaanlagen Nessebar', areaSunnyBeach: 'Klimaanlagen Sonnenstrand', areaRavda: 'Klimaanlagen Rawda', areaSvetiVlas: 'Klimaanlagen Sweti Wlas', copyright: 'Alle Rechte vorbehalten', callAria: 'Rufen Sie uns an' }
+      : safeCurrentLocale === 'ru'
+        ? { navLabel: 'Навигация в подвале', areas: 'Мы обслуживаем', areaNesebar: 'кондиционеры Несебр', areaSunnyBeach: 'кондиционеры Солнечный Берег', areaRavda: 'кондиционеры Равда', areaSvetiVlas: 'кондиционеры Святой Влас', copyright: 'Все права защищены', callAria: 'Позвонить' }
+        : { navLabel: 'Навигация в подвала', areas: 'Обслужваме', areaNesebar: 'климатици Несебър', areaSunnyBeach: 'климатици Слънчев бряг', areaRavda: 'климатици Равда', areaSvetiVlas: 'климатици Свети Влас', copyright: 'Всички права запазени', callAria: 'Обадете се' };
+%>
 <footer class="footer">
   <div class="container footer__nav-wrap">
-    <nav class="footer__nav" aria-label="Навигация в подвала">
-      <a class="footer__link" href="/produkti">КЛИМАТИЦИ</a>
-      <a class="footer__link" href="/uslugi">УСЛУГИ</a>
-      <a class="footer__link" href="/about">ЗА НАС</a>
-      <a class="footer__link" href="/kontakti">КОНТАКТИ</a>
+    <nav class="footer__nav" aria-label="<%= footerCopy.navLabel || 'Навигация в подвала' %>">
+      <a class="footer__link" href="<%= lp('/produkti') %>"><%= headerCopy.navProducts || 'КЛИМАТИЦИ' %></a>
+      <a class="footer__link" href="<%= lp('/uslugi') %>"><%= headerCopy.navServices || 'УСЛУГИ' %></a>
+      <a class="footer__link" href="<%= lp('/blog') %>"><%= headerCopy.navBlog || 'БЛОГ' %></a>
+      <a class="footer__link" href="<%= lp('/about') %>"><%= headerCopy.navAbout || 'ЗА НАС' %></a>
+      <a class="footer__link" href="<%= lp('/kontakti') %>"><%= headerCopy.navContact || 'КОНТАКТИ' %></a>
     </nav>
     <p class="footer__areas">
-      Обслужваме <a href="/produkti">климатици Несебър</a>, <a href="/produkti">климатици Слънчев бряг</a>, <a href="/produkti">климатици Равда</a> и <a href="/produkti">климатици Свети Влас</a>.
+      <%= footerCopy.areas || 'Обслужваме' %> <a href="<%= lp('/produkti') %>"><%= footerCopy.areaNesebar || 'климатици Несебър' %></a>, <a href="<%= lp('/produkti') %>"><%= footerCopy.areaSunnyBeach || 'климатици Слънчев бряг' %></a>, <a href="<%= lp('/produkti') %>"><%= footerCopy.areaRavda || 'климатици Равда' %></a> <%= safeCurrentLocale === 'bg' ? 'и' : safeCurrentLocale === 'de' ? 'und' : safeCurrentLocale === 'ru' ? 'и' : 'and' %> <a href="<%= lp('/produkti') %>"><%= footerCopy.areaSvetiVlas || 'климатици Свети Влас' %></a>.
+    </p>
+    <p class="footer__phone">
+      <a class="footer__phone-link" href="tel:+359898123123" aria-label="<%= footerCopy.callAria %>">+359 898 123 123</a>
+      <span class="footer__phone-sep" aria-hidden="true">/</span>
+      <span class="footer__phone-short">089 812 3123</span>
+      <a class="footer__phone-wa" href="https://wa.me/359898123123" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WhatsApp</a>
     </p>
   </div>
 
   <div class="footer__bottom">
     <div class="container footer__bottomInner">
-      <div>© NesebarClima® • Copyright 2009-2026 • Всички права запазени</div>
+      <div>© NesebarClima® • Copyright 2009-2026 • <%= footerCopy.copyright || 'Всички права запазени' %></div>
     </div>
   </div>
 </footer>
 
 <script src="/script.js"></script>
+<script>
+  window.NC_ROUTES = {
+    locale: "<%= safeCurrentLocale %>",
+    localeSuffix: "<%= safeCurrentLocale !== 'bg' ? '-' + safeCurrentLocale : '' %>",
+    cart: "<%= lp('/cart') %>",
+    cartApi: "<%= lp('/api/cart') %>",
+    cartAdd: "<%= lp('/cart/add') %>",
+    cartRemove: "<%= lp('/cart/remove') %>",
+    checkout: "<%= lp('/checkout') %>",
+    products: "<%= lp('/produkti') %>"
+  };
+</script>
 <script src="/cart-drawer.js"></script>
 <% if (typeof extraScripts !== 'undefined' && Array.isArray(extraScripts)) { extraScripts.forEach(function(s) { %><script src="/<%= s %>"></script>
 <% }); } %>

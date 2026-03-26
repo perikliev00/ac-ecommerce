@@ -1,5 +1,23 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? { title: 'Order received', message: 'Thank you! We will contact you to confirm and arrange delivery/installation.', orderNumber: 'Order number', date: 'Date', total: 'Total', toCatalog: 'Go to catalog' }
+    : locale === 'de'
+      ? { title: 'Bestellung angenommen', message: 'Vielen Dank! Wir kontaktieren Sie zur Bestätigung und Vereinbarung von Lieferung/Montage.', orderNumber: 'Bestellnummer', date: 'Datum', total: 'Gesamt', toCatalog: 'Zum Katalog' }
+      : locale === 'ru'
+        ? { title: 'Заказ принят', message: 'Спасибо! Мы свяжемся с вами для подтверждения и согласования доставки/монтажа.', orderNumber: 'Номер заказа', date: 'Дата', total: 'Итого', toCatalog: 'К каталогу' }
+        : { title: 'Поръчката е приета', message: 'Благодарим ви! Ще се свържем с вас за потвърждение и да уговорим доставка/монтаж.', orderNumber: 'Номер на поръчка', date: 'Дата', total: 'Общо', toCatalog: 'Към каталога' };
+  const stepCopy = locale === 'en'
+    ? { steps: 'Order steps', cart: 'Cart', order: 'Order', complete: 'Order completed' }
+    : locale === 'de'
+      ? { steps: 'Bestellschritte', cart: 'Warenkorb', order: 'Bestellung', complete: 'Bestellung abgeschlossen' }
+      : locale === 'ru'
+        ? { steps: 'Этапы заказа', cart: 'Корзина', order: 'Заказ', complete: 'Заказ завершен' }
+        : { steps: 'Стъпки на поръчката', cart: 'Количка', order: 'Поръчка', complete: 'Поръчката е завършена' };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraStyles: ['cart.css'] }) %>
 </head>
@@ -11,12 +29,12 @@
   <main class="page" role="main">
     <section class="order-success-page">
       <div class="container">
-        <nav class="checkout-steps" aria-label="Стъпки на поръчката">
-          <a class="checkout-steps__item" href="/#cart">Количка</a>
+        <nav class="checkout-steps" aria-label="<%= stepCopy.steps || 'Стъпки на поръчката' %>">
+          <a class="checkout-steps__item" href="<%= lp('/#cart') %>"><%= stepCopy.cart || 'Количка' %></a>
           <span class="checkout-steps__sep" aria-hidden="true">→</span>
-          <span class="checkout-steps__item">Поръчка</span>
+          <span class="checkout-steps__item"><%= stepCopy.order || 'Поръчка' %></span>
           <span class="checkout-steps__sep" aria-hidden="true">→</span>
-          <span class="checkout-steps__item checkout-steps__item--current">Поръчката е завършена</span>
+          <span class="checkout-steps__item checkout-steps__item--current"><%= stepCopy.complete || 'Поръчката е завършена' %></span>
         </nav>
 
         <div class="order-success-card">
@@ -26,27 +44,27 @@
               <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
           </div>
-          <h1 class="order-success-card__title">Поръчката е приета</h1>
-          <p class="order-success-card__msg">Благодарим ви! Ще се свържем с вас за потвърждение и да уговорим доставка/монтаж.</p>
+          <h1 class="order-success-card__title"><%= copy.title || 'Поръчката е приета' %></h1>
+          <p class="order-success-card__msg"><%= copy.message || 'Благодарим ви! Ще се свържем с вас за потвърждение и да уговорим доставка/монтаж.' %></p>
 
           <% if (typeof order !== 'undefined' && order) { %>
             <dl class="order-success-details">
               <div class="order-success-details__row">
-                <dt>Номер на поръчка</dt>
+                <dt><%= copy.orderNumber || 'Номер на поръчка' %></dt>
                 <dd><%= order._id %></dd>
               </div>
               <div class="order-success-details__row">
-                <dt>Дата</dt>
+                <dt><%= copy.date || 'Дата' %></dt>
                 <dd><%= order.createdAt ? new Date(order.createdAt).toLocaleString('bg-BG', { dateStyle: 'long', timeStyle: 'short' }) : '—' %></dd>
               </div>
               <div class="order-success-details__row order-success-details__row--total">
-                <dt>Общо</dt>
+                <dt><%= copy.total || 'Общо' %></dt>
                 <dd><%= order.total != null ? order.total.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €' : '—' %></dd>
               </div>
             </dl>
           <% } %>
 
-          <a href="/produkti" class="order-success-card__cta btn-checkout">Към каталога</a>
+          <a href="<%= lp('/produkti') %>" class="order-success-card__cta btn-checkout"><%= copy.toCatalog || 'Към каталога' %></a>
         </div>
       </div>
     </section>

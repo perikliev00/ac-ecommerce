@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const title = locale === 'en' ? 'Floor-standing air conditioners' : locale === 'de' ? 'Standklimageräte' : locale === 'ru' ? 'Напольные кондиционеры' : 'Подови климатици';
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraStyles: ['floor.css'] }) %>
 </head>
@@ -9,7 +13,7 @@
   <%- include('partials/drawer') %>
 
   <main class="page" role="main">
-    <%- include('partials/catalog', { catalogTitle: 'Подови климатици', breadcrumbCurrent: 'Подови климатици' }) %>
+    <%- include('partials/catalog', { catalogTitle: title, breadcrumbCurrent: title }) %>
   </main>
 
   <%- include('partials/footer') %>

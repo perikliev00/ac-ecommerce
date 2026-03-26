@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { title: typeof title !== 'undefined' ? title : 'Грешка – Несебър Клима', description: typeof description !== 'undefined' ? description : 'Страницата не е намерена или възникна грешка.' }) %>
   <style>
@@ -24,7 +27,7 @@
       <div class="error-page__code"><%= typeof statusCode !== 'undefined' ? statusCode : 500 %></div>
       <h1 class="error-page__title"><%= typeof is404 !== 'undefined' && is404 ? 'Страницата не е намерена' : 'Възникна грешка' %></h1>
       <p class="error-page__text"><%= typeof message !== 'undefined' && message ? message : 'Моля, опитайте отново по-късно или се върнете към началната страница.' %></p>
-      <a class="error-page__link" href="/">Към началната страница</a>
+      <a class="error-page__link" href="<%= lp('/') %>">Към началната страница</a>
     </section>
   </main>
 

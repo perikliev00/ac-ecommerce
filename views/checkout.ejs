@@ -1,5 +1,16 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? { steps: 'Order steps', cart: 'Cart', order: 'Order', complete: 'Order completed', title: 'Order', billing: 'Billing and delivery', firstName: 'First name', lastName: 'Last name', company: 'Company (optional)', country: 'Country', countryValue: 'Bulgaria', street: 'Street and number', city: 'City', postalCode: 'Postal code', phone: 'Phone', email: 'Email address', comment: 'Additional information', companyPlaceholder: 'Company', streetPlaceholder: 'Street, number', cityPlaceholder: 'City', optional: 'optional', commentPlaceholder: 'Delivery/installation notes, preferred time, etc.', submit: 'Place order', backToCart: 'Back to cart', yourOrder: 'Your order', product: 'Product', total: 'Total', required: '*' }
+    : locale === 'de'
+      ? { steps: 'Bestellschritte', cart: 'Warenkorb', order: 'Bestellung', complete: 'Bestellung abgeschlossen', title: 'Bestellung', billing: 'Rechnung und Lieferung', firstName: 'Vorname', lastName: 'Nachname', company: 'Firma (optional)', country: 'Land', countryValue: 'Bulgarien', street: 'Straße und Nummer', city: 'Stadt', postalCode: 'Postleitzahl', phone: 'Telefon', email: 'E-Mail-Adresse', comment: 'Zusätzliche Informationen', companyPlaceholder: 'Firma', streetPlaceholder: 'Straße, Nummer', cityPlaceholder: 'Stadt', optional: 'optional', commentPlaceholder: 'Liefer-/Montagehinweise, gewünschte Zeit usw.', submit: 'Bestellen', backToCart: 'Zurück zum Warenkorb', yourOrder: 'Ihre Bestellung', product: 'Produkt', total: 'Gesamt', required: '*' }
+      : locale === 'ru'
+        ? { steps: 'Этапы заказа', cart: 'Корзина', order: 'Заказ', complete: 'Заказ завершен', title: 'Заказ', billing: 'Оплата и доставка', firstName: 'Имя', lastName: 'Фамилия', company: 'Компания (необязательно)', country: 'Страна', countryValue: 'Болгария', street: 'Улица и номер', city: 'Город', postalCode: 'Почтовый индекс', phone: 'Телефон', email: 'Email адрес', comment: 'Дополнительная информация', companyPlaceholder: 'Компания', streetPlaceholder: 'Улица, номер', cityPlaceholder: 'Город', optional: 'необязательно', commentPlaceholder: 'Примечания по доставке/монтажу, желаемое время и т.д.', submit: 'Оформить заказ', backToCart: 'Назад в корзину', yourOrder: 'Ваш заказ', product: 'Товар', total: 'Итого', required: '*' }
+        : { steps: 'Стъпки на поръчката', cart: 'Количка', order: 'Поръчка', complete: 'Поръчката е завършена', title: 'Поръчка', billing: 'Фактуриране и доставка', firstName: 'Име', lastName: 'Фамилия', company: 'Фирма (по избор)', country: 'Държава', countryValue: 'България', street: 'Улица и номер', city: 'Град', postalCode: 'Пощенски код', phone: 'Телефон', email: 'Имейл адрес', comment: 'Допълнителна информация', companyPlaceholder: 'Фирма', streetPlaceholder: 'Улица, номер', cityPlaceholder: 'Град', optional: 'по избор', commentPlaceholder: 'Бележки за доставка/монтаж, желано време и др.', submit: 'Поръчка', backToCart: 'Назад към количката', yourOrder: 'Вашата поръчка', product: 'Продукт', total: 'Общо', required: '*' };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraStyles: ['cart.css'] }) %>
 </head>
@@ -11,84 +22,84 @@
   <main class="page" role="main">
     <section class="checkout-page">
       <div class="container">
-        <nav class="checkout-steps" aria-label="Стъпки на поръчката">
-          <a class="checkout-steps__item" href="/#cart">Количка</a>
+        <nav class="checkout-steps" aria-label="<%= copy.steps || 'Стъпки на поръчката' %>">
+          <a class="checkout-steps__item" href="<%= lp('/#cart') %>"><%= copy.cart || 'Количка' %></a>
           <span class="checkout-steps__sep" aria-hidden="true">→</span>
-          <span class="checkout-steps__item checkout-steps__item--current">Поръчка</span>
+          <span class="checkout-steps__item checkout-steps__item--current"><%= copy.order || 'Поръчка' %></span>
           <span class="checkout-steps__sep" aria-hidden="true">→</span>
-          <span class="checkout-steps__item checkout-steps__item--next">Поръчката е завършена</span>
+          <span class="checkout-steps__item checkout-steps__item--next"><%= copy.complete || 'Поръчката е завършена' %></span>
         </nav>
 
         <% if (typeof error !== 'undefined' && error) { %>
           <div class="checkout-alert checkout-alert--error"><%= error %></div>
         <% } %>
 
-        <h1 class="checkout-form-wrap__title checkout-form-wrap__title--main">Поръчка</h1>
+        <h1 class="checkout-form-wrap__title checkout-form-wrap__title--main"><%= copy.title || 'Поръчка' %></h1>
         <div class="checkout-grid">
           <div class="checkout-form-wrap">
-            <h2 class="checkout-form-wrap__title">Фактуриране и доставка</h2>
-            <form class="checkout-form" action="/checkout" method="post">
+            <h2 class="checkout-form-wrap__title"><%= copy.billing || 'Фактуриране и доставка' %></h2>
+            <form class="checkout-form" action="<%= lp('/checkout') %>" method="post">
               <div class="checkout-form__group checkout-form__group--half">
                 <div class="checkout-form__row">
-                  <label for="firstName">Име <span class="req">*</span></label>
-                  <input type="text" id="firstName" name="firstName" value="<%= typeof firstName !== 'undefined' ? firstName : '' %>" required placeholder="Име" />
+                  <label for="firstName"><%= copy.firstName || 'Име' %> <span class="req"><%= copy.required || '*' %></span></label>
+                  <input type="text" id="firstName" name="firstName" value="<%= typeof firstName !== 'undefined' ? firstName : '' %>" required placeholder="<%= copy.firstName || 'Име' %>" />
                 </div>
                 <div class="checkout-form__row">
-                  <label for="lastName">Фамилия <span class="req">*</span></label>
-                  <input type="text" id="lastName" name="lastName" value="<%= typeof lastName !== 'undefined' ? lastName : '' %>" required placeholder="Фамилия" />
+                  <label for="lastName"><%= copy.lastName || 'Фамилия' %> <span class="req"><%= copy.required || '*' %></span></label>
+                  <input type="text" id="lastName" name="lastName" value="<%= typeof lastName !== 'undefined' ? lastName : '' %>" required placeholder="<%= copy.lastName || 'Фамилия' %>" />
                 </div>
               </div>
               <div class="checkout-form__row">
-                <label for="company">Фирма (по избор)</label>
-                <input type="text" id="company" name="company" value="<%= typeof company !== 'undefined' ? company : '' %>" placeholder="Фирма" />
+                <label for="company"><%= copy.company || 'Фирма (по избор)' %></label>
+                <input type="text" id="company" name="company" value="<%= typeof company !== 'undefined' ? company : '' %>" placeholder="<%= copy.companyPlaceholder || 'Фирма' %>" />
               </div>
               <div class="checkout-form__row">
-                <label for="country">Държава <span class="req">*</span></label>
+                <label for="country"><%= copy.country || 'Държава' %> <span class="req"><%= copy.required || '*' %></span></label>
                 <select id="country" name="country" required>
-                  <option value="България" <%= (typeof country !== 'undefined' && country === 'България') ? 'selected' : '' %>>България</option>
+                  <option value="<%= copy.countryValue || 'България' %>" <%= (typeof country !== 'undefined' && country === (copy.countryValue || 'България')) ? 'selected' : '' %>><%= copy.countryValue || 'България' %></option>
                 </select>
               </div>
               <div class="checkout-form__row">
-                <label for="street">Улица и номер <span class="req">*</span></label>
-                <input type="text" id="street" name="street" value="<%= typeof street !== 'undefined' ? street : '' %>" required placeholder="Улица, номер" />
+                <label for="street"><%= copy.street || 'Улица и номер' %> <span class="req"><%= copy.required || '*' %></span></label>
+                <input type="text" id="street" name="street" value="<%= typeof street !== 'undefined' ? street : '' %>" required placeholder="<%= copy.streetPlaceholder || 'Улица, номер' %>" />
               </div>
               <div class="checkout-form__group checkout-form__group--half">
                 <div class="checkout-form__row">
-                  <label for="city">Град <span class="req">*</span></label>
-                  <input type="text" id="city" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>" required placeholder="Град" />
+                  <label for="city"><%= copy.city || 'Град' %> <span class="req"><%= copy.required || '*' %></span></label>
+                  <input type="text" id="city" name="city" value="<%= typeof city !== 'undefined' ? city : '' %>" required placeholder="<%= copy.cityPlaceholder || 'Град' %>" />
                 </div>
                 <div class="checkout-form__row">
-                  <label for="postalCode">Пощенски код</label>
-                  <input type="text" id="postalCode" name="postalCode" value="<%= typeof postalCode !== 'undefined' ? postalCode : '' %>" placeholder="по избор" />
+                  <label for="postalCode"><%= copy.postalCode || 'Пощенски код' %></label>
+                  <input type="text" id="postalCode" name="postalCode" value="<%= typeof postalCode !== 'undefined' ? postalCode : '' %>" placeholder="<%= copy.optional || 'по избор' %>" />
                 </div>
               </div>
               <div class="checkout-form__row">
-                <label for="phone">Телефон <span class="req">*</span></label>
+                <label for="phone"><%= copy.phone || 'Телефон' %> <span class="req"><%= copy.required || '*' %></span></label>
                 <input type="tel" id="phone" name="phone" value="<%= typeof phone !== 'undefined' ? phone : '' %>" required placeholder="088 123 4567" />
               </div>
               <div class="checkout-form__row">
-                <label for="email">Имейл адрес</label>
-                <input type="email" id="email" name="email" value="<%= typeof email !== 'undefined' ? email : '' %>" placeholder="по избор" />
+                <label for="email"><%= copy.email || 'Имейл адрес' %></label>
+                <input type="email" id="email" name="email" value="<%= typeof email !== 'undefined' ? email : '' %>" placeholder="<%= copy.optional || 'по избор' %>" />
               </div>
               <div class="checkout-form__row">
-                <label for="comment">Допълнителна информация</label>
-                <textarea id="comment" name="comment" rows="3" placeholder="Бележки за доставка/монтаж, желано време и др."><%= typeof comment !== 'undefined' ? comment : '' %></textarea>
+                <label for="comment"><%= copy.comment || 'Допълнителна информация' %></label>
+                <textarea id="comment" name="comment" rows="3" placeholder="<%= copy.commentPlaceholder || 'Бележки за доставка/монтаж, желано време и др.' %>"><%= typeof comment !== 'undefined' ? comment : '' %></textarea>
               </div>
               <div class="checkout-form__actions checkout-form__actions--left">
-                <button type="submit" class="btn-checkout btn-checkout--submit">Поръчка</button>
-                <a href="/#cart" class="checkout-form__back">Назад към количката</a>
+                <button type="submit" class="btn-checkout btn-checkout--submit"><%= copy.submit || 'Поръчка' %></button>
+                <a href="<%= lp('/#cart') %>" class="checkout-form__back"><%= copy.backToCart || 'Назад към количката' %></a>
               </div>
             </form>
           </div>
 
           <aside class="checkout-order">
-            <h2 class="checkout-order__title">Вашата поръчка</h2>
+            <h2 class="checkout-order__title"><%= copy.yourOrder || 'Вашата поръчка' %></h2>
             <div class="checkout-order__table-wrap">
               <table class="checkout-order__table">
                 <thead>
                   <tr>
-                    <th>Продукт</th>
-                    <th class="checkout-order__th-total">Общо</th>
+                    <th><%= copy.product || 'Продукт' %></th>
+                    <th class="checkout-order__th-total"><%= copy.total || 'Общо' %></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,7 +122,7 @@
             </div>
             <div class="checkout-order__totals">
               <div class="checkout-order__total-row">
-                <span>Общо</span>
+                <span><%= copy.total || 'Общо' %></span>
                 <strong><%= totalEurFormatted %> (<%= totalBgnFormatted %>)</strong>
               </div>
             </div>

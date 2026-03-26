@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'en' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Home</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Air conditioner maintenance</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Air conditioner maintenance: why regular servicing matters</h1>
+          <p class="blog-article__lead">Professional maintenance keeps the unit efficient, cleaner and more reliable in both cooling and heating season.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Preventive service" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Preventive service</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Installation guide" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Installation guide</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Book maintenance</span><span class="blog-ad__placeholder-cta">Contact →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading"><h2 id="why-heading" class="blog-section__title">1. Why maintenance is essential</h2><p class="blog-section__p">A working air conditioner is not necessarily a healthy or efficient one. Dust, grease, bacteria and moisture accumulate inside the unit and gradually reduce performance.</p><ul class="blog-list"><li>lower efficiency</li><li>higher electricity bills</li><li>bad smell from the indoor unit</li><li>more noise</li><li>greater risk of failures</li></ul></section>
+          <section class="blog-section" aria-labelledby="benefits-heading"><h2 id="benefits-heading" class="blog-section__title">2. Main benefits of regular servicing</h2><ul class="blog-list"><li><strong>Cleaner air:</strong> filters and evaporator are cleaned from dust and microorganisms.</li><li><strong>Better efficiency:</strong> the system reaches the set temperature faster.</li><li><strong>Lower consumption:</strong> less strain means lower running cost.</li><li><strong>Longer lifespan:</strong> major components work under less stress.</li></ul></section>
+          <section class="blog-section" aria-labelledby="what-heading"><h2 id="what-heading" class="blog-section__title">3. What professional maintenance includes</h2><ul class="blog-list"><li>filter cleaning and washing</li><li>evaporator and fan cleaning</li><li>checking condensate drain</li><li>outdoor unit cleaning</li><li>pressure, temperature and operating check</li><li>inspection for leaks or abnormal noise</li></ul><p class="blog-note" role="note">A quick spray without opening the unit is not full maintenance.</p></section>
+          <section class="blog-section" aria-labelledby="frequency-heading"><h2 id="frequency-heading" class="blog-section__title">4. How often should it be done?</h2><p class="blog-section__p">For homes, at least <strong>once per year</strong> is recommended. If the air conditioner is used heavily, twice per year is even better: before summer and before winter.</p></section>
+          <section class="blog-section" aria-labelledby="signs-heading"><h2 id="signs-heading" class="blog-section__title">5. Signs you should not delay service</h2><ul class="blog-list blog-list--dont"><li>unpleasant smell</li><li>weaker airflow</li><li>dripping water</li><li>louder operation</li><li>poorer heating or cooling</li></ul></section>
+          <section class="blog-section" aria-labelledby="health-heading"><h2 id="health-heading" class="blog-section__title">6. Health and hygiene</h2><p class="blog-section__p">The indoor unit can become a place where mold and bacteria grow. That is especially unpleasant for children, allergy sufferers and people with respiratory sensitivity.</p><p class="blog-section__p">Maintenance is not only about efficiency. It is also about cleaner indoor air.</p></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">7. Conclusion</h2><p class="blog-section__p">Regular maintenance is a small cost compared to compressor replacement or repeated refrigerant problems. It protects comfort, health and the life of the system.</p><p class="blog-section__p"><strong>A clean air conditioner works better, consumes less and lasts longer.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Back to store"><h2 class="blog-section__title blog-section__title--visually-hidden">Back to store</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Bosch', label: 'Bosch', imgSrc: 'https://logo.clearbit.com/bosch.com?size=512', imgAlt: 'Bosch logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Cooper & Hunter', label: 'Cooper & Hunter', imgSrc: 'https://logo.clearbit.com/cooperandhunter.us?size=512', imgAlt: 'Cooper and Hunter logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">If you need professional air conditioner maintenance in Nessebar and nearby resorts, <a href="<%= lp('/kontakti') %>">get in touch</a> and we will schedule a visit.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Book maintenance</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Refrigerant pricing" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Refrigerant pricing</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter vs standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter vs standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Air conditioners" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Catalog</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,5 +1,168 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? {
+        heroLabel: 'About us',
+        badge: 'Since 2009 in Nessebar',
+        title: 'About NesebarClima',
+        lead: 'Air conditioner store and service for Nessebar and the Black Sea coast. Sales, professional installation, maintenance and repairs. We work with residential and commercial sites in the region.',
+        statsLabel: 'Our numbers',
+        years: 'years of experience',
+        clients: 'happy clients',
+        models: 'air conditioner models',
+        areas: 'Nessebar, Sunny Beach, Ravda, Saint Vlas',
+        whoTitle: 'Who we are',
+        whoText1: 'NesebarClima is an air conditioner store and service company in Nessebar. Since 2009 we have been providing sales, installation, maintenance and repairs for homes and businesses in Nessebar, Sunny Beach, Ravda and Saint Vlas.',
+        whoText2: 'We work with brands such as Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter and General Fujitsu. We offer original units, professional installation and warranty for our services. We have experience with both residential and commercial properties.',
+        offerTitle: 'What we offer',
+        offerSale: 'Air conditioner sales',
+        offerSaleText: 'inverter, hyper inverter and floor-standing models',
+        offerInstall: 'Air conditioner installation',
+        offerInstallText: 'professional work by experienced installers',
+        offerMaintenance: 'Maintenance and service',
+        offerMaintenanceText: 'regular servicing for long-term performance',
+        offerRepair: 'Air conditioner repair',
+        offerRepairText: 'fast diagnostics and accurate repairs',
+        offerWarranty: 'Warranty',
+        offerWarrantyText: 'for services performed and units sold',
+        whyTitle: 'Why choose us',
+        whyCard1Title: 'Free site visit and quote',
+        whyCard1Text: 'We inspect the space, recommend the right model and capacity, and provide a clear quote.',
+        whyCard2Title: 'Warranty and reliability',
+        whyCard2Text: 'We guarantee installation and repair quality. We work with original parts.',
+        whyCard3Title: 'Fast response',
+        whyCard3Text: 'For service and repairs we respond quickly and arrange a convenient time for you.',
+        contactTitle: 'Get in touch',
+        contactTextIntro: 'We serve',
+        contactTextMiddle: 'for a quote or site visit, or write to us on',
+        contactTextEnd: 'or via',
+        contactLink: 'Contacts',
+        whatsapp: 'WhatsApp',
+        cta: 'Contacts',
+      }
+    : locale === 'de'
+      ? {
+          heroLabel: 'Über uns',
+          badge: 'Seit 2009 in Nessebar',
+          title: 'Über NesebarClima',
+          lead: 'Klimaanlagen-Shop und Service für Nessebar und die Schwarzmeerküste. Verkauf, professionelle Montage, Wartung und Reparatur. Wir arbeiten für Wohn- und Gewerbeobjekte in der Region.',
+          statsLabel: 'Unsere Zahlen',
+          years: 'Jahre Erfahrung',
+          clients: 'zufriedene Kunden',
+          models: 'Klimaanlagenmodelle',
+          areas: 'Nessebar, Sonnenstrand, Rawda, Sweti Wlas',
+          whoTitle: 'Wer wir sind',
+          whoText1: 'NesebarClima ist ein Klimaanlagen-Shop und Servicebetrieb in Nessebar. Seit 2009 bieten wir Verkauf, Montage, Wartung und Reparatur für Wohnungen und Unternehmen in Nessebar, Sonnenstrand, Rawda und Sweti Wlas an.',
+          whoText2: 'Wir arbeiten mit Marken wie Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter und General Fujitsu. Wir bieten Originalgeräte, professionelle Montage und Garantie auf unsere Leistungen. Wir haben Erfahrung mit Wohn- und Gewerbeobjekten.',
+          offerTitle: 'Was wir anbieten',
+          offerSale: 'Verkauf von Klimaanlagen',
+          offerSaleText: 'Inverter-, Hyper-Inverter- und Standmodelle',
+          offerInstall: 'Montage von Klimaanlagen',
+          offerInstallText: 'professionelle Ausführung durch erfahrene Monteure',
+          offerMaintenance: 'Wartung und Service',
+          offerMaintenanceText: 'regelmäßige Betreuung für langfristige Leistung',
+          offerRepair: 'Reparatur von Klimaanlagen',
+          offerRepairText: 'schnelle Diagnose und fachgerechte Reparatur',
+          offerWarranty: 'Garantie',
+          offerWarrantyText: 'für erbrachte Leistungen und verkaufte Geräte',
+          whyTitle: 'Warum Sie uns wählen sollten',
+          whyCard1Title: 'Kostenlose Besichtigung und Angebot',
+          whyCard1Text: 'Wir besichtigen den Standort, empfehlen das passende Modell und die richtige Leistung und erstellen ein klares Angebot.',
+          whyCard2Title: 'Garantie und Zuverlässigkeit',
+          whyCard2Text: 'Wir garantieren Qualität bei Montage und Reparatur. Wir arbeiten mit Originalteilen.',
+          whyCard3Title: 'Schnelle Reaktion',
+          whyCard3Text: 'Bei Service und Reparaturen reagieren wir schnell und vereinbaren einen passenden Termin.',
+          contactTitle: 'Kontaktieren Sie uns',
+          contactTextIntro: 'Wir bedienen',
+          contactTextMiddle: 'für ein Angebot oder eine Besichtigung, oder schreiben Sie uns auf',
+          contactTextEnd: 'oder über',
+          contactLink: 'Kontakt',
+          whatsapp: 'WhatsApp',
+          cta: 'Kontakt',
+        }
+      : locale === 'ru'
+        ? {
+            heroLabel: 'О нас',
+            badge: 'С 2009 года в Несебре',
+            title: 'О NesebarClima',
+            lead: 'Магазин и сервис кондиционеров для Несебра и Черноморья. Продажа, профессиональный монтаж, обслуживание и ремонт. Работаем с жилыми и коммерческими объектами в регионе.',
+            statsLabel: 'Наши цифры',
+            years: 'лет опыта',
+            clients: 'довольных клиентов',
+            models: 'моделей кондиционеров',
+            areas: 'Несебр, Солнечный Берег, Равда, Святой Влас',
+            whoTitle: 'Кто мы',
+            whoText1: 'NesebarClima - это магазин и сервис кондиционеров в Несебре. С 2009 года мы занимаемся продажей, монтажом, обслуживанием и ремонтом кондиционеров для дома и бизнеса в Несебре, Солнечном Береге, Равде и Святом Власе.',
+            whoText2: 'Мы работаем с такими брендами, как Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter и General Fujitsu. Предлагаем оригинальные устройства, профессиональный монтаж и гарантию на выполненные услуги. У нас есть опыт как с жилыми, так и с коммерческими объектами.',
+            offerTitle: 'Что мы предлагаем',
+            offerSale: 'Продажа кондиционеров',
+            offerSaleText: 'инверторные, гиперинверторные и напольные модели',
+            offerInstall: 'Монтаж кондиционеров',
+            offerInstallText: 'профессиональное выполнение опытными монтажниками',
+            offerMaintenance: 'Обслуживание и сервис',
+            offerMaintenanceText: 'регулярное обслуживание для долговременной работы',
+            offerRepair: 'Ремонт кондиционеров',
+            offerRepairText: 'быстрая диагностика и корректный ремонт',
+            offerWarranty: 'Гарантия',
+            offerWarrantyText: 'на выполненные услуги и проданные устройства',
+            whyTitle: 'Почему выбирают нас',
+            whyCard1Title: 'Бесплатный осмотр и оферта',
+            whyCard1Text: 'Мы осматриваем объект, рекомендуем подходящую модель и мощность и даем понятную оферту.',
+            whyCard2Title: 'Гарантия и корректность',
+            whyCard2Text: 'Мы гарантируем качество монтажа и ремонта. Работаем с оригинальными запчастями.',
+            whyCard3Title: 'Быстрая реакция',
+            whyCard3Text: 'При сервисе и ремонте мы реагируем быстро и согласовываем удобное для вас время.',
+            contactTitle: 'Свяжитесь с нами',
+            contactTextIntro: 'Мы обслуживаем',
+            contactTextMiddle: 'для оферты или осмотра, или напишите нам в',
+            contactTextEnd: 'или через',
+            contactLink: 'Контакты',
+            whatsapp: 'WhatsApp',
+            cta: 'Контакты',
+          }
+        : {
+            heroLabel: 'За нас',
+            badge: 'От 2009 г. в Несебър',
+            title: 'За NesebarClima',
+            lead: 'Магазин и сервиз за климатици в Несебър и Черноморието. Продажба на климатици, професионален монтаж, профилактика и ремонт. Работим с битови и търговски обекти в региона.',
+            statsLabel: 'Нашите числа',
+            years: 'години опит',
+            clients: 'доволни клиенти',
+            models: 'модела климатици',
+            areas: 'Несебър, Слънчев бряг, Равда, Свети Влас',
+            whoTitle: 'Кой сме ние',
+            whoText1: 'NesebarClima е магазин и сервиз за климатици в Несебър. От 2009 г. се занимаваме с продажба, монтаж, профилактика и ремонт на климатици за дома и за бизнеса в региона на Несебър, Слънчев бряг, Равда и Свети Влас.',
+            whoText2: 'Работим с марки като Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter и General Fujitsu. Предлагаме оригинални уреди, професионален монтаж и гаранция за извършените услуги. Опит имаме както с битови, така и с търговски обекти.',
+            offerTitle: 'Какво предлагаме',
+            offerSale: 'Продажба на климатици',
+            offerSaleText: 'инверторни, хиперинверторни и подови модели',
+            offerInstall: 'Монтаж на климатици',
+            offerInstallText: 'професионално изпълнение от опитни монтажници',
+            offerMaintenance: 'Профилактика и сервиз',
+            offerMaintenanceText: 'периодично обслужване за дълготрайна работа',
+            offerRepair: 'Ремонт на климатици',
+            offerRepairText: 'бърза диагностика и коректен ремонт',
+            offerWarranty: 'Гаранция',
+            offerWarrantyText: 'за извършените услуги и продадените уреди',
+            whyTitle: 'Защо да изберете нас',
+            whyCard1Title: 'Безплатен оглед и оферта',
+            whyCard1Text: 'Оглеждаме мястото, препоръчваме подходящ модел и мощност и даваме ясна оферта.',
+            whyCard2Title: 'Гаранция и коректност',
+            whyCard2Text: 'Гарантираме качество на монтажа и ремонта. Работим с оригинални части.',
+            whyCard3Title: 'Бърза реакция',
+            whyCard3Text: 'При сервиз и ремонт реагираме бързо и уговаряме удобен за вас час.',
+            contactTitle: 'Свържете се с нас',
+            contactTextIntro: 'Обслужваме',
+            contactTextMiddle: 'за оферта или оглед, или пишете във',
+            contactTextEnd: 'или през',
+            contactLink: 'Контакти',
+            whatsapp: 'WhatsApp',
+            cta: 'Контакти',
+          };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraStyles: ['about.css'] }) %>
 </head>
@@ -9,90 +172,90 @@
   <%- include('partials/drawer') %>
 
   <main class="page" role="main">
-    <section class="about-hero" aria-label="За нас">
+    <section class="about-hero" aria-label="<%= copy.heroLabel || 'За нас' %>">
       <div class="container">
-        <span class="about-hero__badge">От 2009 г. в Несебър</span>
-        <h1 class="about-hero__title">За NesebarClima</h1>
+        <span class="about-hero__badge"><%= copy.badge || 'От 2009 г. в Несебър' %></span>
+        <h1 class="about-hero__title"><%= copy.title || 'За NesebarClima' %></h1>
         <p class="about-hero__lead">
-          Магазин и сервиз за климатици в Несебър и Черноморието. Продажба на климатици, професионален монтаж, профилактика и ремонт. Работим с битови и търговски обекти в региона.
+          <%= copy.lead || 'Магазин и сервиз за климатици в Несебър и Черноморието. Продажба на климатици, професионален монтаж, профилактика и ремонт. Работим с битови и търговски обекти в региона.' %>
         </p>
       </div>
     </section>
 
-    <section class="about-stats" aria-label="Нашите числа">
+    <section class="about-stats" aria-label="<%= copy.statsLabel || 'Нашите числа' %>">
       <div class="container">
         <div class="about-stats__grid">
           <div class="about-stat">
             <span class="about-stat__num">15+</span>
-            <span class="about-stat__label">години опит</span>
+            <span class="about-stat__label"><%= copy.years || 'години опит' %></span>
           </div>
           <div class="about-stat">
             <span class="about-stat__num">10 000+</span>
-            <span class="about-stat__label">доволни клиенти</span>
+            <span class="about-stat__label"><%= copy.clients || 'доволни клиенти' %></span>
           </div>
           <div class="about-stat">
             <span class="about-stat__num">50+</span>
-            <span class="about-stat__label">модела климатици</span>
+            <span class="about-stat__label"><%= copy.models || 'модела климатици' %></span>
           </div>
           <div class="about-stat">
             <span class="about-stat__num">—</span>
-            <span class="about-stat__label">Несебър, Слънчев бряг, Равда, Свети Влас</span>
+            <span class="about-stat__label"><%= copy.areas || 'Несебър, Слънчев бряг, Равда, Свети Влас' %></span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="about-content" aria-label="За нас">
+    <section class="about-content" aria-label="<%= copy.heroLabel || 'За нас' %>">
       <div class="container">
         <div class="about-content__grid">
           <article class="about-block">
-            <h2 class="about-block__title">Кой сме ние</h2>
+            <h2 class="about-block__title"><%= copy.whoTitle || 'Кой сме ние' %></h2>
             <p class="about-block__text">
-              NesebarClima е магазин и сервиз за климатици в Несебър. От 2009 г. се занимаваме с продажба, монтаж, профилактика и ремонт на климатици за дома и за бизнеса в региона на Несебър, Слънчев бряг, Равда и Свети Влас.
+              <%= copy.whoText1 || '' %>
             </p>
             <p class="about-block__text">
-              Работим с марки като Gree, Daikin, Mitsubishi Electric, Bosch, Cooper & Hunter и General Fujitsu. Предлагаме оригинални уреди, професионален монтаж и гаранция за извършените услуги. Опит имаме както с битови, така и с търговски обекти.
+              <%= copy.whoText2 || '' %>
             </p>
           </article>
 
           <article class="about-block about-block--accent">
-            <h2 class="about-block__title">Какво предлагаме</h2>
+            <h2 class="about-block__title"><%= copy.offerTitle || 'Какво предлагаме' %></h2>
             <ul class="about-list">
-              <li><strong>Продажба на климатици</strong> – инверторни, хиперинверторни и подови модели</li>
-              <li><strong>Монтаж на климатици</strong> – професионално изпълнение от опитни монтажници</li>
-              <li><strong>Профилактика и сервиз</strong> – периодично обслужване за дълготрайна работа</li>
-              <li><strong>Ремонт на климатици</strong> – бърза диагностика и коректен ремонт</li>
-              <li><strong>Гаранция</strong> – за извършените услуги и продадените уреди</li>
+              <li><strong><%= copy.offerSale || 'Продажба на климатици' %></strong> – <%= copy.offerSaleText || '' %></li>
+              <li><strong><%= copy.offerInstall || 'Монтаж на климатици' %></strong> – <%= copy.offerInstallText || '' %></li>
+              <li><strong><%= copy.offerMaintenance || 'Профилактика и сервиз' %></strong> – <%= copy.offerMaintenanceText || '' %></li>
+              <li><strong><%= copy.offerRepair || 'Ремонт на климатици' %></strong> – <%= copy.offerRepairText || '' %></li>
+              <li><strong><%= copy.offerWarranty || 'Гаранция' %></strong> – <%= copy.offerWarrantyText || '' %></li>
             </ul>
           </article>
 
           <article class="about-block">
-            <h2 class="about-block__title">Защо да изберете нас</h2>
+            <h2 class="about-block__title"><%= copy.whyTitle || 'Защо да изберете нас' %></h2>
             <div class="about-cards">
               <div class="about-card">
                 <span class="about-card__icon" aria-hidden="true">✓</span>
-                <h3 class="about-card__title">Безплатен оглед и оферта</h3>
-                <p class="about-card__text">Оглеждаме мястото, препоръчваме подходящ модел и мощност и даваме ясна оферта.</p>
+                <h3 class="about-card__title"><%= copy.whyCard1Title || 'Безплатен оглед и оферта' %></h3>
+                <p class="about-card__text"><%= copy.whyCard1Text || '' %></p>
               </div>
               <div class="about-card">
                 <span class="about-card__icon" aria-hidden="true">✓</span>
-                <h3 class="about-card__title">Гаранция и коректност</h3>
-                <p class="about-card__text">Гарантираме качество на монтажа и ремонта. Работим с оригинални части.</p>
+                <h3 class="about-card__title"><%= copy.whyCard2Title || 'Гаранция и коректност' %></h3>
+                <p class="about-card__text"><%= copy.whyCard2Text || '' %></p>
               </div>
               <div class="about-card">
                 <span class="about-card__icon" aria-hidden="true">✓</span>
-                <h3 class="about-card__title">Бърза реакция</h3>
-                <p class="about-card__text">При сервиз и ремонт реагираме бързо и уговаряме удобен за вас час.</p>
+                <h3 class="about-card__title"><%= copy.whyCard3Title || 'Бърза реакция' %></h3>
+                <p class="about-card__text"><%= copy.whyCard3Text || '' %></p>
               </div>
             </div>
           </article>
 
           <article class="about-block about-block--cta">
-            <h2 class="about-block__title">Свържете се с нас</h2>
+            <h2 class="about-block__title"><%= copy.contactTitle || 'Свържете се с нас' %></h2>
             <p class="about-block__text">
-              Обслужваме <strong>Несебър</strong>, <strong>Слънчев бряг</strong>, <strong>Равда</strong> и <strong>Свети Влас</strong>. Обадете се на <a href="tel:+359899123123">+359 899 123 123</a> за оферта или оглед, или пишете през <a href="/kontakti">Контакти</a>.
+              <%= copy.contactTextIntro || 'Обслужваме' %> <strong><%= copy.areas || 'Несебър, Слънчев бряг, Равда, Свети Влас' %></strong>. <a href="tel:+359898123123">+359 898 123 123</a> / <a href="tel:+359898123123">089 812 3123</a> <%= copy.contactTextMiddle || 'за оферта или оглед, или пишете във' %> <a href="https://wa.me/359898123123" target="_blank" rel="noopener noreferrer"><%= copy.whatsapp || 'WhatsApp' %></a> <%= copy.contactTextEnd || 'или през' %> <a href="<%= lp('/kontakti') %>"><%= copy.contactLink || 'Контакти' %></a>.
             </p>
-            <a class="about-cta" href="/kontakti">Контакти</a>
+            <a class="about-cta" href="<%= lp('/kontakti') %>"><%= copy.cta || 'Контакти' %></a>
           </article>
         </div>
       </div>

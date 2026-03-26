@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'en' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Home</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Refrigerant Prices 2026</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">How much does refrigerant refill for an air conditioner cost in Bulgaria (2026)</h1>
+          <p class="blog-article__lead">Indicative pricing for refrigerant refill for home and car air conditioners in Bulgaria, including labour, diagnostics and service work, not only the price of the gas itself. The figures are based on real service quotes in the country.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Request a refill quote</span>
+                  <span class="blog-ad__placeholder-cta">Contact →</span>
+                </span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Service and refrigerant" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Service and refrigerant</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Air conditioner installation" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Air conditioner installation</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="pricing-overview-heading">
+          <h2 id="pricing-overview-heading" class="blog-section__title">General price overview in Bulgaria</h2>
+          <p class="blog-section__p">Pricing depends strongly on several factors:</p>
+          <ul class="blog-list">
+            <li>type of air conditioner (home or automotive);</li>
+            <li>type of refrigerant (R32, R410A and others);</li>
+            <li>required amount of gas;</li>
+            <li>whether there is a leak or an additional repair is needed;</li>
+            <li>whether labour, diagnostics and precise charging are included in the quote.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="home-ac-heading">
+          <h2 id="home-ac-heading" class="blog-section__title">Home air conditioners: typical prices</h2>
+          <ul class="blog-list blog-list--tight">
+            <li><strong>Around BGN 25-35 per 100 g of refrigerant</strong> (labour plus charging) is the most common offer in Sofia for a system without leaks that only needs topping up.</li>
+            <li><strong>Around EUR 30-35 per 100 g of refrigerant</strong> may include diagnostics, vacuuming and precise charging.</li>
+            <li>Some services offer <strong>around BGN 17 per 100 g</strong> if extra diagnostics are not included.</li>
+          </ul>
+          <p class="blog-note" role="note"><strong>Important:</strong> these prices usually do not include leak repair. If there is a leak, the cause is fixed first.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="extra-services-heading">
+          <h2 id="extra-services-heading" class="blog-section__title">Additional services</h2>
+          <ul class="blog-list">
+            <li><strong>Diagnostics / nitrogen test:</strong> + EUR 30-40 (about BGN 60-80)</li>
+            <li><strong>Leak detection and repair:</strong> about EUR 80-120 (around BGN 160-240) for more serious issues.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="car-ac-heading">
+          <h2 id="car-ac-heading" class="blog-section__title">Car air conditioning</h2>
+          <p class="blog-section__p">As a rough guide, automotive pricing differs from home air conditioners:</p>
+          <ul class="blog-list">
+            <li>Car AC refill can cost <strong>around BGN 30-50</strong> for standard service and charging.</li>
+            <li>For R134a refrigerant, pricing may be around <strong>BGN 14.90 per 100 g</strong>; for R1234yf, around <strong>BGN 49.90 per 100 g</strong>.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="price-factors-heading">
+          <h2 id="price-factors-heading" class="blog-section__title">What affects the final price</h2>
+          <ul class="blog-list">
+            <li><strong>Refrigerant quantity</strong> according to the unit nameplate.</li>
+            <li><strong>Presence of a leak</strong>: if the system leaks, simply topping up is pointless; the leak must be fixed first.</li>
+            <li><strong>Whether diagnostics, vacuuming and tests are included</strong>: this has a strong impact on the total amount.</li>
+            <li><strong>Refrigerant type</strong> (R32, R410A and others): some types are more expensive.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="example-heading">
+          <h2 id="example-heading" class="blog-section__title">Practical example</h2>
+          <p class="blog-section__p">For a home air conditioner with R32 and no leaks:</p>
+          <ul class="blog-list">
+            <li>Diagnostics plus vacuuming plus refrigerant refill: <strong>around EUR 30-35 per 100 g</strong>.</li>
+            <li>If, for example, 500 g are required, the total may be <strong>around EUR 150-175</strong> (roughly BGN 300-350).</li>
+          </ul>
+          <p class="blog-section__p blog-section__p--muted">This is only an indicative calculation; the exact amount depends on the specific system and service company.</p>
+        </section>
+
+        <section class="blog-section blog-section--faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="blog-section__title">Frequently asked questions</h2>
+          <dl class="blog-faq">
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">How much does refrigerant refill cost for a home air conditioner?</dt>
+              <dd class="blog-faq__a">Typically around BGN 25-35 per 100 g for top-up without leaks; with diagnostics and vacuuming, around EUR 30-35 per 100 g. The final price depends on the refrigerant type and the service provider.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Why should you not only top up refrigerant when there is a leak?</dt>
+              <dd class="blog-faq__a">If there is a leak, the gas will escape again and the problem remains. The leak must be found and repaired first, then the system is vacuumed and charged again.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">What affects refrigerant refill pricing?</dt>
+              <dd class="blog-faq__a">The gas quantity, refrigerant type, whether diagnostics and vacuuming are included, and whether leak repair is needed. Extra services increase the total price.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Back to store">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Back to store</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Daikin', label: 'Daikin', imgSrc: 'https://logo.clearbit.com/daikin.com?size=512', imgAlt: 'Daikin logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">These are indicative prices for Bulgaria in 2026. It is a good idea to request quotes from several service companies before booking. For <a href="<%= lp('/uslugi') %>">service and refrigerant refill in Nessebar and the region</a>, you can call or message us.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Request a service quote</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Air conditioner maintenance" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Air conditioner maintenance</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter vs standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter vs standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="All articles" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">All articles</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

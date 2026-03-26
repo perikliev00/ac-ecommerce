@@ -1,28 +1,91 @@
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? {
+        aria: 'Cart',
+        titleEmpty: 'Your cart is empty',
+        titleOne: '1 product in your cart',
+        titleMany: 'products in your cart',
+        close: 'Close cart',
+        empty: 'Your cart is empty.',
+        subtotal: 'Subtotal:',
+        total: 'Total:',
+        checkout: 'Proceed to checkout',
+        continue: 'Continue shopping',
+        qty: 'Qty.',
+        remove: 'Remove',
+      }
+    : locale === 'de'
+      ? {
+          aria: 'Warenkorb',
+          titleEmpty: 'Ihr Warenkorb ist leer',
+          titleOne: '1 Produkt im Warenkorb',
+          titleMany: 'Produkte im Warenkorb',
+          close: 'Warenkorb schließen',
+          empty: 'Ihr Warenkorb ist leer.',
+          subtotal: 'Zwischensumme:',
+          total: 'Gesamt:',
+          checkout: 'Zur Kasse',
+          continue: 'Weiter einkaufen',
+          qty: 'Menge',
+          remove: 'Entfernen',
+        }
+      : locale === 'ru'
+        ? {
+            aria: 'Корзина',
+            titleEmpty: 'Ваша корзина пуста',
+            titleOne: '1 товар в корзине',
+            titleMany: 'товаров в корзине',
+            close: 'Закрыть корзину',
+            empty: 'Корзина пуста.',
+            subtotal: 'Промежуточный итог:',
+            total: 'Итого:',
+            checkout: 'Перейти к заказу',
+            continue: 'Продолжить покупки',
+            qty: 'Кол.',
+            remove: 'Удалить',
+          }
+        : {
+            aria: 'Количка',
+            titleEmpty: 'Количката е празна',
+            titleOne: '1 продукт в количката',
+            titleMany: 'продукта в количката',
+            close: 'Затвори количката',
+            empty: 'Количката е празна.',
+            subtotal: 'Междинна сума:',
+            total: 'Общо:',
+            checkout: 'Към поръчка',
+            continue: 'Продължи пазаруването',
+            qty: 'Кол.',
+            remove: 'Премахни',
+          };
+%>
 <div id="cartDrawerOverlay" class="cart-drawer-overlay" aria-hidden="true">
-  <div id="cartDrawerPanel" class="cart-drawer-panel" role="dialog" aria-label="Количка" aria-modal="true">
+  <div id="cartDrawerPanel" class="cart-drawer-panel" role="dialog" aria-label="<%= copy.aria %>" aria-modal="true" data-title-empty="<%= copy.titleEmpty %>" data-title-one="<%= copy.titleOne %>" data-title-many="<%= copy.titleMany %>" data-empty="<%= copy.empty %>" data-qty-label="<%= copy.qty %>" data-remove-label="<%= copy.remove %>">
     <div class="cart-drawer__head">
-      <h2 class="cart-drawer__title" id="cartDrawerTitle">0 продукта в количката</h2>
-      <button type="button" class="cart-drawer__close" id="cartDrawerClose" aria-label="Затвори количката">&times;</button>
+      <h2 class="cart-drawer__title" id="cartDrawerTitle"><%= copy.titleEmpty %></h2>
+      <button type="button" class="cart-drawer__close" id="cartDrawerClose" aria-label="<%= copy.close %>">&times;</button>
     </div>
     <div class="cart-drawer__body">
       <div id="cartDrawerList" class="cart-drawer__list">
-        <p class="cart-drawer__empty" id="cartDrawerEmpty">Количката е празна.</p>
+        <p class="cart-drawer__empty" id="cartDrawerEmpty"><%= copy.empty %></p>
         <div id="cartDrawerItems" class="cart-drawer__items" hidden></div>
       </div>
     </div>
     <div class="cart-drawer__foot">
       <div class="cart-drawer__totals" id="cartDrawerTotals" hidden>
         <div class="cart-drawer__subtotal" id="cartDrawerSubtotal">
-          <span>Междинна сума:</span>
+          <span><%= copy.subtotal %></span>
           <span id="cartDrawerSubtotalAmount">—</span>
         </div>
         <div class="cart-drawer__total" id="cartDrawerTotal">
-          <span>Общо:</span>
+          <span><%= copy.total %></span>
           <strong id="cartDrawerTotalAmount">—</strong>
         </div>
       </div>
-      <a href="/checkout" class="cart-drawer__checkout btn-checkout" id="cartDrawerCheckout" hidden>Към поръчка</a>
-      <a href="/produkti" class="cart-drawer__continue" id="cartDrawerContinue">Продължи пазаруването</a>
+      <a href="<%= lp('/checkout') %>" class="cart-drawer__checkout btn-checkout" id="cartDrawerCheckout" hidden><%= copy.checkout %></a>
+      <a href="<%= lp('/produkti') %>" class="cart-drawer__continue" id="cartDrawerContinue"><%= copy.continue %></a>
     </div>
   </div>
 </div>

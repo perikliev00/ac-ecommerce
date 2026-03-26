@@ -1,15 +1,116 @@
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const safeLocaleMeta = typeof localeMeta !== 'undefined' && localeMeta ? localeMeta : { nativeLabel: 'Български' };
+  const langLinks = typeof languageLinks !== 'undefined' && Array.isArray(languageLinks) ? languageLinks : [];
+  const copy = locale === 'en'
+    ? {
+        requestQuote: 'Request a quote',
+        requestVisit: 'Book a visit',
+        freeVisit: 'Free site visit and quote in Nessebar and the region',
+        warranty: 'Warranty',
+        reviews: 'Reviews',
+        home: 'Home',
+        navProducts: 'AIR CONDITIONERS',
+        navServices: 'SERVICES',
+        navBlog: 'BLOG',
+        navAbout: 'ABOUT',
+        navContact: 'CONTACT',
+        navCategories: 'Categories',
+        navInverter: 'Inverter',
+        navHyperinverter: 'Hyper inverter',
+        navFloor: 'Floor-standing',
+        callLabel: 'CALL US:',
+        whatsappLabel: 'WhatsApp',
+        locationLine1: 'NESSEBAR',
+        locationLine2: 'SUNNY BEACH • RAVDA • SAINT VLAS',
+        cartAria: 'Cart',
+        stockLabel: 'Items:',
+      }
+    : locale === 'de'
+      ? {
+          requestQuote: 'Angebot anfragen',
+          requestVisit: 'Besichtigung anfragen',
+          freeVisit: 'Kostenlose Besichtigung und Angebot in Nessebar und der Region',
+          warranty: 'Garantie',
+          reviews: 'Bewertungen',
+          home: 'Startseite',
+          navProducts: 'KLIMAANLAGEN',
+          navServices: 'LEISTUNGEN',
+          navBlog: 'BLOG',
+          navAbout: 'ÜBER UNS',
+          navContact: 'KONTAKT',
+          navCategories: 'Kategorien',
+          navInverter: 'Inverter',
+          navHyperinverter: 'Hyper-Inverter',
+          navFloor: 'Standgeräte',
+          callLabel: 'RUFEN SIE UNS AN:',
+          whatsappLabel: 'WhatsApp',
+          locationLine1: 'NESSEBAR',
+          locationLine2: 'SONNENSTRAND • RAWDA • SWETI WLAS',
+          cartAria: 'Warenkorb',
+          stockLabel: 'Artikel:',
+        }
+      : locale === 'ru'
+        ? {
+            requestQuote: 'Запросить оферту',
+            requestVisit: 'Заказать осмотр',
+            freeVisit: 'Бесплатный осмотр и оферта в Несебре и регионе',
+            warranty: 'Гарантия',
+            reviews: 'Отзывы',
+            home: 'Главная',
+            navProducts: 'КОНДИЦИОНЕРЫ',
+            navServices: 'УСЛУГИ',
+            navBlog: 'БЛОГ',
+            navAbout: 'О НАС',
+            navContact: 'КОНТАКТЫ',
+            navCategories: 'Категории',
+            navInverter: 'Инверторные',
+            navHyperinverter: 'Гиперинверторные',
+            navFloor: 'Напольные',
+            callLabel: 'ПОЗВОНИТЕ НАМ:',
+            whatsappLabel: 'WhatsApp',
+            locationLine1: 'НЕСЕБР',
+            locationLine2: 'СОЛНЕЧНЫЙ БЕРЕГ • РАВДА • СВЯТОЙ ВЛАС',
+            cartAria: 'Корзина',
+            stockLabel: 'Товары:',
+          }
+        : {
+            requestQuote: 'Поискайте оферта',
+            requestVisit: 'Заявете оглед',
+            freeVisit: 'Безплатен оглед и оферта в Несебър и региона',
+            warranty: 'Гаранция',
+            reviews: 'Отзиви',
+            home: 'Начало',
+            navProducts: 'КЛИМАТИЦИ',
+            navServices: 'УСЛУГИ',
+            navBlog: 'БЛОГ',
+            navAbout: 'ЗА НАС',
+            navContact: 'КОНТАКТИ',
+            navCategories: 'Категории',
+            navInverter: 'Инверторни',
+            navHyperinverter: 'Хиперинверторни',
+            navFloor: 'Подови',
+            callLabel: 'ОБАДИ СЕ НА:',
+            whatsappLabel: 'WhatsApp',
+            locationLine1: 'НЕСЕБЪР',
+            locationLine2: 'СЛЪНЧЕВ БРЯГ • РАВДА • СВЕТИ ВЛАС',
+            cartAria: 'Количка',
+            stockLabel: 'Стоки:',
+          };
+%>
 <header class="topbar" role="banner">
   <div class="container topbar__inner">
     <div class="topbar__left">
-      <a class="topbar__link" href="/kontakti" aria-label="Поискайте оферта">Поискайте оферта</a>
+      <a class="topbar__link" href="<%= lp('/kontakti') %>" aria-label="<%= copy.requestQuote || 'Поискайте оферта' %>"><%= copy.requestQuote || 'Поискайте оферта' %></a>
       <span class="topbar__dot" aria-hidden="true">•</span>
-      <a class="topbar__link" href="/kontakti" aria-label="Заявете безплатен оглед">Заявете оглед</a>
+      <a class="topbar__link" href="<%= lp('/kontakti') %>" aria-label="<%= copy.requestVisit || 'Заявете оглед' %>"><%= copy.requestVisit || 'Заявете оглед' %></a>
     </div>
-    <div class="topbar__center">Безплатен оглед и оферта в Несебър и региона</div>
+    <div class="topbar__center"><%= copy.freeVisit || 'Безплатен оглед и оферта в Несебър и региона' %></div>
     <div class="topbar__right">
-      <a class="topbar__link" href="/kontakti">Гаранция</a>
+      <a class="topbar__link" href="<%= lp('/kontakti') %>"><%= copy.warranty || 'Гаранция' %></a>
       <span class="topbar__dot" aria-hidden="true">•</span>
-      <a class="topbar__link" href="/#reviews">Отзиви</a>
+      <a class="topbar__link" href="<%= lp('/#reviews') %>"><%= copy.reviews || 'Отзиви' %></a>
     </div>
   </div>
 </header>
@@ -20,33 +121,34 @@
       <span class="burger" aria-hidden="true"><span></span></span>
     </button>
 
-    <a class="brand" href="/" aria-label="Начало">
+    <a class="brand" href="<%= lp('/') %>" aria-label="<%= copy.home || 'Начало' %>">
       <img class="brand__logo-img" src="/assets/logos/logonsclima.png" alt="NesebarClima – климатици Несебър" />
     </a>
 
     <div class="masthead__mid" aria-label="Контакти">
-      <div class="contact">
+      <a class="contact contact--link" href="tel:+359898123123" aria-label="<%= (copy.callLabel || 'ОБАДИ СЕ НА:') + ' +359 898 123 123' %>">
         <span class="contact__icon" aria-hidden="true">
           <svg viewBox="0 0 24 24">
             <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
           </svg>
         </span>
         <div class="contact__text">
-          <div class="contact__label">ОБАДИ СЕ НА:</div>
-          <div class="contact__value">+359 899 123 123</div>
+          <div class="contact__label"><%= copy.callLabel || 'ОБАДИ СЕ НА:' %></div>
+          <div class="contact__value">+359 898 123 123</div>
+          <div class="contact__value contact__value--short">089 812 3123</div>
         </div>
-      </div>
-      <div class="contact">
+      </a>
+      <a class="contact contact--link contact--whatsapp" href="https://wa.me/359898123123" target="_blank" rel="noopener noreferrer" aria-label="<%= copy.whatsappLabel || 'WhatsApp' %>">
         <span class="contact__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24">
-            <path d="M6.6 10.8c1.6 3.2 3.4 5 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.5 2.7.8 4.1.8.7 0 1.3.6 1.3 1.3V21c0 .7-.6 1.3-1.3 1.3C10.2 22.3 1.7 13.8 1.7 3.3 1.7 2.6 2.3 2 3 2h3.8c.7 0 1.3.6 1.3 1.3 0 1.4.3 2.8.8 4.1.1.4 0 .9-.3 1.2l-2 2.2Z" />
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
           </svg>
         </span>
         <div class="contact__text">
-          <div class="contact__label">ОБАДИ СЕ НА:</div>
-          <div class="contact__value">+359 899 123 123</div>
+          <div class="contact__label"><%= copy.whatsappLabel || 'WhatsApp' %></div>
+          <div class="contact__value">089 812 3123</div>
         </div>
-      </div>
+      </a>
     </div>
 
     <div class="masthead__right" aria-label="Локации и действия">
@@ -57,13 +159,21 @@
           </svg>
         </span>
         <div class="location__text">
-          <div class="location__label">НЕСЕБЪР</div>
-          <div class="location__label">СЛЪНЧЕВ БРЯГ • РАВДА • СВЕТИ ВЛАС</div>
+          <div class="location__label"><%= copy.locationLine1 || 'НЕСЕБЪР' %></div>
+          <div class="location__label"><%= copy.locationLine2 || 'СЛЪНЧЕВ БРЯГ • РАВДА • СВЕТИ ВЛАС' %></div>
         </div>
       </div>
 
       <div class="headIcons" aria-label="Икони">
-        <a class="headIcon headIcon--cart" href="/cart" data-cart-toggle aria-label="Количка">
+        <details class="lang-switcher" aria-label="Избор на език">
+          <summary class="lang-switcher__summary"><%= safeLocaleMeta.nativeLabel %></summary>
+          <div class="lang-switcher__menu">
+            <% langLinks.forEach(function(link) { %>
+              <a class="lang-switcher__link<%= link.current ? ' is-current' : '' %>" href="<%= link.href %>" hreflang="<%= link.htmlLang %>"><%= link.nativeLabel %></a>
+            <% }); %>
+          </div>
+        </details>
+        <a class="headIcon headIcon--cart" href="<%= lp('/cart') %>" data-cart-toggle aria-label="<%= copy.cartAria || 'Количка' %>">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M7 18a2 2 0 1 0 2 2 2 2 0 0 0-2-2Zm10 0a2 2 0 1 0 2 2 2 2 0 0 0-2-2ZM6.2 6l.44 2H19a1 1 0 0 1 .97 1.25l-1.2 5A2 2 0 0 1 16.83 16H8.2a2 2 0 0 1-1.96-1.57L4.28 4H2V2h3a1 1 0 0 1 .98.8L6.2 6Z" />
           </svg>
@@ -76,13 +186,25 @@
   <div class="navline">
     <div class="container navline__inner">
       <nav class="primary" aria-label="Основна навигация">
-        <a class="primary__link" href="/produkti">КЛИМАТИЦИ</a>
-        <a class="primary__link" href="/uslugi">УСЛУГИ</a>
-        <a class="primary__link" href="/about">ЗА НАС</a>
-        <a class="primary__link" href="/kontakti">КОНТАКТИ</a>
+        <div class="primary__item primary__item--dropdown">
+          <button type="button" class="primary__toggle" aria-label="<%= (copy.navCategories || 'Категории') + ' – ' + (copy.navProducts || 'КЛИМАТИЦИ') %>" aria-haspopup="true" aria-expanded="false">
+            <span class="primary__toggleLabel"><%= copy.navProducts || 'КЛИМАТИЦИ' %></span>
+            <span class="primary__chev" aria-hidden="true">▾</span>
+          </button>
+          <div class="primary__dropdown" role="menu" aria-label="<%= copy.navCategories || 'Категории' %>">
+            <a class="primary__dropdownLink" role="menuitem" href="<%= lp('/produkti') %>"><%= copy.navProducts || 'КЛИМАТИЦИ' %></a>
+            <a class="primary__dropdownLink" role="menuitem" href="<%= lp('/inverter') %>"><%= copy.navInverter || 'Инверторни' %></a>
+            <a class="primary__dropdownLink" role="menuitem" href="<%= lp('/hyperinverter') %>"><%= copy.navHyperinverter || 'Хиперинверторни' %></a>
+            <a class="primary__dropdownLink" role="menuitem" href="<%= lp('/floor') %>"><%= copy.navFloor || 'Подови' %></a>
+          </div>
+        </div>
+        <a class="primary__link" href="<%= lp('/uslugi') %>"><%= copy.navServices || 'УСЛУГИ' %></a>
+        <a class="primary__link" href="<%= lp('/blog') %>"><%= copy.navBlog || 'БЛОГ' %></a>
+        <a class="primary__link" href="<%= lp('/about') %>"><%= copy.navAbout || 'ЗА НАС' %></a>
+        <a class="primary__link" href="<%= lp('/kontakti') %>"><%= copy.navContact || 'КОНТАКТИ' %></a>
       </nav>
       <div class="stock" id="headerStock" aria-label="Стоки и сума">
-        <span>Стоки: <span id="headerStockCount">0</span></span>
+        <span><%= copy.stockLabel || 'Стоки:' %> <span id="headerStockCount">0</span></span>
         <span class="stock__sep">|</span>
         <span id="headerStockTotal">(0,00 € | 0,00 лв.)</span>
       </div>

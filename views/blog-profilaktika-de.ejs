@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'de' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Startseite</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Wartung der Klimaanlage</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Wartung der Klimaanlage: warum regelmäßiger Service wichtig ist</h1>
+          <p class="blog-article__lead">Professionelle Wartung hält das Gerät effizient, sauberer und zuverlässiger im Kühl- wie im Heizbetrieb.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Präventiver Service" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Präventiver Service</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Montageanleitung" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Montageanleitung</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Wartung buchen</span><span class="blog-ad__placeholder-cta">Kontakt →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading"><h2 id="why-heading" class="blog-section__title">1. Warum Wartung unverzichtbar ist</h2><p class="blog-section__p">Eine laufende Klimaanlage ist nicht automatisch sauber oder effizient. Im Gerät sammeln sich Staub, Fett, Feuchtigkeit und Mikroorganismen.</p><ul class="blog-list"><li>geringere Effizienz</li><li>höhere Stromkosten</li><li>schlechter Geruch</li><li>mehr Geräusche</li><li>höheres Ausfallrisiko</li></ul></section>
+          <section class="blog-section" aria-labelledby="benefits-heading"><h2 id="benefits-heading" class="blog-section__title">2. Die wichtigsten Vorteile regelmäßiger Wartung</h2><ul class="blog-list"><li><strong>Sauberere Luft:</strong> Filter und Wärmetauscher werden gereinigt.</li><li><strong>Bessere Effizienz:</strong> die Solltemperatur wird schneller erreicht.</li><li><strong>Geringerer Verbrauch:</strong> weniger Belastung bedeutet niedrigere Kosten.</li><li><strong>Längere Lebensdauer:</strong> Hauptkomponenten arbeiten schonender.</li></ul></section>
+          <section class="blog-section" aria-labelledby="what-heading"><h2 id="what-heading" class="blog-section__title">3. Was professionelle Wartung umfasst</h2><ul class="blog-list"><li>Filter reinigen und waschen</li><li>Verdampfer und Lüfter reinigen</li><li>Kondensatablauf prüfen</li><li>Außengerät reinigen</li><li>Druck, Temperatur und Betrieb prüfen</li><li>Auf Lecks und ungewöhnliche Geräusche kontrollieren</li></ul><p class="blog-note" role="note">Ein kurzes Einsprühen ohne Öffnen des Geräts ist keine vollständige Wartung.</p></section>
+          <section class="blog-section" aria-labelledby="frequency-heading"><h2 id="frequency-heading" class="blog-section__title">4. Wie oft sollte Wartung durchgeführt werden?</h2><p class="blog-section__p">Für Wohnungen mindestens <strong>einmal pro Jahr</strong>. Bei intensiver Nutzung sind zwei Wartungen sinnvoll: vor dem Sommer und vor dem Winter.</p></section>
+          <section class="blog-section" aria-labelledby="signs-heading"><h2 id="signs-heading" class="blog-section__title">5. Warnzeichen, dass Service nötig ist</h2><ul class="blog-list blog-list--dont"><li>unangenehmer Geruch</li><li>schwächerer Luftstrom</li><li>Wasser tropft</li><li>lauter Betrieb</li><li>schlechteres Heizen oder Kühlen</li></ul></section>
+          <section class="blog-section" aria-labelledby="health-heading"><h2 id="health-heading" class="blog-section__title">6. Gesundheit und Hygiene</h2><p class="blog-section__p">Im Innengerät können sich Schimmel und Bakterien bilden. Das ist besonders unangenehm für Kinder, Allergiker und Menschen mit empfindlichen Atemwegen.</p><p class="blog-section__p">Wartung betrifft nicht nur Effizienz, sondern auch sauberere Raumluft.</p></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">7. Fazit</h2><p class="blog-section__p">Regelmäßige Wartung kostet deutlich weniger als Kompressortausch oder wiederkehrende Kältemittelprobleme. Sie schützt Komfort, Gesundheit und Lebensdauer des Systems.</p><p class="blog-section__p"><strong>Eine saubere Klimaanlage arbeitet besser, verbraucht weniger und hält länger.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Zurück zum Shop"><h2 class="blog-section__title blog-section__title--visually-hidden">Zurück zum Shop</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Bosch', label: 'Bosch', imgSrc: 'https://logo.clearbit.com/bosch.com?size=512', imgAlt: 'Bosch logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Cooper & Hunter', label: 'Cooper & Hunter', imgSrc: 'https://logo.clearbit.com/cooperandhunter.us?size=512', imgAlt: 'Cooper and Hunter logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Wenn Sie professionelle Klimawartung in Nessebar und den umliegenden Ferienorten benötigen, <a href="<%= lp('/kontakti') %>">kontaktieren Sie uns</a> für einen Termin.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Wartung buchen</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Kältemittel Preise" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Kältemittel Preise</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter oder Standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter oder Standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Klimaanlagen" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Katalog</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

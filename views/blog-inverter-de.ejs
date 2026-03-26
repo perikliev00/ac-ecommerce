@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'de' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Startseite</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Inverter oder Standard</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Inverter oder Standard-Klimaanlage: was ist der Unterschied?</h1>
+          <p class="blog-article__lead">Ein praktischer Vergleich der beiden Technologien mit ihren Vorteilen, Nachteilen und typischen Einsatzfällen.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Katalog" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Katalog</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Wartungsratgeber" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Wartungsratgeber</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Beratung nötig?</span><span class="blog-ad__placeholder-cta">Kontakt →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="basic-heading"><h2 id="basic-heading" class="blog-section__title">1. Grundprinzip</h2><p class="blog-section__p">Ein <strong>Standardgerät</strong> arbeitet im Ein/Aus-Betrieb. Es startet mit voller Leistung, erreicht die Zieltemperatur und stoppt, danach beginnt der Zyklus erneut.</p><p class="blog-section__p">Ein <strong>Invertergerät</strong> regelt die Kompressordrehzahl stufenlos und hält die Temperatur gleichmäßiger.</p></section>
+          <section class="blog-section" aria-labelledby="comfort-heading"><h2 id="comfort-heading" class="blog-section__title">2. Komfort und Temperaturstabilität</h2><p class="blog-section__p">Standardmodelle verursachen oft stärkere Temperaturschwankungen. Invertermodelle sorgen in der Regel für ein konstanteres und angenehmeres Raumklima.</p></section>
+          <section class="blog-section" aria-labelledby="consumption-heading"><h2 id="consumption-heading" class="blog-section__title">3. Stromverbrauch</h2><p class="blog-section__p">Inverteranlagen sind im Alltag meist sparsamer, weil sie wiederholte Starts mit hoher Leistung vermeiden. Standardmodelle sind oft günstiger in der Anschaffung, verbrauchen langfristig aber mehr.</p></section>
+          <section class="blog-section" aria-labelledby="noise-heading"><h2 id="noise-heading" class="blog-section__title">4. Geräuschpegel</h2><p class="blog-section__p">Da der Inverter die Leistung moduliert statt ständig zu starten und zu stoppen, arbeitet er innen und außen meist leiser.</p></section>
+          <section class="blog-section" aria-labelledby="heating-heading"><h2 id="heating-heading" class="blog-section__title">5. Heizen</h2><p class="blog-section__p">Wenn die Anlage auch zum Heizen genutzt werden soll, ist ein Inverter in den meisten Fällen die bessere Wahl. Er regelt die Leistung sauberer und arbeitet bei kälterem Wetter effizienter.</p></section>
+          <section class="blog-section" aria-labelledby="price-heading"><h2 id="price-heading" class="blog-section__title">6. Anschaffungspreis</h2><p class="blog-section__p">Standardgeräte sind meist günstiger beim Kauf. Invertermodelle kosten mehr, gleichen das aber oft durch niedrigere Rechnungen und höheren Komfort aus.</p></section>
+          <section class="blog-section" aria-labelledby="which-heading"><h2 id="which-heading" class="blog-section__title">7. Welche Variante passt zu Ihnen?</h2><ul class="blog-list"><li><strong>Inverter wählen</strong>, wenn Sie die Anlage täglich nutzen, sparsamer arbeiten möchten und Heizen wichtig ist.</li><li><strong>Standard wählen</strong>, wenn die Nutzung selten ist und der niedrigste Einstiegspreis im Vordergrund steht.</li></ul></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">8. Fazit</h2><p class="blog-section__p">Für die meisten Wohnungen ist die Inverter-Klimaanlage heute die praktischere Langzeitlösung. Sie bietet besseren Komfort, geringeren Verbrauch und stärkere Ganzjahresleistung.</p><p class="blog-section__p"><strong>Das Standardmodell ist billiger beim Kauf, der Inverter ist meist die klügere Investition.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Zurück zum Shop"><h2 class="blog-section__title blog-section__title--visually-hidden">Zurück zum Shop</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Toshiba', label: 'Toshiba', imgSrc: 'https://logo.clearbit.com/toshiba-aircon.co.uk?size=512', imgAlt: 'Toshiba logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Wenn Sie Hilfe bei der Wahl des passenden Modells für Ihr Zuhause in Nessebar und der Region brauchen, <a href="<%= lp('/kontakti') %>">kontaktieren Sie uns</a> für eine praktische Empfehlung.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Modellberatung anfragen</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Montageanleitung" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Montageanleitung</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Kältemittel Preise" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Kältemittel Preise</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Montage und Service" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Montage und Service</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

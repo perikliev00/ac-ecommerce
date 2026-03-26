@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Към съдържанието</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Начало</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Фреон – цени 2026</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Колко струва зареждането на фреон за климатик в България (2026)</h1>
+          <p class="blog-article__lead">Ориентировъчни данни за ценообразуване при зареждане на фреон за битов и автомобилен климатик в България – включително труд, диагностика и обслужване, а не само цената на газа. Данните са събрани от реални оферти на сервизи в страната.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Заявете оферта за зареждане</span>
+                  <span class="blog-ad__placeholder-cta">Контакти →</span>
+                </span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Сервиз и фреон" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Сервиз и фреон</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж на климатици" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж на климатици</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="pricing-overview-heading">
+          <h2 id="pricing-overview-heading" class="blog-section__title">Общо ориентировъчно ценообразуване в България</h2>
+          <p class="blog-section__p">Цените зависят значително от няколко фактора:</p>
+          <ul class="blog-list">
+            <li>тип климатик (битов или автомобилен);</li>
+            <li>вид фреон (R32, R410A и др.);</li>
+            <li>нужно количество газ;</li>
+            <li>дали има теч или е необходим ремонт;</li>
+            <li>дали в офертата са включени труд, диагностика и прецизно зареждане.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="home-ac-heading">
+          <h2 id="home-ac-heading" class="blog-section__title">Битови климатици (домашни) – типични цени</h2>
+          <ul class="blog-list blog-list--tight">
+            <li><strong>Около 25–35 лв. за 100 г фреон</strong> (труд + зареждане) – най-честата оферта в София при система без теч, само допълване.</li>
+            <li><strong>Около 30–35 € за 100 г фреон</strong> с включена диагностика, вакуум и прецизно зареждане.</li>
+            <li>Някои сервизи предлагат <strong>около 17 лв. за 100 г</strong>, ако не е включена допълнителна диагностика.</li>
+          </ul>
+          <p class="blog-note" role="note"><strong>Важно:</strong> Тези цени обикновено са без ремонт на течове. При наличие на теч първо се отстранява причината.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="extra-services-heading">
+          <h2 id="extra-services-heading" class="blog-section__title">Допълнителни услуги</h2>
+          <ul class="blog-list">
+            <li><strong>Диагностика / тест с азот:</strong> +30–40 € (около 60–80 лв.)</li>
+            <li><strong>Откриване и ремонт на теч:</strong> около 80–120 € (около 160–240 лв.) – при по-сериозни проблеми.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="car-ac-heading">
+          <h2 id="car-ac-heading" class="blog-section__title">Автомобилен климатик</h2>
+          <p class="blog-section__p">Като ориентир (ценообразуването е различно от битовите климатици):</p>
+          <ul class="blog-list">
+            <li>Зареждане на автоклиматик може да е <strong>от около 30–50 лв.</strong> за стандартно обслужване и зареждане.</li>
+            <li>При R134a фреон – около <strong>14,90 лв. за 100 г</strong>; при R1234yf – около <strong>49,90 лв. за 100 г</strong>.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="price-factors-heading">
+          <h2 id="price-factors-heading" class="blog-section__title">Какво влияе на крайната цена</h2>
+          <ul class="blog-list">
+            <li><strong>Количество фреон</strong> – според табелата на климатичната система.</li>
+            <li><strong>Наличие на теч</strong> – при теч простото пълнене е безсмислено; първо се отстранява течът.</li>
+            <li><strong>Дали е включена диагностика, вакуум и тестове</strong> – влияе значително на общата сума.</li>
+            <li><strong>Тип фреон</strong> (R32, R410A и др.) – някои видове са по-скъпи.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="example-heading">
+          <h2 id="example-heading" class="blog-section__title">Практически пример</h2>
+          <p class="blog-section__p">При битов климатик с R32 и липса на течове:</p>
+          <ul class="blog-list">
+            <li>Диагностика + вакуум + добавяне на фреон: <strong>около 30–35 € за 100 г</strong>.</li>
+            <li>Ако са нужни например 500 г: общо <strong>около 150–175 €</strong> (около 300–350 лв.).</li>
+          </ul>
+          <p class="blog-section__p blog-section__p--muted">Това е ориентировъчна калкулация; точната сума зависи от конкретната система и сервиз.</p>
+        </section>
+
+        <section class="blog-section blog-section--faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="blog-section__title">Често задавани въпроси</h2>
+          <dl class="blog-faq">
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Колко струва зареждането на фреон за битов климатик?</dt>
+              <dd class="blog-faq__a">Ориентировъчно 25–35 лв. за 100 г при допълване без теч; с диагностика и вакуум около 30–35 € за 100 г. Крайната цена зависи от типа фреон (R32, R410A и др.) и от сервиза.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Защо не трябва само да се пълни фреон при теч?</dt>
+              <dd class="blog-faq__a">При наличие на теч газът отново ще изтече и проблемът остава. Първо се открива и отстранява течът, после се прави вакуум и зареждане. Много сервизи предлагат диагностика с азот и ремонт на течове.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Какво влияе на цената за зареждане на фреон?</dt>
+              <dd class="blog-faq__a">Количеството газ според табелата на уреда, типът фреон, дали е включена диагностика и вакуум, и дали е нужен ремонт на теч. Допълнителни услуги като тест с азот или откриване на теч увеличават общата сума.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Обратно към магазина">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Обратно към магазина</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Daikin', label: 'Daikin', imgSrc: 'https://logo.clearbit.com/daikin.com?size=512', imgAlt: 'Daikin logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">Ориентировъчни цени за България, 2026 г. Препоръчително е да поискате оферта от няколко сервиза преди да поръчате услуга. За <a href="<%= lp('/uslugi') %>">сервиз и зареждане на фреон в Несебър и региона</a> можете да ни пишете или да се обадите.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Заявете оферта за сервиз</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика на климатик" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика на климатик</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторен срещу обикновен" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторен срещу обикновен</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Всички статии" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Всички статии</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

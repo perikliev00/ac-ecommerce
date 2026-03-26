@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'ru' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Главная</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Профилактика кондиционера</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Профилактика кондиционера: почему регулярный сервис важен</h1>
+          <p class="blog-article__lead">Профессиональная профилактика помогает системе работать чище, эффективнее и надежнее и летом, и зимой.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактический сервис" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактический сервис</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Руководство по монтажу" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Руководство по монтажу</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Записаться на сервис</span><span class="blog-ad__placeholder-cta">Контакты →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading"><h2 id="why-heading" class="blog-section__title">1. Почему профилактика необходима</h2><p class="blog-section__p">Работающий кондиционер не означает, что он чистый и эффективный. Внутри со временем скапливаются пыль, жир, влага и микроорганизмы.</p><ul class="blog-list"><li>снижается эффективность</li><li>растут счета за электричество</li><li>появляется неприятный запах</li><li>увеличивается шум</li><li>возрастает риск поломок</li></ul></section>
+          <section class="blog-section" aria-labelledby="benefits-heading"><h2 id="benefits-heading" class="blog-section__title">2. Основные преимущества регулярного сервиса</h2><ul class="blog-list"><li><strong>Более чистый воздух:</strong> очищаются фильтры и теплообменник.</li><li><strong>Лучшая эффективность:</strong> система быстрее достигает нужной температуры.</li><li><strong>Меньше расход:</strong> меньшая нагрузка означает меньшие затраты.</li><li><strong>Больший срок службы:</strong> основные узлы работают в более щадящем режиме.</li></ul></section>
+          <section class="blog-section" aria-labelledby="what-heading"><h2 id="what-heading" class="blog-section__title">3. Что входит в профессиональную профилактику</h2><ul class="blog-list"><li>чистка и промывка фильтров</li><li>очистка испарителя и вентилятора</li><li>проверка дренажа конденсата</li><li>очистка наружного блока</li><li>проверка давления, температуры и режимов работы</li><li>осмотр на утечки и посторонний шум</li></ul><p class="blog-note" role="note">Быстрое распыление средства без разборки блока - это не полноценная профилактика.</p></section>
+          <section class="blog-section" aria-labelledby="frequency-heading"><h2 id="frequency-heading" class="blog-section__title">4. Как часто проводить профилактику?</h2><p class="blog-section__p">Для дома рекомендуется минимум <strong>раз в год</strong>. При активной эксплуатации лучше делать два раза в год: перед летом и перед зимой.</p></section>
+          <section class="blog-section" aria-labelledby="signs-heading"><h2 id="signs-heading" class="blog-section__title">5. Признаки, что сервис откладывать нельзя</h2><ul class="blog-list blog-list--dont"><li>неприятный запах</li><li>слабый поток воздуха</li><li>капает вода</li><li>сильнее шумит</li><li>хуже охлаждает или греет</li></ul></section>
+          <section class="blog-section" aria-labelledby="health-heading"><h2 id="health-heading" class="blog-section__title">6. Здоровье и гигиена</h2><p class="blog-section__p">Во внутреннем блоке могут развиваться плесень и бактерии. Это особенно неприятно для детей, аллергиков и людей с чувствительными дыхательными путями.</p><p class="blog-section__p">Профилактика важна не только для эффективности, но и для более чистого воздуха в помещении.</p></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">7. Итог</h2><p class="blog-section__p">Регулярный сервис стоит намного меньше, чем замена компрессора или повторяющиеся проблемы с фреоном. Он защищает комфорт, здоровье и срок службы системы.</p><p class="blog-section__p"><strong>Чистый кондиционер работает лучше, расходует меньше и служит дольше.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Назад к магазину"><h2 class="blog-section__title blog-section__title--visually-hidden">Назад к магазину</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Bosch', label: 'Bosch', imgSrc: 'https://logo.clearbit.com/bosch.com?size=512', imgAlt: 'Bosch logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Cooper & Hunter', label: 'Cooper & Hunter', imgSrc: 'https://logo.clearbit.com/cooperandhunter.us?size=512', imgAlt: 'Cooper and Hunter logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Если вам нужна профессиональная профилактика кондиционера в Несебре и соседних курортах, <a href="<%= lp('/kontakti') %>">свяжитесь с нами</a> и мы организуем визит.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Записаться на профилактику</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Цены на фреон" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Цены на фреон</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторный или обычный" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторный или обычный</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Кондиционеры" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

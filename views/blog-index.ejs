@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<%
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const copy = locale === 'en'
+    ? { skip: 'Skip to content', title: 'Blog', subtitle: 'Articles about air conditioners, refrigerant refills, installation and maintenance in Nessebar and the region.', soon: 'Soon', image: 'Image', read: 'Read →', empty: 'There are no published articles at the moment.' }
+    : locale === 'de'
+      ? { skip: 'Zum Inhalt springen', title: 'Blog', subtitle: 'Artikel über Klimaanlagen, Kältemittelnachfüllung, Montage und Wartung in Nessebar und der Region.', soon: 'Bald', image: 'Bild', read: 'Lesen →', empty: 'Derzeit gibt es keine veröffentlichten Artikel.' }
+      : locale === 'ru'
+        ? { skip: 'Перейти к содержанию', title: 'Блог', subtitle: 'Статьи о кондиционерах, заправке фреоном, монтаже и профилактике в Несебре и регионе.', soon: 'Скоро', image: 'Изображение', read: 'Читать →', empty: 'Сейчас нет опубликованных статей.' }
+        : { skip: 'Към съдържанието', title: 'Блог', subtitle: 'Статии за климатици, зареждане на фреон, монтаж и профилактика в Несебър и региона.', soon: 'Скоро', image: 'Снимка', read: 'Прочети →', empty: 'Няма публикувани статии в момента.' };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog-index.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content"><%= copy.skip || 'Към съдържанието' %></a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-index-page" role="main" id="main-content" tabindex="-1">
+    <header class="blog-index-header">
+      <div class="container">
+        <h1 class="blog-index-header__title"><%= copy.title || 'Блог' %></h1>
+        <p class="blog-index-header__subtitle"><%= copy.subtitle || '' %></p>
+      </div>
+    </header>
+
+    <div class="container blog-index__body">
+      <div class="blog-index-grid" role="list">
+        <% if (typeof posts !== 'undefined' && posts && posts.length) { %>
+          <% posts.forEach(function(post) { %>
+            <article class="blog-index-card" role="listitem">
+              <% if (post.isPlaceholder) { %>
+              <div class="blog-index-card__link blog-index-card__link--placeholder" aria-label="<%= post.title %> – <%= copy.soon || 'Скоро' %>">
+                <span class="blog-index-card__img-wrap">
+                  <span class="blog-index-card__placeholder" aria-hidden="true">
+                    <span class="blog-index-card__placeholder-icon" aria-hidden="true">📄</span>
+                    <span class="blog-index-card__placeholder-text"><%= copy.image || 'Снимка' %></span>
+                  </span>
+                  <span class="blog-index-card__badge"><%= copy.soon || 'Скоро' %></span>
+                </span>
+                <span class="blog-index-card__content">
+                  <span class="blog-index-card__date"><%= post.date %></span>
+                  <h2 class="blog-index-card__title"><%= post.title %></h2>
+                  <p class="blog-index-card__excerpt"><%= post.excerpt %></p>
+                  <span class="blog-index-card__cta"><%= copy.soon || 'Скоро' %></span>
+                </span>
+              </div>
+              <% } else { %>
+              <a class="blog-index-card__link" href="<%= post.url %>">
+                <span class="blog-index-card__img-wrap">
+                  <% if (post.image) { %>
+                    <img class="blog-index-card__img" src="<%= post.image %>" alt="<%= post.imageAlt || post.title %>" width="400" height="300" loading="lazy" />
+                  <% } else { %>
+                    <span class="blog-index-card__placeholder" aria-hidden="true">
+                      <span class="blog-index-card__placeholder-icon" aria-hidden="true">📄</span>
+                      <span class="blog-index-card__placeholder-text"><%= copy.image || 'Снимка' %></span>
+                    </span>
+                  <% } %>
+                </span>
+                <span class="blog-index-card__content">
+                  <span class="blog-index-card__date"><%= post.date %></span>
+                  <h2 class="blog-index-card__title"><%= post.title %></h2>
+                  <p class="blog-index-card__excerpt"><%= post.excerpt %></p>
+                  <span class="blog-index-card__cta"><%= copy.read || 'Прочети →' %></span>
+                </span>
+              </a>
+              <% } %>
+            </article>
+          <% }); %>
+        <% } else { %>
+          <p class="blog-index__empty"><%= copy.empty || 'Няма публикувани статии в момента.' %></p>
+        <% } %>
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

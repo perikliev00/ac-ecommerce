@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Към съдържанието</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Начало</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Профилактика на климатик</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Профилактика на климатик – колко често и какво включва?</h1>
+          <p class="blog-article__lead">Редовната профилактика гарантира по-нисък разход на ток, по-добро охлаждане и отопление, по-чист въздух и по-дълъг живот на уреда.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Фреон – цени 2026" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Фреон – цени 2026</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика и сервиз" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика и сервиз</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Заявете профилактика</span>
+                  <span class="blog-ad__placeholder-cta">Контакти →</span>
+                </span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="intro-heading">
+          <h2 id="intro-heading" class="blog-section__title">Защо е важна редовната профилактика?</h2>
+          <p class="blog-section__p">Климатикът не е магическа кутия. Той работи ежедневно с прах, влага, температурни разлики и натоварване. Без редовна профилактика ефективността му пада, сметките се вдигат, а рискът от повреда нараства.</p>
+          <p class="blog-section__p">Редовната профилактика на климатик гарантира:</p>
+          <ul class="blog-list blog-list--check">
+            <li>по-нисък разход на електроенергия</li>
+            <li>по-добро охлаждане и отопление</li>
+            <li>по-чист въздух в помещението</li>
+            <li>по-дълъг живот на уреда</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="frequency-heading">
+          <h2 id="frequency-heading" class="blog-section__title">Колко често се прави профилактика на климатик?</h2>
+          <p class="blog-section__p">Препоръчителната честота зависи от начина на използване:</p>
+          <h3 class="blog-section__subtitle">Домашен климатик</h3>
+          <ul class="blog-list blog-list--check">
+            <li><strong>1 път годишно</strong> – ако се използва основно през лятото</li>
+            <li><strong>2 пъти годишно</strong> – ако работи целогодишно (лято + отопление)</li>
+          </ul>
+          <h3 class="blog-section__subtitle">Офиси, магазини, заведения</h3>
+          <p class="blog-section__p">На всеки 6 месеца, понякога и по-често при интензивна работа.</p>
+          <p class="blog-note" role="note">Ако климатикът работи почти ежедневно, годишната профилактика е минимумът, който не бива да се пропуска.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="what-heading">
+          <h2 id="what-heading" class="blog-section__title">Какво включва профилактиката на климатик?</h2>
+          <p class="blog-section__p">Профилактиката не означава просто „пръскане с препарат“. Тя включва комплексна проверка и почистване.</p>
+
+          <h3 class="blog-section__subtitle">1. Почистване на филтри</h3>
+          <p class="blog-section__p">Филтрите задържат прах и замърсявания. Запушени филтри намаляват въздушния поток и увеличават консумацията на ток.</p>
+
+          <h3 class="blog-section__subtitle">2. Почистване на вътрешното тяло</h3>
+          <ul class="blog-list">
+            <li>Измиване на топлообменника</li>
+            <li>Почистване на турбината</li>
+            <li>Дезинфекция срещу бактерии и мухъл</li>
+          </ul>
+          <p class="blog-section__p">Това подобрява качеството на въздуха и премахва неприятните миризми.</p>
+
+          <h3 class="blog-section__subtitle">3. Проверка на външното тяло</h3>
+          <ul class="blog-list">
+            <li>Почистване на кондензатора</li>
+            <li>Проверка за замърсявания и блокирани отвори</li>
+            <li>Оглед за вибрации и шумове</li>
+          </ul>
+
+          <h3 class="blog-section__subtitle">4. Проверка на нивото на фреон</h3>
+          <p class="blog-section__p">Недостатъчното количество фреон намалява ефективността и може да доведе до повреда на компресора.</p>
+
+          <h3 class="blog-section__subtitle">5. Проверка на дренажната система</h3>
+          <p class="blog-section__p">Запушен дренаж може да доведе до течове и влага по стените.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="lifespan-heading">
+          <h2 id="lifespan-heading" class="blog-section__title">Защо профилактиката удължава живота на климатика?</h2>
+          <p class="blog-section__p">Компресорът е най-скъпият компонент на климатика. Когато системата работи замърсена или с ниско ниво на фреон: натоварването се увеличава, температурата на работа се повишава, рискът от скъп ремонт нараства.</p>
+          <p class="blog-section__p"><strong>Редовната профилактика намалява това натоварване и предпазва основните компоненти.</strong></p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="savings-heading">
+          <h2 id="savings-heading" class="blog-section__title">Как профилактиката намалява разходите?</h2>
+          <p class="blog-section__p">Замърсен климатик може да увеличи разхода на електроенергия с <strong>10–30%</strong>.</p>
+          <p class="blog-section__p">Чистата система: охлажда по-бързо, достига по-бързо зададената температура, работи по-кратко време. Това директно намалява месечните сметки.</p>
+          <p class="blog-section__p">Освен това, профилактиката струва значително по-малко от ремонт на компресор или подмяна на платка.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="tips-heading">
+          <h2 id="tips-heading" class="blog-section__title">Препоръки за периодично обслужване</h2>
+          <ul class="blog-list blog-list--check">
+            <li>Почиствайте филтрите сами на всеки 1–2 месеца.</li>
+            <li>Не отлагайте профилактиката преди летния сезон.</li>
+          </ul>
+          <p class="blog-section__p">Следете за:</p>
+          <ul class="blog-list">
+            <li>по-слаб въздушен поток</li>
+            <li>неприятна миризма</li>
+            <li>необичаен шум</li>
+            <li>по-висока сметка за ток</li>
+          </ul>
+          <p class="blog-note" role="note">Ако забележите някой от тези симптоми, вероятно климатикът ви има нужда от обслужване.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="conclusion-heading">
+          <h2 id="conclusion-heading" class="blog-section__title">Заключение</h2>
+          <p class="blog-section__p">Профилактиката на климатик не е разход, а инвестиция. Тя удължава живота на уреда, намалява сметките за електроенергия и осигурява по-здравословна среда у дома или в офиса.</p>
+          <p class="blog-section__p"><strong>Редовната грижа означава по-малко ремонти, по-ниски разходи и по-спокойни летни дни.</strong></p>
+        </section>
+
+        <section class="blog-section blog-section--faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="blog-section__title">Често задавани въпроси</h2>
+          <dl class="blog-faq">
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Колко често трябва да се прави профилактика на климатик?</dt>
+              <dd class="blog-faq__a">За домашен климатик – поне 1 път годишно при сезонно ползване; 2 пъти годишно при целогодишно ползване. За офис или магазин – на всеки 6 месеца или по-често при интензивна работа.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Какво включва профилактиката на климатик?</dt>
+              <dd class="blog-faq__a">Почистване на филтри и вътрешно тяло, проверка на външното тяло и кондензатора, проверка на нивото на фреон и на дренажната система. При нужда – дезинфекция срещу бактерии и мухъл.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Защо профилактиката намалява разходите за ток?</dt>
+              <dd class="blog-faq__a">Замърсен климатик консумира с 10–30% повече енергия. Чистата система охлажда по-ефективно, работи по-кратко време и по-ниски са месечните сметки.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Обратно към магазина">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Обратно към магазина</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Bosch', label: 'Bosch', imgSrc: 'https://logo.clearbit.com/bosch.com?size=512', imgAlt: 'Bosch logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Cooper & Hunter', label: 'Cooper & Hunter', imgSrc: 'https://logo.clearbit.com/cooperandhunter.us?size=512', imgAlt: 'Cooper and Hunter logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">За <a href="<%= lp('/uslugi') %>">профилактика и обслужване на климатици</a> в Несебър, Слънчев бряг, Равда и Свети Влас – <a href="<%= lp('/kontakti') %>">свържете се с нас</a> за оферта.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Заявете профилактика</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж на климатици" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж на климатици</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторен срещу обикновен" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторен срещу обикновен</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Климатици" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

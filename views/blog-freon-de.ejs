@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'de' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Startseite</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Kältemittel Preise 2026</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Was kostet das Nachfüllen von Kältemittel für eine Klimaanlage in Bulgarien (2026)</h1>
+          <p class="blog-article__lead">Richtwerte für das Nachfüllen von Kältemittel bei Haus- und Auto-Klimaanlagen in Bulgarien, einschließlich Arbeit, Diagnose und Service, nicht nur des Gaspreises. Die Daten basieren auf realen Angeboten von Fachbetrieben.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Angebot für Nachfüllung anfragen</span>
+                  <span class="blog-ad__placeholder-cta">Kontakt →</span>
+                </span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Service und Kältemittel" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Service und Kältemittel</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Montage von Klimaanlagen" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Montage von Klimaanlagen</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="pricing-overview-heading">
+          <h2 id="pricing-overview-heading" class="blog-section__title">Allgemeiner Preisrahmen in Bulgarien</h2>
+          <p class="blog-section__p">Der Preis hängt vor allem von mehreren Faktoren ab:</p>
+          <ul class="blog-list">
+            <li>Art der Klimaanlage (Haushalt oder Auto);</li>
+            <li>Art des Kältemittels (R32, R410A und andere);</li>
+            <li>benötigte Gasmenge;</li>
+            <li>ob ein Leck oder eine Reparatur vorliegt;</li>
+            <li>ob Arbeit, Diagnose und präzise Befüllung im Angebot enthalten sind.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="home-ac-heading">
+          <h2 id="home-ac-heading" class="blog-section__title">Haushalts-Klimaanlagen: typische Preise</h2>
+          <ul class="blog-list blog-list--tight">
+            <li><strong>Etwa 25-35 BGN pro 100 g Kältemittel</strong> (Arbeit plus Befüllung) ist ein häufiges Angebot bei Anlagen ohne Leck, die nur nachgefüllt werden müssen.</li>
+            <li><strong>Etwa 30-35 EUR pro 100 g Kältemittel</strong> können Diagnose, Vakuumierung und präzise Befüllung einschließen.</li>
+            <li>Einige Betriebe bieten <strong>etwa 17 BGN pro 100 g</strong> an, wenn keine zusätzliche Diagnose enthalten ist.</li>
+          </ul>
+          <p class="blog-note" role="note"><strong>Wichtig:</strong> Diese Preise gelten meist ohne Leckreparatur. Bei einem Leck wird zuerst die Ursache behoben.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="extra-services-heading">
+          <h2 id="extra-services-heading" class="blog-section__title">Zusätzliche Leistungen</h2>
+          <ul class="blog-list">
+            <li><strong>Diagnose / Stickstofftest:</strong> + 30-40 EUR (etwa 60-80 BGN)</li>
+            <li><strong>Lecksuche und Reparatur:</strong> etwa 80-120 EUR (ca. 160-240 BGN) bei größeren Problemen.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="car-ac-heading">
+          <h2 id="car-ac-heading" class="blog-section__title">Auto-Klimaanlage</h2>
+          <p class="blog-section__p">Zur Orientierung: Die Preislogik unterscheidet sich von Haushaltsanlagen.</p>
+          <ul class="blog-list">
+            <li>Die Befüllung einer Auto-Klimaanlage kann <strong>etwa 30-50 BGN</strong> für Standardservice und Befüllung kosten.</li>
+            <li>Bei R134a liegen die Kosten bei etwa <strong>14,90 BGN pro 100 g</strong>, bei R1234yf bei etwa <strong>49,90 BGN pro 100 g</strong>.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="price-factors-heading">
+          <h2 id="price-factors-heading" class="blog-section__title">Was den Endpreis beeinflusst</h2>
+          <ul class="blog-list">
+            <li><strong>Kältemittelmenge</strong> laut Typenschild der Anlage.</li>
+            <li><strong>Vorhandenes Leck</strong>: Einfaches Nachfüllen ist sinnlos, wenn das System undicht ist.</li>
+            <li><strong>Diagnose, Vakuumierung und Tests</strong> haben großen Einfluss auf den Gesamtpreis.</li>
+            <li><strong>Art des Kältemittels</strong> (R32, R410A usw.): Einige Sorten sind teurer.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="example-heading">
+          <h2 id="example-heading" class="blog-section__title">Praktisches Beispiel</h2>
+          <p class="blog-section__p">Bei einer Haushalts-Klimaanlage mit R32 ohne Leck:</p>
+          <ul class="blog-list">
+            <li>Diagnose plus Vakuumierung plus Nachfüllen: <strong>ca. 30-35 EUR pro 100 g</strong>.</li>
+            <li>Wenn beispielsweise 500 g benötigt werden, liegt der Gesamtpreis bei <strong>etwa 150-175 EUR</strong> (rund 300-350 BGN).</li>
+          </ul>
+          <p class="blog-section__p blog-section__p--muted">Dies ist nur eine grobe Orientierung; der genaue Betrag hängt vom System und vom Anbieter ab.</p>
+        </section>
+
+        <section class="blog-section blog-section--faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="blog-section__title">Häufige Fragen</h2>
+          <dl class="blog-faq">
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Was kostet das Nachfüllen von Kältemittel bei einer Haushalts-Klimaanlage?</dt>
+              <dd class="blog-faq__a">Meist etwa 25-35 BGN pro 100 g ohne Leck; mit Diagnose und Vakuumierung etwa 30-35 EUR pro 100 g. Der Preis hängt vom Kältemitteltyp und vom Servicebetrieb ab.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Warum sollte man bei einem Leck nicht nur Kältemittel nachfüllen?</dt>
+              <dd class="blog-faq__a">Wenn das System undicht ist, entweicht das Gas erneut. Deshalb wird zuerst das Leck gefunden und repariert, danach wird vakuumiert und neu befüllt.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Welche Faktoren bestimmen den Preis?</dt>
+              <dd class="blog-faq__a">Menge des Gases, Art des Kältemittels, enthaltene Diagnose- und Vakuumarbeiten sowie möglicher Reparaturbedarf. Zusätzliche Leistungen erhöhen die Gesamtsumme.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Zurück zum Shop">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Zurück zum Shop</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Daikin', label: 'Daikin', imgSrc: 'https://logo.clearbit.com/daikin.com?size=512', imgAlt: 'Daikin logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">Dies sind Richtpreise für Bulgarien im Jahr 2026. Es lohnt sich, mehrere Angebote einzuholen. Für <a href="<%= lp('/uslugi') %>">Service und Kältemittelnachfüllung in Nessebar und der Region</a> können Sie uns anrufen oder schreiben.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Service-Angebot anfragen</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Wartung der Klimaanlage" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Wartung der Klimaanlage</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter oder Standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter oder Standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Alle Artikel" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Alle Artikel</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

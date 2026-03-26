@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'ru' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Главная</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Инверторный или обычный</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Инверторный или обычный кондиционер: в чем разница?</h1>
+          <p class="blog-article__lead">Практичное сравнение двух основных технологий, их плюсов, ограничений и случаев, когда каждая из них подходит лучше.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Каталог" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Гид по профилактике" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Гид по профилактике</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Нужен совет?</span><span class="blog-ad__placeholder-cta">Контакты →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="basic-heading"><h2 id="basic-heading" class="blog-section__title">1. Базовый принцип работы</h2><p class="blog-section__p"><strong>Обычный</strong> кондиционер работает циклами включения и выключения. Он стартует на полной мощности, достигает заданной температуры и останавливается, затем запускается снова.</p><p class="blog-section__p"><strong>Инверторный</strong> кондиционер плавно меняет обороты компрессора и удерживает температуру стабильнее.</p></section>
+          <section class="blog-section" aria-labelledby="comfort-heading"><h2 id="comfort-heading" class="blog-section__title">2. Комфорт и стабильность температуры</h2><p class="blog-section__p">У обычных моделей колебания температуры обычно заметнее. Инверторные системы поддерживают более ровный климат в помещении и ощущаются комфортнее при постоянном использовании.</p></section>
+          <section class="blog-section" aria-labelledby="consumption-heading"><h2 id="consumption-heading" class="blog-section__title">3. Расход электроэнергии</h2><p class="blog-section__p">Инверторные системы обычно экономичнее в повседневной эксплуатации, потому что избегают постоянных запусков на полной мощности. Обычные модели дешевле при покупке, но часто обходятся дороже со временем.</p></section>
+          <section class="blog-section" aria-labelledby="noise-heading"><h2 id="noise-heading" class="blog-section__title">4. Уровень шума</h2><p class="blog-section__p">Поскольку инвертор плавно регулирует мощность, а не постоянно включается и выключается, он обычно тише работает и внутри, и снаружи.</p></section>
+          <section class="blog-section" aria-labelledby="heating-heading"><h2 id="heating-heading" class="blog-section__title">5. Работа на обогрев</h2><p class="blog-section__p">Если вы планируете использовать кондиционер и для отопления, инвертор почти всегда лучше. Он точнее регулирует мощность и эффективнее работает в холодную погоду.</p></section>
+          <section class="blog-section" aria-labelledby="price-heading"><h2 id="price-heading" class="blog-section__title">6. Цена покупки</h2><p class="blog-section__p">Обычные кондиционеры обычно дешевле на старте. Инверторные стоят дороже, но разница часто компенсируется меньшими счетами и лучшим комфортом.</p></section>
+          <section class="blog-section" aria-labelledby="which-heading"><h2 id="which-heading" class="blog-section__title">7. Что выбрать?</h2><ul class="blog-list"><li><strong>Выбирайте инвертор</strong>, если хотите ежедневное использование, меньший расход, более тихую работу и хороший обогрев.</li><li><strong>Выбирайте обычный</strong>, только если кондиционер нужен редко и главная цель - минимальная начальная цена.</li></ul></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">8. Итог</h2><p class="blog-section__p">Для большинства домов сегодня инверторный кондиционер - более практичное решение на долгий срок. Он дает лучший комфорт, меньший расход и более сильную круглогодичную производительность.</p><p class="blog-section__p"><strong>Обычная модель дешевле при покупке, но инвертор обычно является более разумной инвестицией.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Назад к магазину"><h2 class="blog-section__title blog-section__title--visually-hidden">Назад к магазину</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Toshiba', label: 'Toshiba', imgSrc: 'https://logo.clearbit.com/toshiba-aircon.co.uk?size=512', imgAlt: 'Toshiba logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Если вам нужна помощь с выбором подходящей модели для дома в Несебре и регионе, <a href="<%= lp('/kontakti') %>">свяжитесь с нами</a> за практической консультацией.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Получить совет по выбору</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Руководство по монтажу" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Руководство по монтажу</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Цены на фреон" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Цены на фреон</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж и сервис" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж и сервис</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

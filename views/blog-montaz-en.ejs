@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'en' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Home</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Air conditioner installation</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Air conditioner installation: steps, requirements and professional advice</h1>
+          <p class="blog-article__lead">Why proper installation is critical, how to prepare, what the main steps are and what to expect from a professional service.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Installation and service" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Installation and service</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Refrigerant prices 2026" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Refrigerant prices 2026</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Installation quote</span><span class="blog-ad__placeholder-cta">Contact →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading">
+            <h2 id="why-heading" class="blog-section__title">1. Why is proper installation so important?</h2>
+            <p class="blog-section__p">Many people think quality depends only on the brand. In reality, <strong>poor installation can ruin even an expensive air conditioner.</strong></p>
+            <p class="blog-section__p">Incorrect installation leads to:</p>
+            <ul class="blog-list">
+              <li>higher electricity consumption</li>
+              <li>weak cooling or heating</li>
+              <li>refrigerant leaks</li>
+              <li>noise and vibration</li>
+              <li>shorter compressor life</li>
+            </ul>
+            <p class="blog-note" role="note"><strong>Installation determines around 50% of system efficiency.</strong></p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="prep-heading">
+            <h2 id="prep-heading" class="blog-section__title">2. Preparation before installation</h2>
+            <h3 class="blog-section__subtitle">Choosing the right capacity</h3>
+            <p class="blog-section__p">Before drilling any wall, you should calculate room area, ceiling height, sun exposure, insulation, number of windows and whether the room is on the top floor.</p>
+            <ul class="blog-list blog-list--tight">
+              <li><strong>20 sq.m</strong> well insulated room → usually <strong>9,000 BTU</strong></li>
+              <li><strong>35 sq.m</strong> → <strong>12,000 BTU</strong></li>
+              <li><strong>50+ sq.m</strong> → <strong>18,000 BTU</strong> or more</li>
+            </ul>
+            <p class="blog-section__p">Wrong capacity means constant strain or poor efficiency.</p>
+            <h3 class="blog-section__subtitle">Choosing a place for the indoor unit</h3>
+            <p class="blog-section__p">The correct position should provide even air distribution, minimal direct airflow toward a bed or sofa, enough distance from the ceiling and service access.</p>
+            <p class="blog-section__p"><strong>Do not install it:</strong></p>
+            <ul class="blog-list blog-list--dont">
+              <li>directly above a radiator</li>
+              <li>in a corner without airflow</li>
+              <li>facing a curtain or wardrobe</li>
+            </ul>
+            <h3 class="blog-section__subtitle">Choosing a place for the outdoor unit</h3>
+            <p class="blog-section__p">The outdoor unit needs good ventilation, must not be trapped on a closed balcony, should not sit directly below a gutter and must be fixed with solid brackets.</p>
+            <p class="blog-note" role="note"><strong>Important:</strong> use anti-vibration pads and correct drainage slope.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="steps-heading">
+            <h2 id="steps-heading" class="blog-section__title">3. Main installation steps</h2>
+            <h3 class="blog-section__subtitle">Marking and drilling</h3>
+            <ul class="blog-list">
+              <li>the exact position is measured</li>
+              <li>a hole is drilled, usually 55-65 mm</li>
+              <li>the hole is sloped slightly outward for drainage</li>
+            </ul>
+            <h3 class="blog-section__subtitle">Installing the indoor unit</h3>
+            <ul class="blog-list">
+              <li>mounting plate is fixed</li>
+              <li>the unit is perfectly levelled</li>
+              <li>stability is checked</li>
+            </ul>
+            <p class="blog-section__p blog-section__p--muted">Crooked installation causes vibration and noise.</p>
+            <h3 class="blog-section__subtitle">Installing the outdoor unit</h3>
+            <ul class="blog-list">
+              <li>brackets are fixed</li>
+              <li>load-bearing strength is checked</li>
+              <li>rubber pads are installed</li>
+            </ul>
+            <h3 class="blog-section__subtitle">Connecting the pipe route</h3>
+            <p class="blog-section__p">Copper pipes, power cable and drain pipe are connected. <strong>Critical:</strong> proper flaring, vacuuming and leak testing.</p>
+            <h3 class="blog-section__subtitle">Vacuuming</h3>
+            <p class="blog-section__p">One of the most important steps. A vacuum pump removes moisture and air from the system. Without it, the compressor wears faster and efficiency drops.</p>
+            <h3 class="blog-section__subtitle">Start-up and test</h3>
+            <p class="blog-section__p">After releasing the refrigerant, pressure is checked, outlet air temperature is measured, noise is evaluated and consumption is observed.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="time-heading">
+            <h2 id="time-heading" class="blog-section__title">4. How long does installation take?</h2>
+            <ul class="blog-list">
+              <li><strong>Standard installation:</strong> 2-4 hours</li>
+              <li><strong>More complex installation:</strong> 4-6 hours</li>
+            </ul>
+            <p class="blog-section__p">It depends on height, pipe length and how difficult the location is.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="standard-heading">
+            <h2 id="standard-heading" class="blog-section__title">5. What does standard installation include?</h2>
+            <p class="blog-section__p">Usually: up to 3 m pipe route, 1 drilled hole, vacuuming, outdoor unit mounting, start-up and test.</p>
+            <p class="blog-section__p"><strong>Additional charges may apply for:</strong> longer pipe route, lift access, removal of an old unit, special brackets.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="mistakes-heading">
+            <h2 id="mistakes-heading" class="blog-section__title">6. Common mistakes</h2>
+            <ul class="blog-list blog-list--dont">
+              <li>no vacuuming</li>
+              <li>too short pipe route</li>
+              <li>poor flaring</li>
+              <li>wrong drainage slope</li>
+              <li>outdoor unit installed without service access</li>
+            </ul>
+          </section>
+
+          <section class="blog-section" aria-labelledby="expect-heading">
+            <h2 id="expect-heading" class="blog-section__title">7. What should you expect from the service team?</h2>
+            <p class="blog-section__p">A professional team should use a vacuum pump, level the unit, measure pressure, issue a warranty card and explain maintenance basics.</p>
+            <p class="blog-note" role="note">If they only “tighten the pipes and leave”, that is not professional installation.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="maintenance-heading">
+            <h2 id="maintenance-heading" class="blog-section__title">8. Maintenance after installation</h2>
+            <p class="blog-section__p">Recommended: professional maintenance once a year, filter cleaning every 1-2 months and periodic drain inspection. That adds years to the unit lifespan.</p>
+          </section>
+
+          <section class="blog-section" aria-labelledby="conclusion-heading">
+            <h2 id="conclusion-heading" class="blog-section__title">9. Conclusion</h2>
+            <p class="blog-section__p">Installation is not just “hanging a box on the wall”. It is a technical process that directly affects bills, efficiency, durability and warranty.</p>
+            <p class="blog-section__p"><strong>A well-installed air conditioner runs quietly, efficiently and without problems.</strong></p>
+          </section>
+
+          <section class="blog-section blog-section--cards" aria-label="Back to store">
+            <h2 class="blog-section__title blog-section__title--visually-hidden">Back to store</h2>
+            <div class="blog-cards">
+              <%- include('partials/brand-catalog-card', { brand: 'Gree', label: 'Gree', imgSrc: 'https://logo.clearbit.com/gree.com?size=512', imgAlt: 'Gree logo' }) %>
+              <%- include('partials/brand-catalog-card', { brand: 'Fujitsu General', label: 'Fujitsu General', imgSrc: 'https://logo.clearbit.com/fujitsu-general.com?size=512', imgAlt: 'Fujitsu General logo' }) %>
+            </div>
+          </section>
+
+          <footer class="blog-article__footer">
+            <p class="blog-article__meta">For professional air conditioner installation in Nessebar, Sunny Beach, Ravda and Saint Vlas, <a href="<%= lp('/kontakti') %>">contact us</a> for a quote.</p>
+            <a class="blog-cta" href="<%= lp('/kontakti') %>">Request an installation quote</a>
+          </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Advertising">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Air conditioner maintenance" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Air conditioner maintenance</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter vs standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter vs standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Advertising">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Air conditioners" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Catalog</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

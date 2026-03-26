@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Към съдържанието</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Начало</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Инверторен срещу обикновен</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Инверторен срещу обикновен климатик – кой е по-добър избор?</h1>
+          <p class="blog-article__lead">Разликите между двата типа засягат разхода на електроенергия, комфорта, шума и дълготрайността. Ето как да изберете според нуждите и бюджета си.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Климатици – каталог" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/inverter') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторни модели" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторни модели</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Оферта за климатик</span>
+                  <span class="blog-ad__placeholder-cta">Контакти →</span>
+                </span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="intro-heading">
+          <h2 id="intro-heading" class="blog-section__title">Въведение</h2>
+          <p class="blog-section__p">Изборът между инверторен и обикновен (on/off) климатик е един от най-честите въпроси при покупка на нова система за отопление и охлаждане. Разликите между двата типа не са само в цената – те засягат разхода на електроенергия, комфорта, шума и дълготрайността.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="onoff-heading">
+          <h2 id="onoff-heading" class="blog-section__title">Как работи обикновеният (on/off) климатик?</h2>
+          <p class="blog-section__p">Обикновеният климатик работи на принципа „включено–изключено“. Когато температурата в помещението достигне зададената стойност, компресорът спира напълно. Когато температурата се промени, системата се включва отново на пълна мощност.</p>
+          <p class="blog-section__p"><strong>Характеристики:</strong></p>
+          <ul class="blog-list">
+            <li>Работи на пълна мощност при включване</li>
+            <li>По-ниска първоначална цена</li>
+            <li>По-висока консумация на ток</li>
+            <li>По-осезаеми температурни колебания</li>
+          </ul>
+          <p class="blog-section__p">Този тип климатик е по-подходящ за помещения, които не се използват постоянно или където бюджетът е основен фактор.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="inverter-heading">
+          <h2 id="inverter-heading" class="blog-section__title">Как работи инверторният климатик?</h2>
+          <p class="blog-section__p">Инверторният климатик регулира оборотите на компресора плавно. Вместо да се изключва напълно, той намалява или увеличава мощността си според нуждата от отопление или охлаждане.</p>
+          <p class="blog-section__p"><strong>Характеристики:</strong></p>
+          <ul class="blog-list blog-list--check">
+            <li>Постоянна и стабилна температура</li>
+            <li>По-ниска консумация на електроенергия</li>
+            <li>По-тиха работа</li>
+            <li>По-дълъг живот на компресора</li>
+          </ul>
+          <p class="blog-section__p">Инверторната технология позволява по-ефективна работа, особено при продължително използване през зимата и лятото.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="energy-heading">
+          <h2 id="energy-heading" class="blog-section__title">Разход на електроенергия</h2>
+          <p class="blog-section__p">Инверторните климатици могат да намалят разхода на електроенергия с <strong>30–50%</strong> спрямо стандартните модели, особено при дългосрочна работа. При ежедневно отопление през зимата разликата в сметките за ток става осезаема.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="comfort-heading">
+          <h2 id="comfort-heading" class="blog-section__title">Комфорт и температурна стабилност</h2>
+          <p class="blog-section__p">Обикновеният климатик създава температурни амплитуди – става по-топло, после по-хладно. Инверторният поддържа почти постоянна температура без резки промени.</p>
+          <p class="blog-note" role="note">Ако търсите комфорт за спалня, детска стая или офис, инверторният вариант е по-подходящ.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="noise-heading">
+          <h2 id="noise-heading" class="blog-section__title">Шум</h2>
+          <p class="blog-section__p">Поради честото включване на максимална мощност, стандартните климатици са по-шумни. Инверторните работят по-плавно и тихо, което ги прави по-комфортни за нощен режим.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="price-heading">
+          <h2 id="price-heading" class="blog-section__title">Цена и инвестиция</h2>
+          <p class="blog-section__p"><strong>Обикновен климатик:</strong> по-ниска покупна цена, но по-високи месечни разходи.</p>
+          <p class="blog-section__p"><strong>Инверторен климатик:</strong> по-висока първоначална инвестиция, но по-ниски разходи във времето.</p>
+          <p class="blog-section__p">В дългосрочен план инверторният модел обикновено се изплаща чрез по-ниска консумация на ток.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="choose-heading">
+          <h2 id="choose-heading" class="blog-section__title">Кой климатик да изберете?</h2>
+          <p class="blog-section__p"><strong>Изберете обикновен климатик, ако:</strong></p>
+          <ul class="blog-list">
+            <li>Ще го използвате рядко</li>
+            <li>Бюджетът ви е ограничен</li>
+            <li>Помещението не изисква постоянен комфорт</li>
+          </ul>
+          <p class="blog-section__p"><strong>Изберете инверторен климатик, ако:</strong></p>
+          <ul class="blog-list blog-list--check">
+            <li>Ще отоплявате активно през зимата</li>
+            <li>Искате по-ниски сметки за ток</li>
+            <li>Търсите по-тиха и стабилна работа</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="conclusion-heading">
+          <h2 id="conclusion-heading" class="blog-section__title">Заключение</h2>
+          <p class="blog-section__p">Инверторният климатик предлага по-висока енергийна ефективност, по-голям комфорт и по-дълъг експлоатационен живот. Обикновеният модел е по-достъпен като цена, но може да доведе до по-високи разходи във времето.</p>
+          <p class="blog-section__p"><strong>Изборът зависи от начина на използване, бюджета и нуждите на помещението.</strong></p>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Обратно към магазина">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Обратно към магазина</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Heavy Industries', label: 'Mitsubishi Heavy', imgSrc: 'https://logo.clearbit.com/mhi.com?size=512', imgAlt: 'Mitsubishi Heavy Industries logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Toshiba', label: 'Toshiba', imgSrc: 'https://logo.clearbit.com/toshiba.com?size=512', imgAlt: 'Toshiba logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">За избор и монтаж на инверторни или стандартни климатици в Несебър, Слънчев бряг, Равда и Свети Влас – <a href="<%= lp('/kontakti') %>">свържете се с нас</a> за оферта.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Заявете оферта</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж на климатици" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж на климатици</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика на климатик" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика на климатик</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж и сервиз" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж и сервиз</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="bg">
+<%
+  const locale = typeof currentLocale !== 'undefined' && currentLocale ? currentLocale : 'bg';
+  const title = locale === 'en' ? 'Hyper inverter air conditioners' : locale === 'de' ? 'Hyper-Inverter-Klimaanlagen' : locale === 'ru' ? 'Гиперинверторные кондиционеры' : 'Хиперинверторни климатици';
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
 <head>
   <%- include('partials/head', { extraStyles: ['hyperinverter.css'] }) %>
 </head>
@@ -9,7 +13,7 @@
   <%- include('partials/drawer') %>
 
   <main class="page" role="main">
-    <%- include('partials/catalog', { catalogTitle: 'Хиперинверторни климатици', breadcrumbCurrent: 'Хиперинверторни климатици' }) %>
+    <%- include('partials/catalog', { catalogTitle: title, breadcrumbCurrent: title }) %>
   </main>
 
   <%- include('partials/footer') %>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'de' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Navigation">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Startseite</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Blog</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Montage von Klimaanlagen</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Montage von Klimaanlagen: Schritte, Anforderungen und professionelle Tipps</h1>
+          <p class="blog-article__lead">Warum die richtige Montage entscheidend ist, wie man sich vorbereitet und was man von einem professionellen Service erwarten sollte.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Montage und Service" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Montage und Service</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Kältemittel Preise 2026" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Kältemittel Preise 2026</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Angebot für Montage</span><span class="blog-ad__placeholder-cta">Kontakt →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading"><h2 id="why-heading" class="blog-section__title">1. Warum ist die richtige Montage so wichtig?</h2><p class="blog-section__p">Nicht nur die Marke zählt. <strong>Eine schlechte Montage kann auch ein teures Gerät ruinieren.</strong></p><p class="blog-section__p">Falsche Montage führt zu:</p><ul class="blog-list"><li>höherem Stromverbrauch</li><li>schwacher Kühlung oder Heizung</li><li>Kältemittellecks</li><li>Lärm und Vibrationen</li><li>kürzerer Lebensdauer des Kompressors</li></ul><p class="blog-note" role="note"><strong>Die Montage bestimmt rund 50% der Effizienz.</strong></p></section>
+          <section class="blog-section" aria-labelledby="prep-heading"><h2 id="prep-heading" class="blog-section__title">2. Vorbereitung vor der Montage</h2><h3 class="blog-section__subtitle">Die richtige Leistung wählen</h3><p class="blog-section__p">Vor dem Bohren werden Raumfläche, Deckenhöhe, Ausrichtung, Dämmung, Fenster und Etage berücksichtigt.</p><ul class="blog-list blog-list--tight"><li><strong>20 m²</strong> gut gedämmt → meist <strong>9.000 BTU</strong></li><li><strong>35 m²</strong> → <strong>12.000 BTU</strong></li><li><strong>50+ m²</strong> → <strong>18.000 BTU</strong> oder mehr</li></ul><p class="blog-section__p">Falsche Leistung bedeutet Dauerbelastung oder schlechte Effizienz.</p><h3 class="blog-section__subtitle">Platz für das Innengerät</h3><p class="blog-section__p">Wichtig sind gute Luftverteilung, wenig Direktzug, Abstand zur Decke und Servicezugang.</p><p class="blog-section__p"><strong>Nicht montieren:</strong></p><ul class="blog-list blog-list--dont"><li>direkt über einem Heizkörper</li><li>in einer Ecke ohne Luftstrom</li><li>gegenüber von Vorhang oder Schrank</li></ul><h3 class="blog-section__subtitle">Platz für das Außengerät</h3><p class="blog-section__p">Es braucht Belüftung, darf nicht auf einem geschlossenen Balkon ohne Luft stehen und muss mit stabilen Konsolen befestigt werden.</p><p class="blog-note" role="note"><strong>Wichtig:</strong> Vibrationsdämpfer und korrektes Gefälle für den Ablauf.</p></section>
+          <section class="blog-section" aria-labelledby="steps-heading"><h2 id="steps-heading" class="blog-section__title">3. Die wichtigsten Montageschritte</h2><h3 class="blog-section__subtitle">Markieren und Bohren</h3><ul class="blog-list"><li>Position exakt messen</li><li>Öffnung bohren, meist 55-65 mm</li><li>leichte Neigung nach außen für den Ablauf</li></ul><h3 class="blog-section__subtitle">Montage des Innengeräts</h3><ul class="blog-list"><li>Montageplatte befestigen</li><li>perfekt ausrichten</li><li>Stabilität prüfen</li></ul><p class="blog-section__p blog-section__p--muted">Schiefe Montage verursacht Lärm und Vibrationen.</p><h3 class="blog-section__subtitle">Montage des Außengeräts</h3><ul class="blog-list"><li>Konsolen befestigen</li><li>Tragfähigkeit prüfen</li><li>Gummipuffer montieren</li></ul><h3 class="blog-section__subtitle">Rohrverbindung</h3><p class="blog-section__p">Kupferrohre, Stromkabel und Ablauf werden verbunden. <strong>Kritisch:</strong> korrektes Bördeln, Vakuumieren und Lecktest.</p><h3 class="blog-section__subtitle">Vakuumieren</h3><p class="blog-section__p">Eine der wichtigsten Arbeiten. Feuchtigkeit und Luft werden entfernt, sonst sinkt die Effizienz und der Kompressor verschleißt schneller.</p><h3 class="blog-section__subtitle">Start und Test</h3><p class="blog-section__p">Danach werden Druck, Ausblastemperatur, Geräusch und Verbrauch geprüft.</p></section>
+          <section class="blog-section" aria-labelledby="time-heading"><h2 id="time-heading" class="blog-section__title">4. Wie lange dauert die Montage?</h2><ul class="blog-list"><li><strong>Standardmontage:</strong> 2-4 Stunden</li><li><strong>Komplexere Montage:</strong> 4-6 Stunden</li></ul><p class="blog-section__p">Das hängt von Höhe, Rohrweg und Zugänglichkeit ab.</p></section>
+          <section class="blog-section" aria-labelledby="standard-heading"><h2 id="standard-heading" class="blog-section__title">5. Was umfasst die Standardmontage?</h2><p class="blog-section__p">Normalerweise bis zu 3 m Rohrweg, 1 Bohrung, Vakuumieren, Montage des Außengeräts, Start und Test.</p><p class="blog-section__p"><strong>Zusatzkosten:</strong> längerer Rohrweg, Hebebühne, Demontage eines Altgeräts, Spezialkonsolen.</p></section>
+          <section class="blog-section" aria-labelledby="mistakes-heading"><h2 id="mistakes-heading" class="blog-section__title">6. Häufige Fehler</h2><ul class="blog-list blog-list--dont"><li>ohne Vakuumieren</li><li>zu kurzer Rohrweg</li><li>schlechtes Bördeln</li><li>falsches Gefälle am Ablauf</li><li>Außengerät ohne Servicezugang</li></ul></section>
+          <section class="blog-section" aria-labelledby="expect-heading"><h2 id="expect-heading" class="blog-section__title">7. Was sollte man vom Service erwarten?</h2><p class="blog-section__p">Ein professionelles Team nutzt eine Vakuumpumpe, richtet das Gerät sauber aus, misst den Druck, stellt eine Garantiekarte aus und erklärt die Wartung.</p><p class="blog-note" role="note">Wenn nur „die Rohre festgezogen werden und man geht“, ist das keine professionelle Montage.</p></section>
+          <section class="blog-section" aria-labelledby="maintenance-heading"><h2 id="maintenance-heading" class="blog-section__title">8. Wartung nach der Montage</h2><p class="blog-section__p">Empfohlen sind jährliche Wartung, Filterreinigung alle 1-2 Monate und Kontrolle des Ablaufs. Das verlängert die Lebensdauer deutlich.</p></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">9. Fazit</h2><p class="blog-section__p">Montage ist nicht nur „ein Gerät an die Wand hängen“. Sie beeinflusst direkt Verbrauch, Effizienz, Lebensdauer und Garantie.</p><p class="blog-section__p"><strong>Eine gut montierte Klimaanlage läuft leise, sparsam und zuverlässig.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Zurück zum Shop"><h2 class="blog-section__title blog-section__title--visually-hidden">Zurück zum Shop</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Gree', label: 'Gree', imgSrc: 'https://logo.clearbit.com/gree.com?size=512', imgAlt: 'Gree logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Fujitsu General', label: 'Fujitsu General', imgSrc: 'https://logo.clearbit.com/fujitsu-general.com?size=512', imgAlt: 'Fujitsu General logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Für professionelle Klimamontage in Nessebar, Sonnenstrand, Rawda und Sweti Wlas kontaktieren Sie uns <a href="<%= lp('/kontakti') %>">für ein Angebot</a>.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Angebot für Montage anfragen</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Werbung">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Wartung der Klimaanlage" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Wartung der Klimaanlage</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Inverter oder Standard" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Inverter oder Standard</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Werbung">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Klimaanlagen" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Katalog</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

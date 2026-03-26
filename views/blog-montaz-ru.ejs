@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'ru' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Главная</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Монтаж кондиционеров</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Монтаж кондиционера: этапы, требования и профессиональные советы</h1>
+          <p class="blog-article__lead">Почему правильный монтаж так важен, как подготовиться и что ожидать от профессиональной установки.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж и сервис" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж и сервис</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Цены на фреон 2026" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Цены на фреон 2026</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама"><a class="blog-ad__link" href="<%= lp('/kontakti') %>"><span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true"><span class="blog-ad__placeholder-text">Запросить оферту на монтаж</span><span class="blog-ad__placeholder-cta">Контакты →</span></span></a></aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+          <section class="blog-section" aria-labelledby="why-heading"><h2 id="why-heading" class="blog-section__title">1. Почему правильный монтаж так важен?</h2><p class="blog-section__p">Дело не только в бренде. <strong>Плохой монтаж может испортить даже дорогой кондиционер.</strong></p><p class="blog-section__p">Ошибки при монтаже приводят к:</p><ul class="blog-list"><li>повышенному расходу электроэнергии</li><li>слабому охлаждению или обогреву</li><li>утечкам фреона</li><li>шуму и вибрациям</li><li>сокращению срока службы компрессора</li></ul><p class="blog-note" role="note"><strong>Монтаж определяет около 50% эффективности системы.</strong></p></section>
+          <section class="blog-section" aria-labelledby="prep-heading"><h2 id="prep-heading" class="blog-section__title">2. Подготовка перед монтажом</h2><h3 class="blog-section__subtitle">Выбор правильной мощности</h3><p class="blog-section__p">До начала работ учитывают площадь комнаты, высоту потолка, солнечную сторону, утепление, количество окон и этаж.</p><ul class="blog-list blog-list--tight"><li><strong>20 м²</strong> с хорошей изоляцией → обычно <strong>9 000 BTU</strong></li><li><strong>35 м²</strong> → <strong>12 000 BTU</strong></li><li><strong>50+ м²</strong> → <strong>18 000 BTU</strong> и больше</li></ul><p class="blog-section__p">Неправильно выбранная мощность означает постоянную нагрузку или слабую работу.</p><h3 class="blog-section__subtitle">Место для внутреннего блока</h3><p class="blog-section__p">Нужны равномерное распределение воздуха, минимум прямого обдува, расстояние до потолка и доступ для обслуживания.</p><p class="blog-section__p"><strong>Не устанавливайте:</strong></p><ul class="blog-list blog-list--dont"><li>прямо над радиатором</li><li>в углу без циркуляции воздуха</li><li>напротив шторы или шкафа</li></ul><h3 class="blog-section__subtitle">Место для наружного блока</h3><p class="blog-section__p">Наружному блоку нужна вентиляция; он не должен стоять на закрытом балконе без воздуха и должен быть закреплен на надежных кронштейнах.</p><p class="blog-note" role="note"><strong>Важно:</strong> виброопоры и правильный уклон дренажа.</p></section>
+          <section class="blog-section" aria-labelledby="steps-heading"><h2 id="steps-heading" class="blog-section__title">3. Основные этапы монтажа</h2><h3 class="blog-section__subtitle">Разметка и сверление</h3><ul class="blog-list"><li>точно определяется место</li><li>сверлится отверстие, обычно 55-65 мм</li><li>делается уклон наружу для дренажа</li></ul><h3 class="blog-section__subtitle">Установка внутреннего блока</h3><ul class="blog-list"><li>крепится монтажная пластина</li><li>блок выравнивается по уровню</li><li>проверяется устойчивость</li></ul><p class="blog-section__p blog-section__p--muted">Кривой монтаж вызывает шум и вибрации.</p><h3 class="blog-section__subtitle">Установка наружного блока</h3><ul class="blog-list"><li>крепятся кронштейны</li><li>проверяется несущая способность</li><li>устанавливаются резиновые прокладки</li></ul><h3 class="blog-section__subtitle">Подключение трассы</h3><p class="blog-section__p">Подключаются медные трубы, кабель питания и дренаж. <strong>Критично:</strong> качественная развальцовка, вакуумирование и проверка на утечки.</p><h3 class="blog-section__subtitle">Вакуумирование</h3><p class="blog-section__p">Один из самых важных этапов. Насос удаляет влагу и воздух из системы. Без этого снижается эффективность и быстрее изнашивается компрессор.</p><h3 class="blog-section__subtitle">Пуск и тест</h3><p class="blog-section__p">После пуска проверяют давление, температуру воздуха, шум и потребление.</p></section>
+          <section class="blog-section" aria-labelledby="time-heading"><h2 id="time-heading" class="blog-section__title">4. Сколько времени занимает монтаж?</h2><ul class="blog-list"><li><strong>Стандартный монтаж:</strong> 2-4 часа</li><li><strong>Более сложный монтаж:</strong> 4-6 часов</li></ul><p class="blog-section__p">Это зависит от высоты, длины трассы и сложности доступа.</p></section>
+          <section class="blog-section" aria-labelledby="standard-heading"><h2 id="standard-heading" class="blog-section__title">5. Что входит в стандартный монтаж?</h2><p class="blog-section__p">Обычно это до 3 м трассы, 1 отверстие, вакуумирование, монтаж наружного блока, пуск и тест.</p><p class="blog-section__p"><strong>Дополнительно оплачиваются:</strong> более длинная трасса, автовышка, демонтаж старого блока, специальные кронштейны.</p></section>
+          <section class="blog-section" aria-labelledby="mistakes-heading"><h2 id="mistakes-heading" class="blog-section__title">6. Частые ошибки</h2><ul class="blog-list blog-list--dont"><li>монтаж без вакуумирования</li><li>слишком короткая трасса</li><li>плохая развальцовка</li><li>неправильный уклон дренажа</li><li>наружный блок без доступа для сервиса</li></ul></section>
+          <section class="blog-section" aria-labelledby="expect-heading"><h2 id="expect-heading" class="blog-section__title">7. Что ожидать от монтажной команды?</h2><p class="blog-section__p">Профессионалы используют вакуумный насос, выставляют блок по уровню, измеряют давление, выдают гарантийный талон и объясняют базовый уход.</p><p class="blog-note" role="note">Если мастера только «затянули трубы и ушли», это не профессиональный монтаж.</p></section>
+          <section class="blog-section" aria-labelledby="maintenance-heading"><h2 id="maintenance-heading" class="blog-section__title">8. Обслуживание после монтажа</h2><p class="blog-section__p">Рекомендуются ежегодная профилактика, чистка фильтров каждые 1-2 месяца и периодическая проверка дренажа. Это заметно продлевает срок службы.</p></section>
+          <section class="blog-section" aria-labelledby="conclusion-heading"><h2 id="conclusion-heading" class="blog-section__title">9. Итог</h2><p class="blog-section__p">Монтаж - это не просто «повесить блок на стену». От него напрямую зависят расход энергии, эффективность, долговечность и гарантия.</p><p class="blog-section__p"><strong>Правильно установленный кондиционер работает тихо, эффективно и без проблем.</strong></p></section>
+          <section class="blog-section blog-section--cards" aria-label="Назад к магазину"><h2 class="blog-section__title blog-section__title--visually-hidden">Назад к магазину</h2><div class="blog-cards"><%- include('partials/brand-catalog-card', { brand: 'Gree', label: 'Gree', imgSrc: 'https://logo.clearbit.com/gree.com?size=512', imgAlt: 'Gree logo' }) %><%- include('partials/brand-catalog-card', { brand: 'Fujitsu General', label: 'Fujitsu General', imgSrc: 'https://logo.clearbit.com/fujitsu-general.com?size=512', imgAlt: 'Fujitsu General logo' }) %></div></section>
+          <footer class="blog-article__footer"><p class="blog-article__meta">Для профессионального монтажа кондиционеров в Несебре, Солнечном Береге, Равде и Святом Власе <a href="<%= lp('/kontakti') %>">свяжитесь с нами</a> для расчета стоимости.</p><a class="blog-cta" href="<%= lp('/kontakti') %>">Запросить оферту на монтаж</a></footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика кондиционера" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика кондиционера</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторный или обычный" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторный или обычный</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Кондиционеры" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

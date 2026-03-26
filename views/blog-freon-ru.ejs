@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'ru' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Главная</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Цены на фреон 2026</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Сколько стоит заправка кондиционера фреоном в Болгарии (2026)</h1>
+          <p class="blog-article__lead">Ориентировочные цены на заправку бытовых и автомобильных кондиционеров в Болгарии, включая работу, диагностику и обслуживание, а не только стоимость газа. Данные основаны на реальных предложениях сервисов.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Запросить оферту на заправку</span>
+                  <span class="blog-ad__placeholder-cta">Контакты →</span>
+                </span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Сервис и фреон" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Сервис и фреон</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/montaz-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж кондиционеров" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж кондиционеров</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="pricing-overview-heading">
+          <h2 id="pricing-overview-heading" class="blog-section__title">Общий ориентир по ценам в Болгарии</h2>
+          <p class="blog-section__p">На стоимость влияют несколько основных факторов:</p>
+          <ul class="blog-list">
+            <li>тип кондиционера: бытовой или автомобильный;</li>
+            <li>тип фреона: R32, R410A и другие;</li>
+            <li>необходимое количество газа;</li>
+            <li>есть ли утечка или требуется ремонт;</li>
+            <li>включены ли в оферту работа, диагностика и точная заправка.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="home-ac-heading">
+          <h2 id="home-ac-heading" class="blog-section__title">Бытовые кондиционеры: типичные цены</h2>
+          <ul class="blog-list blog-list--tight">
+            <li><strong>Около 25-35 левов за 100 г фреона</strong> (работа плюс заправка) - частое предложение для системы без утечек, которой нужно только дозаправление.</li>
+            <li><strong>Около 30-35 евро за 100 г фреона</strong> могут включать диагностику, вакуумирование и точную заправку.</li>
+            <li>Некоторые сервисы предлагают <strong>около 17 левов за 100 г</strong>, если дополнительная диагностика не входит в стоимость.</li>
+          </ul>
+          <p class="blog-note" role="note"><strong>Важно:</strong> такие цены обычно не включают ремонт утечки. Если есть утечка, сначала устраняют причину.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="extra-services-heading">
+          <h2 id="extra-services-heading" class="blog-section__title">Дополнительные услуги</h2>
+          <ul class="blog-list">
+            <li><strong>Диагностика / тест азотом:</strong> + 30-40 евро (около 60-80 левов)</li>
+            <li><strong>Поиск и ремонт утечки:</strong> около 80-120 евро (примерно 160-240 левов) при более серьезных проблемах.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="car-ac-heading">
+          <h2 id="car-ac-heading" class="blog-section__title">Автомобильный кондиционер</h2>
+          <p class="blog-section__p">Для ориентира: ценообразование отличается от бытовых систем.</p>
+          <ul class="blog-list">
+            <li>Заправка автокондиционера может стоить <strong>около 30-50 левов</strong> за стандартное обслуживание и заправку.</li>
+            <li>Для R134a цена может быть около <strong>14,90 левов за 100 г</strong>, для R1234yf - около <strong>49,90 левов за 100 г</strong>.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="price-factors-heading">
+          <h2 id="price-factors-heading" class="blog-section__title">Что влияет на итоговую цену</h2>
+          <ul class="blog-list">
+            <li><strong>Количество фреона</strong> по табличке системы.</li>
+            <li><strong>Наличие утечки</strong>: простая дозаправка не имеет смысла, если система негерметична.</li>
+            <li><strong>Включены ли диагностика, вакуумирование и тесты</strong>: это сильно влияет на общую сумму.</li>
+            <li><strong>Тип фреона</strong>: некоторые виды стоят дороже.</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="example-heading">
+          <h2 id="example-heading" class="blog-section__title">Практический пример</h2>
+          <p class="blog-section__p">Для бытового кондиционера с R32 без утечек:</p>
+          <ul class="blog-list">
+            <li>Диагностика плюс вакуумирование плюс дозаправка: <strong>около 30-35 евро за 100 г</strong>.</li>
+            <li>Если требуется, например, 500 г, итог может составить <strong>около 150-175 евро</strong> (примерно 300-350 левов).</li>
+          </ul>
+          <p class="blog-section__p blog-section__p--muted">Это только ориентировочный расчет; точная сумма зависит от конкретной системы и сервиса.</p>
+        </section>
+
+        <section class="blog-section blog-section--faq" aria-labelledby="faq-heading">
+          <h2 id="faq-heading" class="blog-section__title">Часто задаваемые вопросы</h2>
+          <dl class="blog-faq">
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Сколько стоит заправка бытового кондиционера фреоном?</dt>
+              <dd class="blog-faq__a">Обычно около 25-35 левов за 100 г без утечки; с диагностикой и вакуумированием - около 30-35 евро за 100 г. Цена зависит от типа фреона и сервиса.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Почему нельзя просто дозаправить фреон при утечке?</dt>
+              <dd class="blog-faq__a">Если в системе есть утечка, газ снова выйдет наружу. Сначала находят и устраняют утечку, затем систему вакуумируют и снова заправляют.</dd>
+            </div>
+            <div class="blog-faq__item">
+              <dt class="blog-faq__q">Какие факторы определяют цену заправки?</dt>
+              <dd class="blog-faq__a">Количество газа, тип фреона, входит ли диагностика и вакуумирование, и нужен ли ремонт. Дополнительные услуги увеличивают общую стоимость.</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Назад к магазину">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Назад к магазину</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Daikin', label: 'Daikin', imgSrc: 'https://logo.clearbit.com/daikin.com?size=512', imgAlt: 'Daikin logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Mitsubishi Electric', label: 'Mitsubishi Electric', imgSrc: 'https://logo.clearbit.com/mitsubishielectric.com?size=512', imgAlt: 'Mitsubishi Electric logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">Это ориентировочные цены для Болгарии на 2026 год. Лучше запросить несколько предложений перед заказом услуги. Для <a href="<%= lp('/uslugi') %>">сервиса и заправки фреоном в Несебре и регионе</a> вы можете позвонить нам или написать.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Запросить оферту на сервис</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика кондиционера" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика кондиционера</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторный или обычный" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторный или обычный</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Все статьи" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Все статьи</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>

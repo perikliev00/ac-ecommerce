@@ -1,0 +1,18 @@
+<%
+  /**
+   * Brand logo card → catalog with ?brand= (value must match Product.brand in DB).
+   * Locals: brand (required), label (optional display), imgSrc, imgAlt
+   */
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+  const cat = typeof i18n !== 'undefined' && i18n && i18n.catalog ? i18n.catalog : {};
+  const hint = cat.brandCatalogHint || '';
+  const b = typeof brand !== 'undefined' ? String(brand) : '';
+  const displayLabel = typeof label !== 'undefined' ? String(label) : b;
+  const src = typeof imgSrc !== 'undefined' ? imgSrc : '';
+  const alt = typeof imgAlt !== 'undefined' ? imgAlt : (displayLabel + ' logo');
+  const aria = hint ? (displayLabel + ' – ' + hint) : displayLabel;
+%>
+<a class="blog-card" href="<%= lp('/produkti') %>?brand=<%= encodeURIComponent(b) %>" aria-label="<%= aria %>">
+  <img class="blog-card__img" src="<%= src %>" alt="<%= alt %>" width="400" height="300" loading="lazy" />
+  <span class="blog-card__label"><%= displayLabel %></span>
+</a>

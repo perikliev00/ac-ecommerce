@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<%
+  const lp = typeof localizePath === 'function' ? localizePath : function(path) { return path; };
+%>
+<html lang="<%= typeof htmlLang !== 'undefined' && htmlLang ? htmlLang : 'bg' %>">
+<head>
+  <%- include('partials/head', { extraStyles: ['blog.css'] }) %>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Към съдържанието</a>
+  <%- include('partials/loader') %>
+  <%- include('partials/header') %>
+  <%- include('partials/drawer') %>
+
+  <main class="page blog-page" role="main" id="main-content">
+    <article class="blog-article" itemscope itemtype="https://schema.org/Article">
+      <header class="blog-article__header">
+        <div class="container">
+          <nav class="blog-breadcrumb" aria-label="Навигация">
+            <a class="blog-breadcrumb__link" href="<%= lp('/') %>">Начало</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <a class="blog-breadcrumb__link" href="<%= lp('/blog') %>">Блог</a>
+            <span class="blog-breadcrumb__sep" aria-hidden="true">/</span>
+            <span class="blog-breadcrumb__current">Монтаж на климатици</span>
+          </nav>
+          <h1 class="blog-article__title" itemprop="headline">Монтаж на климатици: стъпки, изисквания и професионални съвети</h1>
+          <p class="blog-article__lead">Защо правилният монтаж е критичен, как да се подготвите, какви са основните стъпки и какво да очаквате от професионален сервиз.</p>
+        </div>
+      </header>
+
+      <div class="container blog-layout">
+        <aside class="blog-sidebar blog-sidebar--left" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/uslugi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/montaj.jpeg" alt="Монтаж и сервиз" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Монтаж и сервиз</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/freon-ceni-2026') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/freon.jpg" alt="Фреон – цени 2026" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Фреон – цени 2026</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/kontakti') %>" target="_self" rel="noopener">
+                <span class="blog-ad__placeholder blog-ad__placeholder--rect" aria-hidden="true">
+                  <span class="blog-ad__placeholder-text">Оферта за монтаж</span>
+                  <span class="blog-ad__placeholder-cta">Контакти →</span>
+                </span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+
+        <div class="blog-content">
+        <section class="blog-section" aria-labelledby="why-heading">
+          <h2 id="why-heading" class="blog-section__title">1. Защо правилният монтаж е толкова важен?</h2>
+          <p class="blog-section__p">Много хора мислят, че качеството зависи само от марката – дали е Daikin, Mitsubishi Electric или Gree. Истината е по-проста: <strong>лош монтаж може да съсипе и най-скъпия климатик.</strong></p>
+          <p class="blog-section__p">Неправилен монтаж води до:</p>
+          <ul class="blog-list">
+            <li>по-висока консумация на ток</li>
+            <li>слабо охлаждане или отопление</li>
+            <li>течове на фреон</li>
+            <li>шум и вибрации</li>
+            <li>по-кратък живот на компресора</li>
+          </ul>
+          <p class="blog-note" role="note"><strong>Монтажът определя около 50% от ефективността на системата.</strong></p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="prep-heading">
+          <h2 id="prep-heading" class="blog-section__title">2. Подготовка преди монтаж</h2>
+
+          <h3 class="blog-section__subtitle">Избор на правилна мощност</h3>
+          <p class="blog-section__p">Преди изобщо да се мисли за дупки в стената, трябва да се изчисли: квадратура на помещението, височина на тавана, изложение (юг/север), изолация, брой прозорци, дали е последен етаж.</p>
+          <ul class="blog-list blog-list--tight">
+            <li><strong>20 кв.м</strong> добре изолирано помещение → обикновено <strong>9 000 BTU</strong></li>
+            <li><strong>35 кв.м</strong> → <strong>12 000 BTU</strong></li>
+            <li><strong>50+ кв.м</strong> → <strong>18 000 BTU</strong> или повече</li>
+          </ul>
+          <p class="blog-section__p">Неправилната мощност води до постоянно натоварване или неефективност.</p>
+
+          <h3 class="blog-section__subtitle">Избор на място за вътрешното тяло</h3>
+          <p class="blog-section__p">Правилната позиция трябва да осигурява: равномерно разпределение на въздуха, минимално директно духане към легло/диван, достатъчно разстояние от тавана (обикновено 10–15 см), място за сервизен достъп.</p>
+          <p class="blog-section__p"><strong>Не се монтира:</strong></p>
+          <ul class="blog-list blog-list--dont">
+            <li>точно над радиатор</li>
+            <li>в ъгъл без въздушен поток</li>
+            <li>срещу завеса или гардероб</li>
+          </ul>
+
+          <h3 class="blog-section__subtitle">Избор на място за външното тяло</h3>
+          <p class="blog-section__p">Външното тяло трябва: да има добра вентилация; да не е в затворен балкон без въздух; да не е директно под улук; да бъде здраво закрепено със стабилни конзоли.</p>
+          <p class="blog-note" role="note"><strong>Важно:</strong> антивибрационни тампони и правилен наклон за оттичане.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="steps-heading">
+          <h2 id="steps-heading" class="blog-section__title">3. Основни стъпки при монтаж на климатик</h2>
+
+          <h3 class="blog-section__subtitle">Маркиране и пробиване</h3>
+          <ul class="blog-list">
+            <li>Измерва се точно позицията</li>
+            <li>Пробива се отвор (обикновено 55–65 мм)</li>
+            <li>Отворът се прави с лек наклон навън за правилно оттичане</li>
+          </ul>
+
+          <h3 class="blog-section__subtitle">Монтаж на вътрешното тяло</h3>
+          <ul class="blog-list">
+            <li>Поставя се монтажна планка</li>
+            <li>Нивелира се перфектно</li>
+            <li>Проверява се стабилността</li>
+          </ul>
+          <p class="blog-section__p blog-section__p--muted">Крив монтаж води до вибрации и шум.</p>
+
+          <h3 class="blog-section__subtitle">Монтаж на външното тяло</h3>
+          <ul class="blog-list">
+            <li>Закрепване на конзоли</li>
+            <li>Проверка на носещата способност</li>
+            <li>Монтиране на гумени тампони</li>
+          </ul>
+
+          <h3 class="blog-section__subtitle">Свързване на тръбния път</h3>
+          <p class="blog-section__p">Свързват се: медни тръби, ел. кабел, дренажна тръба. <strong>Критично важно:</strong> правилно флароване, вакуумиране, тест за течове.</p>
+
+          <h3 class="blog-section__subtitle">Вакуумиране</h3>
+          <p class="blog-section__p">Една от най-важните стъпки. С вакуум помпа се изтегля влагата и въздуха от системата. Без вакуумиране: компресорът се износва, пада ефективността, може да се повреди системата.</p>
+
+          <h3 class="blog-section__subtitle">Пуск и тест</h3>
+          <p class="blog-section__p">След отваряне на фреона: проверява се налягането, измерва се температура на изходящ въздух, проверява се шум, наблюдава се консумацията.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="time-heading">
+          <h2 id="time-heading" class="blog-section__title">4. Колко време отнема монтажът?</h2>
+          <ul class="blog-list">
+            <li><strong>Стандартен монтаж:</strong> 2–4 часа</li>
+            <li><strong>По-сложен монтаж:</strong> 4–6 часа</li>
+          </ul>
+          <p class="blog-section__p">Зависи от височина, дължина на тръбния път и труднодостъпно място.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="standard-heading">
+          <h2 id="standard-heading" class="blog-section__title">5. Какво включва стандартният монтаж?</h2>
+          <p class="blog-section__p">Обикновено: до 3 м тръбен път, 1 пробив, вакуумиране, монтаж на външно тяло, пуск и тест.</p>
+          <p class="blog-section__p"><strong>Допълнително се заплаща:</strong> по-дълъг тръбен път, вишка, демонтаж на стар климатик, специални конзоли.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="mistakes-heading">
+          <h2 id="mistakes-heading" class="blog-section__title">6. Често срещани грешки</h2>
+          <ul class="blog-list blog-list--dont">
+            <li>Без вакуумиране</li>
+            <li>Прекалено къс тръбен път</li>
+            <li>Лошо флароване</li>
+            <li>Неправилен наклон на дренажа</li>
+            <li>Монтаж на външно тяло без достъп за сервиз</li>
+          </ul>
+        </section>
+
+        <section class="blog-section" aria-labelledby="expect-heading">
+          <h2 id="expect-heading" class="blog-section__title">7. Какво да очаквате от сервиза?</h2>
+          <p class="blog-section__p">Професионалният екип трябва да: работи с вакуум помпа, използва нивелир, измери налягането, издаде гаранционна карта, даде инструкции за поддръжка.</p>
+          <p class="blog-note" role="note">Ако просто „завият тръбите и си тръгнат“, това не е професионален монтаж.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="maintenance-heading">
+          <h2 id="maintenance-heading" class="blog-section__title">8. Поддръжка след монтаж</h2>
+          <p class="blog-section__p">Препоръчително: профилактика 1 път годишно; почистване на филтри на всеки 1–2 месеца; проверка на дренажа. Това удължава живота с години.</p>
+        </section>
+
+        <section class="blog-section" aria-labelledby="conclusion-heading">
+          <h2 id="conclusion-heading" class="blog-section__title">9. Заключение</h2>
+          <p class="blog-section__p">Монтажът не е просто „закачане на кутия на стената“. Това е технически процес, който влияе директно върху сметките за ток, ефективността, дълготрайността и гаранцията.</p>
+          <p class="blog-section__p"><strong>Добре монтиран климатик работи тихо, икономично и без проблеми.</strong></p>
+        </section>
+
+        <section class="blog-section blog-section--cards" aria-label="Обратно към магазина">
+          <h2 class="blog-section__title blog-section__title--visually-hidden">Обратно към магазина</h2>
+          <div class="blog-cards">
+            <%- include('partials/brand-catalog-card', { brand: 'Gree', label: 'Gree', imgSrc: 'https://logo.clearbit.com/gree.com?size=512', imgAlt: 'Gree logo' }) %>
+            <%- include('partials/brand-catalog-card', { brand: 'Fujitsu General', label: 'Fujitsu General', imgSrc: 'https://logo.clearbit.com/fujitsu-general.com?size=512', imgAlt: 'Fujitsu General logo' }) %>
+          </div>
+        </section>
+
+        <footer class="blog-article__footer">
+          <p class="blog-article__meta">За професионален монтаж на климатици в Несебър, Слънчев бряг, Равда и Свети Влас – <a href="<%= lp('/kontakti') %>">свържете се с нас</a> за оферта.</p>
+          <a class="blog-cta" href="<%= lp('/kontakti') %>">Заявете оферта за монтаж</a>
+        </footer>
+        </div>
+
+        <aside class="blog-sidebar blog-sidebar--right" aria-label="Реклама">
+          <div class="blog-sidebar__sticky">
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/profilaktika-klimatitsi') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/profilaktika.jpg" alt="Профилактика на климатик" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Профилактика на климатик</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/blog/inverter-vs-obiknoven') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/invertoriliobiknoven.jpg" alt="Инверторен срещу обикновен" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Инверторен срещу обикновен</span>
+              </a>
+            </aside>
+            <aside class="blog-ad" aria-label="Реклама">
+              <a class="blog-ad__link" href="<%= lp('/produkti') %>" target="_self" rel="noopener">
+                <img class="blog-ad__img" src="/assets/images/katalogklimatici.jpg" alt="Климатици" width="336" height="280" loading="lazy" decoding="async" />
+                <span class="blog-ad__overlay-title" aria-hidden="true">Каталог</span>
+              </a>
+            </aside>
+          </div>
+        </aside>
+      </div>
+    </article>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
